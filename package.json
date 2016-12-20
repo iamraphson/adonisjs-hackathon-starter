@@ -21,6 +21,7 @@
     "adonis-middleware": "^1.0.8",
     "adonis-validation-provider": "^3.0.5",
     "fs": "0.0.1-security",
+    "mysql": "^2.12.0",
     "standard": "^8.4.0",
     "youch": "^1.0.1"
   },
