@@ -63,6 +63,11 @@ class AuthController {
         const user = yield UserRepository.register(postData);
         response.redirect('/login');
     }
+
+    * logout (request, response) {
+        yield request.auth.logout();
+        response.redirect('/');
+    }
 }
 
 module.exports = AuthController;
