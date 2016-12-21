@@ -1,7 +1,8 @@
 'use strict';
 const Validator = use('Validator');
 const fs = require('fs');
-const Helpers = use('Helpers')
+const Helpers = use('Helpers');
+const UserRepository = make('App/Repositories/UserRepository');
 
 class AuthController {
 
@@ -29,6 +30,15 @@ class AuthController {
             response.redirect('back');
             return;
         }
+
+        try {
+            const user = yield UserRepository.login(postData)
+            yield request.auth.login(user);
+            response.redirect('/')
+        } catch (e) {
+            yield request.with({error: e.message}).flash();
+            response.redirect('back')
+        }
     }
 
     * getRegister (request, response) {
@@ -39,7 +49,7 @@ class AuthController {
         const postData = request.only('name', 'email', 'password', 'password_confirmation');
         const rules = {
             name                : 'required|max:255',
-            email               : 'required|email|max:255',
+            email               : 'required|email|max:255|unique:users',
             password            : 'required|min:6|max:30|confirmed'
         };
 
@@ -50,6 +60,8 @@ class AuthController {
             response.redirect('back');
             return;
         }
+        const user = yield UserRepository.register(postData);
+        response.redirect('/login');
     }
 }
 

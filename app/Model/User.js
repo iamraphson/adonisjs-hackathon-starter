@@ -4,8 +4,12 @@ const Lucid = use('Lucid');
 
 class User extends Lucid {
     static get table () {
-        return 'id'
+        return 'users'
     }
+
+    static get primaryKey () {
+    return 'id'
+}
 }
 
 module.exports = User;
