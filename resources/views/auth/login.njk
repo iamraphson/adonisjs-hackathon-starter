@@ -16,17 +16,24 @@
                                 </ul>
                             </div>
                         {% endif %}
+						{% if old('error') %}
+							<div class="alert alert-danger">
+								<ul class="list-unstyled">
+									<li> These credentials do not match our records.</li>
+								</ul>
+							</div>
+						{% endif %}
                         <form class="form-horizontal" role="form" method="POST"
                               action="{{ url('/login') }}">
                             {{ csrfField }}
-                            <div class="form-group">
+                            <div class="form-group {{ ' has-error' if (old('errors') and findBy(old('errors'), 'email')) }}">
                                 <label class="col-md-4 control-label" for="email">E-Mail Address</label>
                                 <div class="col-md-6">
                                     <input type="email" class="form-control" name="email" id="email"
                                            value="{{ old('email') }}">
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group {{ ' has-error' if (old('errors') and findBy(old('errors'), 'password')) }}">
                                 <label class="col-md-4 control-label" for="password">Password</label>
                                 <div class="col-md-6">
                                     <input type="password" class="form-control" id="password"

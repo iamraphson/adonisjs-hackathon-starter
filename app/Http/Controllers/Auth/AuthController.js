@@ -22,7 +22,7 @@ class AuthController {
             password: 'required'
         };
 
-        const validation = yield Validator.validate(postData, rules);
+        const validation = yield Validator.validate(postData, rules, this.messages);
 
         if (validation.fails()) {
             yield request.withOnly('email').andWith({ errors: validation.messages() }).flash();
@@ -32,10 +32,10 @@ class AuthController {
         }
 
         try {
-            const user = yield UserRepository.login(postData)
-            yield request.auth.login(user);
+            yield request.auth.attempt(postData.email, postData.password);
             response.redirect('/')
         } catch (e) {
+            console.log(e.message);
             yield request.with({error: e.message}).flash();
             response.redirect('back')
         }
