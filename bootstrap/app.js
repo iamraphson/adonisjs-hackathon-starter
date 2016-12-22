@@ -29,7 +29,8 @@ const providers = [
   'adonis-lucid/providers/FactoryProvider',
   'adonis-middleware/providers/AppMiddlewareProvider',
   'adonis-auth/providers/AuthManagerProvider',
-  'adonis-validation-provider/providers/ValidatorProvider'
+  'adonis-validation-provider/providers/ValidatorProvider',
+  'adonis-mail-provider/providers/MailProvider'
 ]
 
 /*
@@ -76,7 +77,8 @@ const aliases = {
   Route: 'Adonis/Src/Route',
   Schema: 'Adonis/Src/Schema',
   View: 'Adonis/Src/View',
-  Validator: 'Adonis/Addons/Validator'
+  Validator: 'Adonis/Addons/Validator',
+  Mail: 'Adonis/Addons/Mail'
 }
 
 /*

@@ -35,9 +35,8 @@ class AuthController {
             yield request.auth.attempt(postData.email, postData.password);
             response.redirect('/')
         } catch (e) {
-            console.log(e.message);
             yield request.with({error: e.message}).flash();
-            response.redirect('back')
+            response.redirect('back');
         }
     }
 

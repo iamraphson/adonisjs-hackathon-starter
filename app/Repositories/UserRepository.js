@@ -3,6 +3,9 @@
  */
 const Hash = use('Hash');
 const Exceptions = use('App/Exceptions');
+const moment = require('moment');
+const uuid = use('node-uuid');
+const Database = use('Database');
 
 class UserRepository{
     /**
@@ -46,7 +49,22 @@ class UserRepository{
         return user
     }
 
+    * getUserByEmail(email) {
+        const user = yield this.User.query().where('email', email).first();
+        return user;
+    }
 
+    * findOrCreateToken(user){
+       yield Database.table('password_resets').where('email', user.email).delete();
+        const token = yield this.getToken();
+        yield Database.table('password_resets')
+            .insert({email: user.email, token: token, created_at: moment().format("YYYY-MM-DD HH:mm:ss")});
+        return token;
+    }
+
+    * getToken(){
+        return uuid.v1();
+    }
 
 }
 
