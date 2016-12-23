@@ -59,7 +59,7 @@ class AuthController {
             response.redirect('back');
             return;
         }
-        const user = yield UserRepository.register(postData);
+        yield UserRepository.register(postData);
         response.redirect('/login');
     }
 

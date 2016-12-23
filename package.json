@@ -21,12 +21,14 @@
     "adonis-mail-provider": "^2.0.2",
     "adonis-middleware": "^1.0.8",
     "adonis-validation-provider": "^3.0.5",
+    "blueimp-md5": "^2.6.0",
     "fs": "0.0.1-security",
     "moment": "^2.17.1",
     "mysql": "^2.12.0",
     "node-exceptions": "^1.0.3",
     "node-uuid": "^1.4.7",
     "standard": "^8.4.0",
+    "trim": "0.0.1",
     "youch": "^1.0.1"
   },
   "standard": {
