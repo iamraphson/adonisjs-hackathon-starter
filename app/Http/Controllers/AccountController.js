@@ -43,6 +43,26 @@ class AccountController {
         response.redirect('back');
     }
 
+    * changePassword(request, response){
+        const userPasswords = request.only('password', 'password_confirmation');
+        const rules = {
+            password : 'required|min:6|max:30|confirmed'
+        };
+
+        const validation = yield Validator.validate(userPasswords, rules, this.messages);
+
+        if (validation.fails()) {
+            yield request.with({ errors: validation.messages() }).flash();
+            response.redirect('back');
+            return;
+        }
+
+        this.loginID = yield request.auth.getUser();
+        yield UserRepository.changeUserPassword(this.loginID, userPasswords);
+        yield request.with({ status: 'Password has been changed successfully' }).flash();
+        response.redirect('back');
+    }
+
     * destroy(request, response) {
         //
     }

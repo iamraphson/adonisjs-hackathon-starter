@@ -116,6 +116,13 @@ class UserRepository{
 
     }
 
+    * changeUserPassword(loginID, userData){
+        const user = yield this.User.find(loginID.id);
+        user.password   = yield Hash.make(userData.password);
+
+        yield user.save(); //update sql
+    }
+
 }
 
 module.exports = UserRepository;

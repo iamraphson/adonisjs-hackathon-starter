@@ -19,6 +19,7 @@ Route.post('/password/reset', 'Auth/PasswordController.reset');
 
 Route.get('/account', 'AccountController.edit');
 Route.post('/account/profile', 'AccountController.update');
+Route.post('/account/password', 'AccountController.changePassword');
 
 
 
