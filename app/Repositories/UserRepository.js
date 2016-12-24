@@ -98,6 +98,24 @@ class UserRepository{
         return user;
     }
 
+    * findUserById(id){
+        const user = yield this.User.find(id);
+        return user;
+    }
+
+    * updateUserProfile(loginID, userData){
+        const user = yield this.User.find(loginID.id);
+        user.email = userData.email;
+        user.name = userData.name;
+        user.username = userData.username;
+        user.gender = userData.gender;
+        user.location = userData.location;
+        user.website = userData.website;
+
+        yield user.save(); //update sql
+
+    }
+
 }
 
 module.exports = UserRepository;

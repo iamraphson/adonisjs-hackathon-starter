@@ -8,7 +8,7 @@ class AuthController {
 
     constructor () {
         const file = Helpers.resourcesPath('locales/en/validation.json');
-         this.messages = JSON.parse(fs.readFileSync(file, 'utf8'));
+        this.messages = JSON.parse(fs.readFileSync(file, 'utf8'));
     }
 
     * showLogin(request, response) {
@@ -26,7 +26,6 @@ class AuthController {
 
         if (validation.fails()) {
             yield request.withOnly('email').andWith({ errors: validation.messages() }).flash();
-            console.log(validation.messages());
             response.redirect('back');
             return;
         }

@@ -1,0 +1,19 @@
+{% if old('errors') %}
+	<div class="alert alert-danger">
+		<ul class="list-unstyled">
+			{% for error in old('errors') %}
+				<li>{{ error.message }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endif %}
+{% if old('error') %}
+	<div class="alert alert-danger">
+		{{ old('error') }}
+	</div>
+{% endif %}
+{% if old('status') %}
+	<div class="alert alert-success">
+		{{ old('status') }}
+	</div>
+{% endif %}
