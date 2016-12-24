@@ -9,7 +9,7 @@ module.exports = {
   | Data limit to be sent on a POST request.
   |
   */
-  limit: '1mb',
+  limit: '5mb',
 
   /*
   |--------------------------------------------------------------------------
@@ -100,6 +100,6 @@ module.exports = {
     | the maximum limit.
     |
     */
-    maxSize: '2mb'
+    maxSize: '5mb'
   }
 }

@@ -123,6 +123,13 @@ class UserRepository{
         yield user.save(); //update sql
     }
 
+    * saveAvatar(loginID, avatarUrl){
+        const user = yield this.User.find(loginID.id);
+        user.avatar = avatarUrl;
+
+        yield user.save(); //update sql
+    }
+
 }
 
 module.exports = UserRepository;

@@ -19,6 +19,7 @@ const globalMiddleware = [
     'Adonis/Middleware/AuthInit',
     'App/Http/Middleware/ViewAssets',
     'App/Http/Middleware/ViewUrl',
+    'App/Http/Middleware/Auth',
 ]
 
 /*
@@ -31,7 +32,7 @@ const globalMiddleware = [
 |
 */
 const namedMiddleware = {
-    auth: 'Adonis/Middleware/Auth'
+    auth: 'App/Http/Middleware/Auth'
 }
 
 /*

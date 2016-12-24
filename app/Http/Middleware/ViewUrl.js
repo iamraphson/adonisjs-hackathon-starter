@@ -4,8 +4,7 @@ const View = use('View')
 
 class ViewUrl {
 
-    *
-    handle(request, response, next) {
+    * handle(request, response, next) {
 
         let baseUrl = request.secure() ? 'https://' : 'http://';
         baseUrl += request.headers().host + '/';
@@ -23,4 +22,4 @@ class ViewUrl {
 
 }
 
-module.exports = ViewUrl
+module.exports = ViewUrl;
