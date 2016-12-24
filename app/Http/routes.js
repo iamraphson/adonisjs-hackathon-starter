@@ -23,4 +23,5 @@ Route.group('authenticated', function () {
     Route.post('/account/profile', 'AccountController.update');
     Route.post('/account/password', 'AccountController.changePassword');
     Route.post('/account/photo', 'AccountController.uploadAvatar');
+    Route.get('/account/delete', 'AccountController.destroy');
 }).middleware('auth');

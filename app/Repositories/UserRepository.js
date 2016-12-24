@@ -130,6 +130,11 @@ class UserRepository{
         yield user.save(); //update sql
     }
 
+    * deleteUser(loginID){
+        const user = yield this.User.find(loginID.id);
+        yield user.delete();
+    }
+
 }
 
 module.exports = UserRepository;
