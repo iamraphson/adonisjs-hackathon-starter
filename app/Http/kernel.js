@@ -20,6 +20,7 @@ const globalMiddleware = [
     'App/Http/Middleware/ViewAssets',
     'App/Http/Middleware/ViewUrl',
     'App/Http/Middleware/Auth',
+    'Adonis/Middleware/Ally'
 ]
 
 /*

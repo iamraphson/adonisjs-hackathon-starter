@@ -13,6 +13,7 @@
   "private": true,
   "dependencies": {
     "adonis-ace": "^3.0.4",
+    "adonis-ally": "^1.0.0",
     "adonis-auth": "^1.0.4",
     "adonis-commands": "^2.1.2",
     "adonis-fold": "^3.0.3",
