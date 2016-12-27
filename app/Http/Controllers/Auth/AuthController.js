@@ -74,15 +74,15 @@ class AuthController {
 
   * handleProviderCallback (request, response) {
       const provider = request.param('provider')
-      var user = null
       try{
-          user = yield request.ally.driver(provider).getUser()
+          const providerUser = yield request.ally.driver(provider).getUser()
+          const authUser = yield UserRepository.findOrCreateUser(providerUser, provider)
+          yield request.auth.login(authUser)
+          response.redirect('/')
       }catch(e){
           console.log(e)
           response.redirect('/auth/' + provider)
       }
-
-      console.log(user)
   }
 }
 

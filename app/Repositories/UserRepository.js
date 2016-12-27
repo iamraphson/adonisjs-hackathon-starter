@@ -16,11 +16,12 @@ class UserRepository {
      * @return {Array}
      */
   static get inject () {
-    return ['App/Model/User']
+    return ['App/Model/User', 'App/Model/UsersProfile']
   }
 
-  constructor (User) {
+  constructor (User, UsersProfile) {
     this.User = User
+    this.UsersProfile = UsersProfile
     this.expires = Env.get('TOKEN_EXPIRES', 60) // in mins
   }
 
@@ -134,6 +135,33 @@ class UserRepository {
     yield user.delete()
   }
 
+  * findOrCreateUser(userData, provider){
+      const profile_ = yield this.UsersProfile.query()
+          .where({'provider': provider, 'provider_id': userData.getId()}).first();
+      if(!(profile_ === null)){
+        const realUser = yield profile_.user().fetch();
+        return realUser
+      }
+
+      const user = new this.User()
+      user.name = userData.getName(),
+      user.username = userData.getNickname()
+      user.avatar = userData.getAvatar()
+      user.email = userData.getEmail()
+      yield user.save()
+
+      const profile = new this.UsersProfile()
+      profile.provider            = provider
+      profile.provider_id         = userData.getId()
+      profile.oauth_token         = userData.getAccessToken()
+      profile.oauth_token_secret  = userData.getTokenSecret()
+
+      yield user.profile().save(profile)
+
+      return user;
+  }
+
 }
 
 module.exports = UserRepository
+
