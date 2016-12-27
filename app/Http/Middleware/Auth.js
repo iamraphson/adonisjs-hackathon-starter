@@ -10,8 +10,8 @@
  * file that was distributed with this source code.
 */
 
-const coFs = require('co-functional');
-const NE = require('node-exceptions');
+const coFs = require('co-functional')
+const NE = require('node-exceptions')
 
 class Auth {
   /**
@@ -41,7 +41,7 @@ class Auth {
         result = yield request.auth.authenticator(authenticator).check()
       }
       if (result) {
-        request.authUser = yield request.auth.getUser();
+        request.authUser = yield request.auth.getUser()
         /**
          * we need to break the loop as soon as an authenticator
          * returns true. Ideally one cannot break promises chain
@@ -66,11 +66,11 @@ class Auth {
    */
   * _authenticate (request, authenticators, response) {
     try {
-      yield this._tryFail(request, authenticators);
-      //throw new NE.LogicalException('Login Failure', 401)
+      yield this._tryFail(request, authenticators)
+      // throw new NE.LogicalException('Login Failure', 401)
     } catch (e) {
       if (e.message !== 'Stop execution') {
-        console.log("not true");
+        console.log('not true')
         throw e
       }
     }
@@ -87,9 +87,9 @@ class Auth {
    * @public
    */
   * handle (request, response, next) {
-    const args = Array.prototype.slice.call(arguments);
+    const args = Array.prototype.slice.call(arguments)
     const authenticators = args.length > 3 ? args.splice(3, args.length) : ['default']
-    yield this._authenticate(request, authenticators, response);
+    yield this._authenticate(request, authenticators, response)
     yield next
   }
 
@@ -104,13 +104,13 @@ class Auth {
    * @public
    */
   * handleWs (socket, request, next) {
-    const args = Array.prototype.slice.call(arguments);
+    const args = Array.prototype.slice.call(arguments)
     const authenticators = args.length > 3 ? args.splice(3, args.length) : ['default']
-    yield this._authenticate(request, authenticators);
-    socket.authUser = request.authUser;
+    yield this._authenticate(request, authenticators)
+    socket.authUser = request.authUser
     yield next
   }
 
 }
 
-module.exports = Auth;
+module.exports = Auth

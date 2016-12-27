@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
-const Env = use('Env');
-const Ouch = use('youch');
-const Http = exports = module.exports = {};
+const Env = use('Env')
+const Ouch = use('youch')
+const Http = exports = module.exports = {}
 
 /**
  * handle errors occured during a Http request.
@@ -38,9 +38,9 @@ Http.handleError = function * (error, request, response) {
  * starting http server.
  */
 Http.onStart = function () {
-    const View = use('View');
-    View.global('findBy', function(hash, key) {
-        const filteredValue = hash.filter((item) => item.field === key);
-        return (filteredValue && filteredValue.length) ? filteredValue[0] : null;
-    });
-};
+  const View = use('View')
+  View.global('findBy', function (hash, key) {
+    const filteredValue = hash.filter((item) => item.field === key)
+    return (filteredValue && filteredValue.length) ? filteredValue[0] : null
+  })
+}

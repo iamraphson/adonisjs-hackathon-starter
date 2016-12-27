@@ -1,71 +1,89 @@
-'use strict';
-const Validator = use('Validator');
-const fs = require('fs');
-const Helpers = use('Helpers');
-const UserRepository = make('App/Repositories/UserRepository');
+'use strict'
+const Validator = use('Validator')
+const fs = require('fs')
+const Helpers = use('Helpers')
+const UserRepository = make('App/Repositories/UserRepository')
 
 class AuthController {
 
-    constructor () {
-        const file = Helpers.resourcesPath('locales/en/validation.json');
-        this.messages = JSON.parse(fs.readFileSync(file, 'utf8'));
+  constructor () {
+    const file = Helpers.resourcesPath('locales/en/validation.json')
+    this.messages = JSON.parse(fs.readFileSync(file, 'utf8'))
+  }
+
+  * showLogin (request, response) {
+    yield response.sendView('auth.login')
+  }
+
+  * postLogin (request, response) {
+    const postData = request.only('email', 'password')
+    const rules = {
+      email: 'required',
+      password: 'required'
     }
 
-    * showLogin(request, response) {
-        yield response.sendView('auth.login');
+    const validation = yield Validator.validate(postData, rules, this.messages)
+
+    if (validation.fails()) {
+      yield request.withOnly('email').andWith({ errors: validation.messages() }).flash()
+      response.redirect('back')
+      return
     }
 
-    * postLogin(request, response) {
-        const postData = request.only('email', 'password');
-        const rules = {
-            email: 'required',
-            password: 'required'
-        };
+    try {
+      yield request.auth.attempt(postData.email, postData.password)
+      response.redirect('/')
+    } catch (e) {
+      yield request.with({error: e.message}).flash()
+      response.redirect('back')
+    }
+  }
 
-        const validation = yield Validator.validate(postData, rules, this.messages);
+  * getRegister (request, response) {
+    yield response.sendView('auth.register')
+  }
 
-        if (validation.fails()) {
-            yield request.withOnly('email').andWith({ errors: validation.messages() }).flash();
-            response.redirect('back');
-            return;
-        }
-
-        try {
-            yield request.auth.attempt(postData.email, postData.password);
-            response.redirect('/')
-        } catch (e) {
-            yield request.with({error: e.message}).flash();
-            response.redirect('back');
-        }
+  * postRegister (request, response) {
+    const postData = request.only('name', 'email', 'password', 'password_confirmation')
+    const rules = {
+      name: 'required|max:255',
+      email: 'required|email|max:255|unique:users',
+      password: 'required|min:6|max:30|confirmed'
     }
 
-    * getRegister (request, response) {
-        yield response.sendView('auth.register');
+    const validation = yield Validator.validate(postData, rules, this.messages)
+
+    if (validation.fails()) {
+      yield request.withOnly('name', 'email').andWith({ errors: validation.messages() }).flash()
+      response.redirect('back')
+      return
     }
+    yield UserRepository.register(postData)
+    response.redirect('/login')
+  }
 
-    * postRegister (request, response) {
-        const postData = request.only('name', 'email', 'password', 'password_confirmation');
-        const rules = {
-            name                : 'required|max:255',
-            email               : 'required|email|max:255|unique:users',
-            password            : 'required|min:6|max:30|confirmed'
-        };
+  * logout (request, response) {
+    yield request.auth.logout()
+    response.redirect('/')
+  }
 
-        const validation = yield Validator.validate(postData, rules, this.messages);
+  * redirectToProvider (request, response) {
+    const provider = request.param('provider')
+    yield request.ally.driver(provider).redirect()
+  }
 
-        if (validation.fails()) {
-            yield request.withOnly('name', 'email').andWith({ errors: validation.messages() }).flash();
-            response.redirect('back');
-            return;
-        }
-        yield UserRepository.register(postData);
-        response.redirect('/login');
-    }
+  * handleProviderCallback (request, response) {
+      const provider = request.param('provider')
+      var user = null
+      try{
+          user = yield request.ally.driver(provider).getUser()
+      }catch(e){
+          console.log(e)
+          response.redirect('/auth/' + provider)
+      }
 
-    * logout (request, response) {
-        yield request.auth.logout();
-        response.redirect('/');
-    }
+      console.log(user)
+  }
 }
 
-module.exports = AuthController;
+module.exports = AuthController

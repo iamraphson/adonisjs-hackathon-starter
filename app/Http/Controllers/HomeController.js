@@ -1,9 +1,9 @@
 'use strict'
 
 class HomeController {
-    * index(request, response) {
-        yield response.sendView('welcome');
-    }
+  * index (request, response) {
+    yield response.sendView('welcome')
+  }
 }
 
-module.exports = HomeController;
+module.exports = HomeController
