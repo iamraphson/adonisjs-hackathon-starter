@@ -23,9 +23,7 @@ class User extends Lucid {
 
   getAvatar1 () {
     if (!this.avatar) {
-      console.log()
-      return 'http://www.gravatar.com/avatar/' +
-                md5(this.email) + '?d=mm&s=60'
+      return 'http://www.gravatar.com/avatar/' + md5(this.email) + '?d=mm&s=60'
     }
     return this.avatar
   }
