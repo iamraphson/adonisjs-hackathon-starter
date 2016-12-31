@@ -34,11 +34,11 @@ module.exports = {
 
     /*
      |--------------------------------------------------------------------------
-     | Facebook Configuration
+     | Twitter Configuration
      |--------------------------------------------------------------------------
      |
-     | You can access your application credentials from the facebook developers
-     | console. https://developers.facebook.com/apps
+     | You can access your application credentials from the twitter developers
+     | console. https://apps.twitter.com
      |
      */
     twitter: {
@@ -58,7 +58,7 @@ module.exports = {
     google: {
       clientId: Env.get('GOOGLE_CLIENT_ID'),
       clientSecret: Env.get('GOOGLE_CLIENT_SECRET'),
-      redirectUri: `${Env.get('APP_URL')}/authenticated/google`
+      redirectUri: `${Env.get('APP_URL')}/auth/google/callback`
     },
 
     /*
