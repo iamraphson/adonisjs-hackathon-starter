@@ -74,6 +74,21 @@ module.exports = {
       clientId: Env.get('GITHUB_CLIENT_ID'),
       clientSecret: Env.get('GITHUB_CLIENT_SECRET'),
       redirectUri: `${Env.get('APP_URL')}/auth/github/callback`
+    },
+
+    /*
+     |--------------------------------------------------------------------------
+     | Linkedin Configuration
+     |--------------------------------------------------------------------------
+     |
+     | You can access your application credentials from the linkedin developers
+     | console. https://developer.linkedin.com/
+     |
+     */
+    linkedin: {
+      clientId: Env.get('LINKEDIN_ID'),
+      clientSecret: Env.get('LINKEDIN_SECRET'),
+      redirectUri: `${Env.get('APP_URL')}/auth/linkedin/callback`
     }
   }
 }
