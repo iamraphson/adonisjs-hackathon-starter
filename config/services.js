@@ -89,6 +89,22 @@ module.exports = {
       clientId: Env.get('LINKEDIN_ID'),
       clientSecret: Env.get('LINKEDIN_SECRET'),
       redirectUri: `${Env.get('APP_URL')}/auth/linkedin/callback`
+    },
+
+    /*
+     |--------------------------------------------------------------------------
+     | Instagram Configuration
+     |--------------------------------------------------------------------------
+     |
+     | You can access your application credentials from the instagram developers
+     | console. https://www.instagram.com/developer/
+     |
+     */
+    instagram: {
+      clientId: Env.get('INSTAGRAM_CLIENT_ID'),
+      clientSecret: Env.get('INSTAGRAM_CLIENT_SECRET'),
+      redirectUri: `${Env.get('APP_URL')}/auth/instagram/callback`
     }
+
   }
 }
