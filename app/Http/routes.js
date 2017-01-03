@@ -20,6 +20,7 @@ Route.post('/password/reset', 'Auth/PasswordController.reset')
 Route.get('/auth/:provider', 'Auth/AuthController.redirectToProvider')
 Route.get('/auth/:provider/callback', 'Auth/AuthController.handleProviderCallback')
 
+
 Route.group('authenticated', function () {
   Route.get('/account', 'AccountController.edit')
   Route.post('/account/profile', 'AccountController.update')
@@ -27,3 +28,7 @@ Route.group('authenticated', function () {
   Route.post('/account/photo', 'AccountController.uploadAvatar')
   Route.get('/account/delete', 'AccountController.destroy')
 }).middleware('auth')
+
+Route.get('/api', function * (request, response) {
+  yield response.sendView('apiPage')
+});

@@ -1,0 +1,21 @@
+{% extends 'layout.master' %}
+
+{% block content %}
+	<div class="container">
+		<h2>API Examples</h2>
+		<hr />
+		<div class="row">
+			<div class="col-sm-4">
+				<a href="{{ url('/api/github') }}" style="color: #fff">
+					<div style="background-color: #000" class="panel panel-default">
+						<div class="panel-body">
+							<img src="http://i.imgur.com/2AaBlpf.png" height="40"> GitHub
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
