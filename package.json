@@ -25,6 +25,7 @@
     "blueimp-md5": "^2.6.0",
     "cloudinary": "^1.4.6",
     "fs": "0.0.1-security",
+    "github": "^7.2.1",
     "moment": "^2.17.1",
     "mysql": "^2.12.0",
     "node-exceptions": "^1.0.3",

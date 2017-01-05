@@ -14,6 +14,7 @@ const coFs = require('co-functional')
 const NE = require('node-exceptions')
 
 class Auth {
+
   /**
    * try authenticating the request using number defined
    * authenticators and throw an error once able to
@@ -67,10 +68,9 @@ class Auth {
   * _authenticate (request, authenticators, response) {
     try {
       yield this._tryFail(request, authenticators)
-      // throw new NE.LogicalException('Login Failure', 401)
+      throw new NE.LogicalException('Login Failure', 401)
     } catch (e) {
       if (e.message !== 'Stop execution') {
-        console.log('not true')
         throw e
       }
     }
@@ -89,8 +89,20 @@ class Auth {
   * handle (request, response, next) {
     const args = Array.prototype.slice.call(arguments)
     const authenticators = args.length > 3 ? args.splice(3, args.length) : ['default']
-    yield this._authenticate(request, authenticators, response)
-    yield next
+
+    try{
+      yield this._authenticate(request, authenticators, response)
+    } catch (e){
+      console.log(request.match('/login'))
+      console.log(e.message === "Login Failure")
+      console.log(e.message)
+      if(e.message === "Login Failure" && !request.match('/login')){
+        response.redirect('/login');
+      } else {
+        yield next
+      }
+    }
+
   }
 
   /**

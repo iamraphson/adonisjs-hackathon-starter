@@ -27,6 +27,8 @@ Route.group('authenticated', function () {
   Route.post('/account/password', 'AccountController.changePassword')
   Route.post('/account/photo', 'AccountController.uploadAvatar')
   Route.get('/account/delete', 'AccountController.destroy')
+
+  Route.get('/api/github', 'GithubController.index')
 }).middleware('auth')
 
 Route.get('/api', function * (request, response) {
