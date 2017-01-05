@@ -93,16 +93,11 @@ class Auth {
     try{
       yield this._authenticate(request, authenticators, response)
     } catch (e){
-      console.log(request.match('/login'))
-      console.log(e.message === "Login Failure")
-      console.log(e.message)
       if(e.message === "Login Failure" && !request.match('/login')){
         response.redirect('/login');
-      } else {
-        yield next
       }
     }
-
+    yield next
   }
 
   /**
