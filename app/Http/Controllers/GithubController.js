@@ -9,7 +9,10 @@ class GithubController {
 
     * index (request, response) {
         const user = yield request.auth.getUser();
-        console.log(ApiRepository.getToken('twitter', user.id));
+        const token = yield ApiRepository.getToken('github', user.id);
+        if(token === null){
+            response.redirect('/auth/github?redirect=' + request.originalUrl());
+        }
         try {
             const profileResponse = yield this.getGithubProfile()
             yield response.sendView('api.githubApi', { repo: profileResponse.repo})

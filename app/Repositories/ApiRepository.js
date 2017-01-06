@@ -15,7 +15,7 @@ class ApiRepository {
      * @return {Array}
      */
     static get inject () {
-        return ['App/Model/User', 'App/Model/UsersProfile']
+        return ['App/Model/UsersProfile', 'App/Model/User']
     }
 
     constructor (UsersProfile) {
@@ -23,9 +23,9 @@ class ApiRepository {
     }
 
     * getToken(provider, authID){
-        console.dir(provider, authID);
-        return  this.UsersProfile.query()
+        const profile = yield this.UsersProfile.query()
             .where({'provider': provider, 'user_id': authID}).first();
+        return  profile;
     }
 }
 

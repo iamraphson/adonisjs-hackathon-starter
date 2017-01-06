@@ -135,6 +135,18 @@ class UserRepository {
     yield user.delete()
   }
 
+  * updateUserProvider(userData, provider, id) {
+      const existingUser = yield this.User.find(id)
+
+      const profile = new this.UsersProfile()
+      profile.provider            = provider
+      profile.provider_id         = userData.getId()
+      profile.oauth_token         = userData.getAccessToken()
+      profile.oauth_token_secret  = userData.getTokenSecret()
+
+      yield existingUser.profile().save(profile)
+  }
+
   * findOrCreateUser(userData, provider){
       const profile_ = yield this.UsersProfile.query()
           .where({'provider': provider, 'provider_id': userData.getId()}).first();

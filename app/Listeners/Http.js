@@ -43,4 +43,7 @@ Http.onStart = function () {
     const filteredValue = hash.filter((item) => item.field === key)
     return (filteredValue && filteredValue.length) ? filteredValue[0] : null
   })
+
+  //Database.on('query', console.log)
+  //Database.on('sql', console.log)
 }

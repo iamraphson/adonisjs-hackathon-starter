@@ -68,17 +68,30 @@ class AuthController {
   }
 
   * redirectToProvider (request, response) {
-    const provider = request.param('provider')
-    yield request.ally.driver(provider).redirect()
+      if(request.input('redirect') != null){
+        yield request.session.put({ oldPath: request.input('redirect') })
+      }
+      const provider = request.param('provider')
+      yield request.ally.driver(provider).redirect()
   }
 
   * handleProviderCallback (request, response) {
       const provider = request.param('provider')
       try{
           const providerUser = yield request.ally.driver(provider).getUser()
-          const authUser = yield UserRepository.findOrCreateUser(providerUser, provider)
-          yield request.auth.login(authUser)
-          response.redirect('/')
+          const isLoggedIn = yield request.auth.getUser()
+          if (isLoggedIn) {
+            yield UserRepository.updateUserProvider(providerUser, provider, isLoggedIn.id)
+            const redirectPath = yield request.session.pull('oldPath', '/account')
+            response.redirect(redirectPath);
+            return;
+          } else {
+            const authUser = yield UserRepository.findOrCreateUser(providerUser, provider)
+            yield request.auth.login(authUser)
+            response.redirect('/')
+            return;
+          }
+
       }catch(e){
           console.log(e)
           response.redirect('/auth/' + provider)

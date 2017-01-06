@@ -9,7 +9,7 @@ const Helpers = use('Helpers')
 const UserRepository = make('App/Repositories/UserRepository')
 const path = require('path')
 const cloudinary = require('cloudinary').v2
-  const thunkify = require('thunkify')
+const thunkify = require('thunkify')
 
 class AccountController {
 
