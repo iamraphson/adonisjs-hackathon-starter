@@ -95,6 +95,7 @@ class Auth {
     } catch (e){
       if(e.message === "Login Failure" && !request.match('/login')){
         response.redirect('/login');
+        return;
       }
     }
     yield next
