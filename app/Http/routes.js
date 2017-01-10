@@ -29,6 +29,7 @@ Route.group('authenticated', function () {
   Route.get('/account/delete', 'AccountController.destroy')
 
   Route.get('/api/github', 'GithubController.index')
+  Route.get('/api/twitter', '#')
 }).middleware('auth')
 
 Route.get('/api', function * (request, response) {
