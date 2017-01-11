@@ -18,6 +18,7 @@ class GithubController {
             yield response.sendView('api.githubApi', { repo: profileResponse.repo})
         } catch(e){
             console.log(e.message);
+            yield response.sendView('api.githubApi', { repo: {}})
         }
     }
 

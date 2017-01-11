@@ -30,6 +30,7 @@ Route.group('authenticated', function () {
 
   Route.get('/api/github', 'GithubController.index')
   Route.get('/api/twitter', 'TwitterController.index')
+  Route.post('/newtweet/send', 'TwitterController.sendTweet')
 }).middleware('auth')
 
 Route.get('/api', function * (request, response) {

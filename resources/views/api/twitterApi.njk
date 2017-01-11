@@ -18,7 +18,20 @@
 				</a>
 			</div>
 			<br />
-
+			{% include 'layout.alerts' %}
+			<div class="well">
+				<h4>Compose new Tweet</h4>
+				<form role="form" method="POST" action="{{ url('newtweet/send') }}">
+					{{ csrfField }}
+					<div class="form-groups">
+						<input type="text" name="tweet" id="tweet" autofocus="" class="form-control">
+					</div>
+					<p class="help-block">This new Tweet will be posted on your Twitter profile.</p>
+					<button type="submit" class="btn btn-primary">
+						<i class="fa fa-twitter"></i> Tweet
+					</button>
+				</form>
+			</div>
 			<br>
 			<div class="lead">Latest<strong> {{ tweets | length }}</strong> Tweets containing the term<strong> Adonisframework</strong></div>
 			{% if tweets %}
