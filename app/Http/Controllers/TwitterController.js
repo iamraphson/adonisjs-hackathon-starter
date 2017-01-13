@@ -15,7 +15,6 @@ class TwitterController {
         this.messages = JSON.parse(fs.readFileSync(file, 'utf8'))
     }
 
-
     * index (request, response) {
         const user = yield request.auth.getUser();
         const token = yield ApiRepository.getToken('twitter', user.id);
