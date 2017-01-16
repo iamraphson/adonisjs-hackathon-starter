@@ -4,6 +4,13 @@
 
 const ApiRepository = make('App/Repositories/ApiRepository')
 const Env = use('Env')
+const foursquare = require('node-foursquare')({
+    secrets: {
+        clientId: Env.get('FOURSQUARE_ID'),
+        clientSecret: Env.get('FOURSQUARE_SECRET'),
+        redirectUrl: `${Env.get('APP_URL')}/auth/foursquare/callback`
+    }
+});
 
 class FoursquareController {
 
@@ -14,12 +21,23 @@ class FoursquareController {
             response.redirect('/auth/foursquare?redirect=' + request.originalUrl());
         }
         try {
-            //const profileResponse = yield this.getFacebookProfile(token);
-            //yield response.sendView('api.facebookApi', { details: profileResponse.results})
+            const foursquareResponse = yield this.getData(token,'Lagos, Nigeria');
+            console.log(foursquareResponse.results.venues)
+            yield response.sendView('api.foursquareApi', { locations: foursquareResponse.results.venues})
         } catch(e){
-            console.log(e.message);
-            //yield response.sendView('api.facebookApi', { details: {}})
+            console.log('error', e.message);
+            yield response.sendView('api.foursquareApi', { locations: []})
         }
+    }
+
+    getData (token, endpoint){
+        return new Promise((resolve, reject) => {
+            foursquare.Venues.search('6.453396605899419', '3.395676612854003', endpoint, {},
+                token.accessToken, (err, results) => {
+                if (err) { return  reject(err); }
+                return resolve({results})
+            });
+        })
     }
 
 
