@@ -32,6 +32,7 @@ Route.group('authenticated', function () {
   Route.get('/api/twitter', 'TwitterController.index')
   Route.post('/newtweet/send', 'TwitterController.sendTweet')
   Route.get('/api/facebook', 'FacebookController.index')
+  Route.get('/api/foursquare', 'FacebookController.index')
 }).middleware('auth')
 
 Route.get('/api', function * (request, response) {
