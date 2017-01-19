@@ -103,7 +103,8 @@ module.exports = {
     instagram: {
       clientId: Env.get('INSTAGRAM_CLIENT_ID'),
       clientSecret: Env.get('INSTAGRAM_CLIENT_SECRET'),
-      redirectUri: `${Env.get('APP_URL')}/auth/instagram/callback`
+      redirectUri: `${Env.get('APP_URL')}/auth/instagram/callback`,
+      scope: ['basic', 'public_content']
     },
 
     /*

@@ -22,7 +22,6 @@ class FoursquareController {
         }
         try {
             const foursquareResponse = yield this.getData(token,'Lagos, Nigeria');
-            console.log(foursquareResponse.results.venues)
             yield response.sendView('api.foursquareApi', { locations: foursquareResponse.results.venues})
         } catch(e){
             console.log('error', e.message);
