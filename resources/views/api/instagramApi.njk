@@ -18,7 +18,49 @@
 				</a>
 			</div>
 			<br />
-
+			<p class="lead">Username Search for<strong> iamraphson</strong></p>
+			<table class="table table-hover table-bordered">
+				<thead>
+					<tr>
+						<th>Picture</th>
+						<th>Username</th>
+						<th>Full Name</th>
+						<th>Bio</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for username in usernames %}
+					<tr>
+						<td><img src="{{ username.profile_picture }}" width="75" height="75"/></td>
+						<td>{{ username.username }}</td>
+						<td>{{ username.full_name  }}</td>
+						<td>{{ username.bio }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<hr/>
+			<p class="lead">User Search for ID<strong> 224366365</strong></p>
+			<div class="media">
+				<a href="http://instagram.com/{{ userById.username }}" class="pull-left">
+					<img src="{{ userById.profile_picture }}" width="110" height="110" class="thumbnail"/>
+				</a>
+				<div class="media-body">
+					<h4> {{ userById.full_name }} </h4>
+					<p> {{ userById.bio }} </p>
+				</div>
+			</div>
+			<hr/>
+			<p class="lead">My Recent<strong> Media</strong></p>
+			<div class="row">
+				{% for image in myRecentMedia %}
+				<div class="col-xs-3">
+					<a href="{{ image.link }}" target="_blank" class="thumbnail">
+						<img src="{{ image.images.standard_resolution.url }}" height="320px"/>
+					</a>
+				</div>
+				{% endfor %}
+			</div>
 			<br>
 		</div>
 	</div>

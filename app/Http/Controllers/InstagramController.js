@@ -20,11 +20,12 @@ class InstagramController {
         }
         try {
             const igResponse = yield this.getData(token);
-            console.log(igResponse)
-            //yield response.sendView('api.foursquareApi', { locations: foursquareResponse.results.venues})
+            //console.log(igResponse)
+            yield response.sendView('api.instagramApi', { usernames: igResponse.usernames,
+                userById: igResponse.userById, myRecentMedia: igResponse.myRecentMedia})
         } catch(e){
             console.log('error', e.message);
-            //yield response.sendView('api.foursquareApi', { locations: []})
+            yield response.sendView('api.instagramApi', { usernames: [], userById: {}, myRecentMedia: {}})
         }
     }
 
