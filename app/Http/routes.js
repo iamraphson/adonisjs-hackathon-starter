@@ -33,6 +33,7 @@ Route.group('authenticated', function () {
   Route.post('/newtweet/send', 'TwitterController.sendTweet')
   Route.get('/api/facebook', 'FacebookController.index')
   Route.get('/api/foursquare', 'FoursquareController.index')
+  Route.get('/api/instagram', 'InstagramController.index')
 }).middleware('auth')
 
 Route.get('/api', function * (request, response) {
