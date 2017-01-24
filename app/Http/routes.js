@@ -34,6 +34,7 @@ Route.group('authenticated', function () {
   Route.get('/api/facebook', 'FacebookController.index')
   Route.get('/api/foursquare', 'FoursquareController.index')
   Route.get('/api/instagram', 'InstagramController.index')
+  Route.get('/api/lastfm', 'LastFmController.index')
 }).middleware('auth')
 
 Route.get('/api', function * (request, response) {

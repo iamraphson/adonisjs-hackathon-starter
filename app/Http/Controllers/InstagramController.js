@@ -9,7 +9,10 @@ const async = require('async');
 class InstagramController {
 
     constructor () {
-        ig.use({ client_id: Env.get('INSTAGRAM_CLIENT_ID'), client_secret: Env.get('INSTAGRAM_CLIENT_SECRET') });
+        ig.use({
+                client_id: Env.get('INSTAGRAM_CLIENT_ID'),
+                client_secret: Env.get('INSTAGRAM_CLIENT_SECRET')
+        });
     }
 
     * index (request, response) {
