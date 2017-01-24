@@ -27,6 +27,12 @@ class ApiRepository {
             .where({'provider': provider, 'user_id': authID}).first();
         return  profile;
     }
+
+    * deleteToken(provider, authID){
+        const profile = yield this.UsersProfile.query()
+            .where({'provider': provider, 'user_id': authID}).delete();
+        return  profile;
+    }
 }
 
 module.exports = ApiRepository

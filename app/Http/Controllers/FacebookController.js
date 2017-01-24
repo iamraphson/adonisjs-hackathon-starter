@@ -20,7 +20,8 @@ class FacebookController {
             yield response.sendView('api.facebookApi', { details: profileResponse.results})
         } catch(e){
             console.log(e.message);
-            yield response.sendView('api.facebookApi', { details: {}})
+            yield ApiRepository.deleteToken('facebook', user.id);
+            response.redirect('/auth/facebook?redirect=' + request.originalUrl());
         }
     }
 

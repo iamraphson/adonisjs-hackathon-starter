@@ -20,7 +20,6 @@ class LastFmController {
     * index (request, response) {
         try {
             const lastFmResponse = yield this.getData();
-            console.log(lastFmResponse)
             yield response.sendView('api.lastfmApi', { artist: lastFmResponse})
         } catch(e){
             console.log('error', e.message);
