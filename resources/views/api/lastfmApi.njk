@@ -4,63 +4,52 @@
 	<div class="container">
 		<div class="main-container">
 			<div class="page-header">
-				<h2><i class="fa fa-instagram" style='color: #517fa4'></i> Instagram API</h2>
+				<h2><i style="color: #db1302" class="fa fa-play-circle-o"></i>Last.fm API</h2>
 			</div>
 			<div class="btn-group btn-group-justified">
-				<a href="http://instagram.com/developer/" target="_blank" class="btn btn-primary">
-					<i class="fa fa-check-square-o"></i> Overview
+				<a href="https://github.com/jammus/lastfm-node#lastfm-node" target="_blank"
+				   class="btn btn-primary">
+					<i class="fa fa-check-square-o"></i> Last.fm Node Docs
 				</a>
-				<a href="https://github.com/larabros/elogram" target="_blank" class="btn btn-primary">
-					<i class="fa fa-laptop"></i> Instagram Docs
+				<a href="http://www.last.fm/api/account/create" target="_blank" class="btn btn-primary">
+					<i class="fa fa-laptop"></i> Create API Account
 				</a>
-				<a href="http://instagram.com/developer/endpoints/" target="_blank" class="btn btn-primary">
+				<a href="http://www.last.fm/api" target="_blank" class="btn btn-primary">
 					<i class="fa fa-code-fork"></i> API Endpoints
 				</a>
 			</div>
 			<br />
-			<p class="lead">Username Search for<strong> iamraphson</strong></p>
-			<table class="table table-hover table-bordered">
-				<thead>
-				<tr>
-					<th>Picture</th>
-					<th>Username</th>
-					<th>Full Name</th>
-					<th>Bio</th>
-				</tr>
-				</thead>
-				<tbody>
-				{% for username in usernames %}
-					<tr>
-						<td><img src="{{ username.profile_picture }}" width="75" height="75"/></td>
-						<td>{{ username.username }}</td>
-						<td>{{ username.full_name  }}</td>
-						<td>{{ username.bio }}</td>
-					</tr>
+
+			<h3> {{ artist.name }}</h3>
+			<img src="{{ artist.image }}" class="thumbnail"/>
+
+			<h3>Tags</h3>
+			{% for tag in artist.tags %}
+				<span class="label label-primary"><i class="fa fa-tag"></i> &nbsp{{ tag.name }}</span>
+			{% endfor %}
+
+			<h3>Biography</h3>
+			<p>{{ artist.bio }}</p>
+
+			<h3>Top Albums</h3>
+			{% for topAlbum in artist.topAlbums %}
+			<img src="{{  topAlbum.image.slice(-1)[0]["#text"] }} " title="{{ topAlbum.name }}"
+				 width="150" height="150"/>&nbsp;
+			{% endfor %}
+
+			<h3>Top Tracks</h3>
+			<ol>
+				{% for topTrack in artist.topTracks %}
+					<li><a target="_blank" href="{{ topTrack.url  }}">{{ topTrack.name }}</a></li>
 				{% endfor %}
-				</tbody>
-			</table>
-			<hr/>
-			<p class="lead">User Search for ID<strong> 224366365</strong></p>
-			<div class="media">
-				<a href="http://instagram.com/{{ userById.username }}" class="pull-left">
-					<img src="{{ userById.profile_picture }}" width="110" height="110" class="thumbnail"/>
-				</a>
-				<div class="media-body">
-					<h4> {{ userById.full_name }} </h4>
-					<p> {{ userById.bio }} </p>
-				</div>
-			</div>
-			<hr/>
-			<p class="lead">My Recent<strong> Media</strong></p>
-			<div class="row">
-				{% for image in myRecentMedia %}
-					<div class="col-xs-3">
-						<a href="{{ image.link }}" target="_blank" class="thumbnail">
-							<img src="{{ image.images.standard_resolution.url }}" height="320px"/>
-						</a>
-					</div>
+			</ol>
+
+			<h3>Similar Artists</h3>
+			<ul class="list-unstyled list-inline">
+				{% for similar in artist.similar %}
+					<li><a href="{{  similar.url  }}"> {{ similar.name }}</a></li>
 				{% endfor %}
-			</div>
+			</ul>
 			<br>
 		</div>
 	</div>

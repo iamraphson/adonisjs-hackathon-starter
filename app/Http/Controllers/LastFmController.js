@@ -18,14 +18,21 @@ class LastFmController {
     }
 
     * index (request, response) {
-
+        try {
+            const lastFmResponse = yield this.getData();
+            console.log(lastFmResponse)
+            yield response.sendView('api.lastfmApi', { artist: lastFmResponse})
+        } catch(e){
+            console.log('error', e.message);
+            yield response.sendView('api.lastfmApi', { artist: {}})
+        }
     }
 
-    getData (token){
+    getData() {
         return new Promise((resolve, reject) => {
             async.parallel({
                 artistInfo: (done) => {
-                    lastfm.request('artist.getInfo', {
+                    this.lastfm.request('artist.getInfo', {
                         artist: this.artist,
                         handlers: {
                             success: (data) => {
@@ -38,11 +45,11 @@ class LastFmController {
                     });
                 },
                 artistTopTracks: (done) => {
-                    lastfm.request('artist.getTopTracks', {
+                    this.lastfm.request('artist.getTopTracks', {
                         artist: this.artist,
                         handlers: {
                             success: (data) => {
-                                done(null, data.toptracks.track.slice(0, 10));
+                                done(null, data.toptracks.track.slice(0, 20));
                             },
                             error: (err) => {
                                 done(err);
@@ -51,11 +58,11 @@ class LastFmController {
                     });
                 },
                 artistTopAlbums: (done) => {
-                    lastfm.request('artist.getTopAlbums', {
+                    this.lastfm.request('artist.getTopAlbums', {
                         artist: this.artist,
                         handlers: {
                             success: (data) => {
-                                done(null, data.topalbums.album.slice(0, 3));
+                                done(null, data.topalbums.album.slice(0, 10));
                             },
                             error: (err) => {
                                 done(err);
