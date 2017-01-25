@@ -34,6 +34,7 @@
     "mysql": "^2.12.0",
     "node-exceptions": "^1.0.3",
     "node-foursquare": "^0.3.0",
+    "node-linkedin": "^0.5.4",
     "node-uuid": "^1.4.7",
     "standard": "^8.4.0",
     "thunkify": "^2.1.2",
