@@ -36,6 +36,7 @@
     "node-foursquare": "^0.3.0",
     "node-linkedin": "^0.5.4",
     "node-uuid": "^1.4.7",
+    "request": "^2.79.0",
     "standard": "^8.4.0",
     "thunkify": "^2.1.2",
     "trim": "0.0.1",
