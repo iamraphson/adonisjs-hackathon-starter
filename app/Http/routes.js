@@ -37,6 +37,8 @@ Route.group('authenticated', function () {
   Route.get('/api/lastfm', 'LastFmController.index')
   Route.get('/api/linkedin', 'LinkedinController.index')
   Route.get('/api/nyt', 'NewYorkTimesController.index')
+	Route.get('/api/stripe', 'StripeController.index')
+	Route.post('/api/stripe', 'StripeController.postStripe')
 }).middleware('auth')
 
 Route.get('/api', function * (request, response) {

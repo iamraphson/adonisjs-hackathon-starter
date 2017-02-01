@@ -38,6 +38,7 @@
     "node-uuid": "^1.4.7",
     "request": "^2.79.0",
     "standard": "^8.4.0",
+    "stripe": "^4.15.0",
     "thunkify": "^2.1.2",
     "trim": "0.0.1",
     "twit": "^2.2.5",
