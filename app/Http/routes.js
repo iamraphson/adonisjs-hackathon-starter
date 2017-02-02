@@ -40,6 +40,8 @@ Route.group('authenticated', function () {
 	Route.get('/api/stripe', 'StripeController.index')
 	Route.post('/api/stripe', 'StripeController.postStripe')
 	Route.get('/api/paypal', 'PayPalController.index')
+	Route.get('/api/paypal/success', 'PayPalController.getPayPalSuccess')
+	Route.get('/api/paypal/cancel', 'PayPalController.getPayPalCancel')
 }).middleware('auth')
 
 Route.get('/api', function * (request, response) {

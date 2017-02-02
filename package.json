@@ -36,6 +36,7 @@
     "node-foursquare": "^0.3.0",
     "node-linkedin": "^0.5.4",
     "node-uuid": "^1.4.7",
+    "paypal-rest-sdk": "^1.7.1",
     "request": "^2.79.0",
     "standard": "^8.4.0",
     "stripe": "^4.15.0",

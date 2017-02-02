@@ -23,7 +23,6 @@ class InstagramController {
         }
         try {
             const igResponse = yield this.getData(token);
-            //console.log(igResponse)
             yield response.sendView('api.instagramApi', { usernames: igResponse.usernames,
                 userById: igResponse.userById, myRecentMedia: igResponse.myRecentMedia})
         } catch(e){
@@ -34,7 +33,7 @@ class InstagramController {
 
     getData (token){
         ig.use({ access_token: token.oauth_token });
-        return new Promise((resolve, reject) => {
+	      return new Promise((resolve, reject) => {
             async.parallel({
                 searchByUsername: (done) => {
                     ig.user_search('iamraphson', (err, users) => {
