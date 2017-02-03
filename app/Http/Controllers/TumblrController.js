@@ -18,6 +18,7 @@ class TumblrController {
 	* index (request, response) {
 		try {
 			const tumblrResponse = yield this.getBlogPosts();
+			yield response.sendView('api.tumblrApi', { info: tumblrResponse.data})
 		} catch(e){
 			console.log('error', e.message);
 		}
@@ -29,7 +30,8 @@ class TumblrController {
 				if (err) {
 					return reject(err);
 				}
-				return resolve({posts: data.posts})
+				console.log(data.posts)
+				return resolve({data: data})
 			})
 		});
 	}
