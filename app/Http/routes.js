@@ -43,6 +43,7 @@ Route.group('authenticated', function () {
 	Route.get('/api/paypal/success', 'PayPalController.getPayPalSuccess')
 	Route.get('/api/paypal/cancel', 'PayPalController.getPayPalCancel')
 	Route.get('/api/tumblr', 'TumblrController.index')
+	Route.get('/api/scraping', 'ScarpingController.index')
 }).middleware('auth')
 
 Route.get('/api', function * (request, response) {
