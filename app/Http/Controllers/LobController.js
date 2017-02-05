@@ -12,6 +12,8 @@ class LobController{
 	* index(request, response){
 		try {
 			const lobResponse = yield this.getRoutes(this.zipCode);
+			console.log(lobResponse.routes)
+			yield response.sendView('api.lobApi', {routes: lobResponse.routes})
 		} catch(e){
 			console.log('error', e);
 		}
