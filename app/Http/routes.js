@@ -46,6 +46,7 @@ Route.group('authenticated', function () {
 	Route.get('/api/scraping', 'ScarpingController.index')
 	Route.get('/api/clockwork', 'ClockworkController.index')
 	Route.post('/api/clockwork', 'ClockworkController.postClockwork')
+	Route.get('/api/lob', 'LobController.index')
 }).middleware('auth')
 
 Route.get('/api', function * (request, response) {
