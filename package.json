@@ -12,6 +12,7 @@
   "description": "",
   "private": true,
   "dependencies": {
+    "@slack/client": "^3.8.1",
     "adonis-ace": "^3.0.4",
     "adonis-ally": "https://github.com/iamraphson/adonis-ally/tarball/develop",
     "adonis-auth": "^1.0.4",
