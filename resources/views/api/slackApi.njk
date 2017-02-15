@@ -3,10 +3,10 @@
 {% block content %}
 	<div class="container">
 		<div class="main-container">
+			{% include 'layout.alerts' %}
 			<div class="page-header">
 				<h2><i style="color: #f00" class="fa fa-slack"></i> Slack API</h2>
 			</div>
-			
 			<div class="btn-group btn-group-justified">
 				<a href="https://github.com/slackapi/node-slack-sdk" target="_blank" class="btn btn-primary">
 					<i class="fa fa-check-square-o"></i>  Node.js Slack
@@ -40,6 +40,21 @@
 				</tbody>
 			</table>
 			<br>
+			<h3> Send Message to a Slack Channel Or Group(<i>red-creek.slack.com</i>)</h3>
+			<div class="row">
+				<div class="col-sm-6">
+					<form role="form" method="POST" action="{{ url('/api/slack') }}">
+						{{ csrfField }}
+						<div class="form-group">
+							<label class="control-label" for="message">Message</label>
+							<input type="text" name="message" id="message" class="form-control">
+						</div>
+						<button type="submit" class="btn btn-default">
+							<i class="fa fa-location-arrow"></i> Send
+						</button>
+					</form>
+				</div>
+			</div>
 			<br>
 		</div>
 	</div>
