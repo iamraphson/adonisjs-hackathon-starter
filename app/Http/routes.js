@@ -49,6 +49,8 @@ Route.group('authenticated', function () {
 	Route.get('/api/lob', 'LobController.index')
 	Route.get('/api/slack', 'SlackController.index')
 	Route.post('/api/slack', 'SlackController.sendMessage')
+	Route.get('/api/upload', 'UploadController.index')
+	Route.post('/api/upload/apply', 'UploadController.upload')
 }).middleware('auth')
 
 Route.get('/api', function * (request, response) {

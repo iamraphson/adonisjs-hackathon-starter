@@ -34,6 +34,7 @@
     "instagram-node": "^0.5.8",
     "lastfm": "^0.9.2",
     "lob": "^3.9.0",
+    "mkdirp": "^0.5.1",
     "moment": "^2.17.1",
     "mysql": "^2.12.0",
     "node-exceptions": "^1.0.3",

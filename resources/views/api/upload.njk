@@ -1,0 +1,39 @@
+{% extends 'layout.master' %}
+
+{% block content %}
+	<div class="container">
+		<div class="main-container">
+			{% include 'layout.alerts' %}
+			<div class="page-header">
+				<h2><i class="fa fa-upload"></i> File Upload</h2>
+			</div>
+			
+			<div class="btn-group btn-group-justified">
+				<a href="http://adonisjs.com/docs/3.2/security-introduction#_file_uploads" target="_blank" class="btn btn-success">
+					<i class="fa fa-book"></i> AdonisJS Documentation
+				</a>
+				<a href="https://github.com/adonisjs/adonis-framework/issues/403" target="_blank" class="btn btn-success">
+					<i class="fa fa-laptop"></i>  Upload's Article
+				</a>
+			</div>
+			<br>
+			<h3>File Upload Form</h3>
+			<div class="row">
+				<div class="col-sm-6">
+					<p>All files will be uploaded to "/storage" directory.</p>
+					<form role="form" enctype="multipart/form-data" method="POST"
+						  action="{{ url('/api/upload/apply') }}">
+						{{ csrfField }}
+						<div class="form-group">
+							<label class="control-label">File Input</label>
+							<input type="file" name="myFile" />
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
