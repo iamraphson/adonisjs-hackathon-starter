@@ -51,9 +51,7 @@ Route.group('authenticated', function () {
 	Route.post('/api/slack', 'SlackController.sendMessage')
 	Route.get('/api/upload', 'UploadController.index')
 	Route.post('/api/upload/apply', 'UploadController.upload')
-	Route.get('/api/google-maps', function * (request, response) {
-			yield response.sendView('api.google-mapsApi')
-	})
+	Route.get('/api/google-maps', 'GoogleMapsController.index')
 }).middleware('auth')
 
 Route.get('/api', function * (request, response) {
