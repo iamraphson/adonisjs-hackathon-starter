@@ -52,6 +52,7 @@ Route.group('authenticated', function () {
 	Route.get('/api/upload', 'UploadController.index')
 	Route.post('/api/upload/apply', 'UploadController.upload')
 	Route.get('/api/google-maps', 'GoogleMapsController.index')
+	Route.get('/api/yahoo', 'YahooController.index')
 }).middleware('auth')
 
 Route.get('/api', function * (request, response) {
