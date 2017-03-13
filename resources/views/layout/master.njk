@@ -17,22 +17,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.12.0/bootstrap-social.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link href="{{ assets('css/style.css') }}" rel="stylesheet" type="text/css" />
-
-    <style>
-        body {
-            font-family: 'Lato';
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                     <span class="sr-only">Toggle Navigation</span>
@@ -68,7 +57,6 @@
                                 <img src="{{ currentUser.getAvatar1() }}" style="width: 30px;height: 30px;">
                                 {{ currentUser.name }} <span class="caret"></span>
                             </a>
-
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/account') }}">
 										<i class="fa fa-btn fa-user"></i>My Account</a></li>
@@ -85,7 +73,20 @@
     </nav>
 
     {% block content %}{% endblock %}
-    
+
+	<footer class="footer">
+		<div class="container text-center">
+			<p class="pull-left">&copy; {{ currentYear() }}  Company, Inc. All Rights Reserved</p>
+			<ul class="pull-right list-inline">
+				<li>
+					<a href="https://github.com/iamraphson/adonisjs-hackathon-starter">GitHub Project</a>
+				</li>
+				<li>
+					<a href="https://github.com/iamraphson/adonisjs-hackathon-starter/issues">Issues</a>
+				</li>
+			</ul>
+		</div>
+	</footer>
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

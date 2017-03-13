@@ -2,6 +2,7 @@
 
 const Env = use('Env')
 const Ouch = use('youch')
+const moment = require('moment');
 const Http = exports = module.exports = {}
 
 /**
@@ -43,6 +44,10 @@ Http.onStart = function () {
     const filteredValue = hash.filter((item) => item.field === key)
     return (filteredValue && filteredValue.length) ? filteredValue[0] : null
   })
+
+	View.global('currentYear', function () {
+		return moment().format('YYYY')
+	})
 
   //Database.on('query', console.log)
   //Database.on('sql', console.log)
