@@ -141,54 +141,54 @@
 								<p><a href="{{ url('/auth/instagram') }}">Link your Instagram account</a></p>
 							{% endif %}
 						</div>
-						{#<div class="col-sm-offset-3 col-sm-4">
-							{{--Handles Google link/unlink --}}
-							@if(in_array("google", $linkedAccount))
-							<p><a href="{{ url('/account/unlink/google') }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')">Unlink your Google account</a></p>
-							@else
-							<p><a href="{{ url('/auth/google') }}">Link your Google account</a></p>
-							@endif
+						<div class="col-sm-offset-3 col-sm-4">
+							{#Handles Google link/unlink #}
+							{% if inArray(linkedAccount, 'google') %}
+								<p><a href="{{ url('/account/unlink/google') }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')">Unlink your Google account</a></p>
+							{% else %}
+								<p><a href="{{ url('/auth/google') }}">Link your Google account</a></p>
+							{% endif %}
 						</div>
 						<div class="col-sm-offset-3 col-sm-4">
-							{{--Handles Facebook link/unlink --}}
-							@if(in_array("facebook", $linkedAccount))
-							<p><a href="{{ url('/account/unlink/facebook') }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')">Unlink your Facebook account</a></p>
-							@else
-							<p><a href="{{ url('/auth/facebook') }}">Link your Facebook account</a></p>
-							@endif
+							{# Handles Facebook link/unlink #}
+							{% if inArray(linkedAccount, 'facebook') %}
+								<p><a href="{{ url('/account/unlink/facebook') }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')">Unlink your Facebook account</a></p>
+							{% else %}
+								<p><a href="{{ url('/auth/facebook') }}">Link your Facebook account</a></p>
+							{% endif %}
 						</div>
 						<div class="col-sm-offset-3 col-sm-4">
-							{{--Handles Twitter link/unlink --}}
-							@if(in_array("twitter", $linkedAccount))
-							<p><a href="{{ url('/account/unlink/twitter') }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')">Unlink your Twitter account</a></p>
-							@else
-							<p><a href="{{ url('/auth/twitter') }}">Link your Twitter account</a></p>
-							@endif
+							{# Handles Twitter link/unlink #}
+							{% if inArray(linkedAccount, 'twitter') %}
+								<p><a href="{{ url('/account/unlink/twitter') }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')">Unlink your Twitter account</a></p>
+							{% else %}
+								<p><a href="{{ url('/auth/twitter') }}">Link your Twitter account</a></p>
+							{% endif %}
 						</div>
 
 						<div class="col-sm-offset-3 col-sm-4">
-							{{--Handles Github link/unlink --}}
-							@if(in_array("github", $linkedAccount))
-							<p><a href="{{ url('/account/unlink/github') }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')"Unlink your GitHub account</a></p>
-							@else
-							<p><a href="{{ url('/auth/github') }}">Link your GitHub account</a></p>
-							@endif
+							{# Handles Github link/unlink #}
+							{% if inArray(linkedAccount, 'github') %}
+								<p><a href="{{ url('/account/unlink/github') }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')"Unlink your GitHub account</a></p>
+							{% else %}
+								<p><a href="{{ url('/auth/github') }}">Link your GitHub account</a></p>
+							{% endif %}
 						</div>
 						<div class="col-sm-offset-3 col-sm-4">
-							{{--Handles LinkedIn link/unlink --}}
-							@if(in_array("linkedin", $linkedAccount))
-							<p><a href="{{ url('/account/unlink/linkedin') }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')">Unlink your LinkedIn account</a></p>
-							@else
-							<p><a href="{{ url('/auth/linkedin') }}">Link your LinkedIn account</a></p>
-							@endif
+							{# Handles LinkedIn link/unlink #}
+							{% if inArray(linkedAccount, 'linkedin') %}
+								<p><a href="{{ url('/account/unlink/linkedin') }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')">Unlink your LinkedIn account</a></p>
+							{% else %}
+								<p><a href="{{ url('/auth/linkedin') }}">Link your LinkedIn account</a></p>
+							{% endif %}
 						</div>
 						<div class="col-sm-offset-3 col-sm-4">
-							{{--Handles Foursquare link/unlink --}}
-							@if(in_array("foursquare", $linkedAccount))
-							<p><a href="{{ url('/account/unlink/Foursquare') }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')"> Unlink your Foursquare account </a></p>
-							@else
+							{# Handles Foursquare link/unlink #}
+							{% if inArray(linkedAccount, 'foursquare') %}
+								<p><a href="{{ url('/account/unlink/Foursquare') }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')"> Unlink your Foursquare account </a></p>
+							{% else %}
 							<p><a href="{{ url('/auth/Foursquare') }}">Link your Foursquare account</a></p>
-							@endif#}
+							{% endif %}
 						</div>
 					</div>
 				</div>

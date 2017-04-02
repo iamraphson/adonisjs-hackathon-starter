@@ -29,6 +29,13 @@ class AccountController {
     yield response.sendView('account.profile', {account: loggedinUser, linkedAccount: linkedAccount})
   }
 
+  * unlinkSocialMediaAccount(request, response){
+	  const provider = request.param('provider')
+	  const loginID = yield request.auth.getUser()
+	  yield UserRepository.deleteUserProfile(loginID, provider)
+	  response.redirect('back')
+  }
+
   * update (request, response) {
     const userData = request.only('email', 'name', 'username',
             'gender', 'location', 'website')

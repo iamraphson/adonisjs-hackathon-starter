@@ -135,6 +135,11 @@ class UserRepository {
     yield user.delete()
   }
 
+	* deleteUserProfile(loginID, provider){
+		const userProfile = yield this.UsersProfile.findBy({provider: provider, user_id: loginID.id})
+		yield userProfile.delete()
+	}
+
   * updateUserProvider(userData, provider, id) {
       const existingUser = yield this.User.find(id)
 

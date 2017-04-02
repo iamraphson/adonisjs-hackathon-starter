@@ -27,6 +27,7 @@ Route.group('authenticated', function () {
   Route.post('/account/password', 'AccountController.changePassword')
   Route.post('/account/photo', 'AccountController.uploadAvatar')
   Route.get('/account/delete', 'AccountController.destroy')
+	Route.get('/account/unlink/:provider', 'AccountController.unlinkSocialMediaAccount')
 
   Route.get('/api/github', 'GithubController.index')
   Route.get('/api/twitter', 'TwitterController.index')
