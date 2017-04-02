@@ -49,6 +49,13 @@ Http.onStart = function () {
 		return moment().format('YYYY')
 	})
 
-  //Database.on('query', console.log)
-  //Database.on('sql', console.log)
+	View.global('inArray', function(arr, needle) {
+			let i = arr.length;
+			while (i--) {
+				if (arr[i] === needle) {
+					return true;
+				}
+			}
+			return false;
+	})
 }

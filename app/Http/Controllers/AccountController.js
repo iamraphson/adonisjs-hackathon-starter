@@ -21,7 +21,12 @@ class AccountController {
   * edit (request, response) {
     this.loginID = yield request.auth.getUser()
     const loggedinUser = yield UserRepository.findUserById(this.loginID.id)
-    yield response.sendView('account.profile', {account: loggedinUser})
+	  const userProfile = yield loggedinUser.profile().fetch()
+	  let linkedAccount = []
+	  userProfile.toJSON().map(function (profile) {
+		  linkedAccount.push(profile.provider)
+	  })
+    yield response.sendView('account.profile', {account: loggedinUser, linkedAccount: linkedAccount})
   }
 
   * update (request, response) {

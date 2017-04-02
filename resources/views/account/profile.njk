@@ -88,8 +88,6 @@
 						<label for="avatar" class="col-sm-2 control-label"></label>
 						<div class="col-sm-4">
 							<input type="file" name="avatar" id="avatar" />
-							{#{{ form.open({ action: 'HomeController.index', files: true }) }}
-							{{ form.file('avatar') }}#}
 						</div>
 					</div>
 					<div class="form-group">
@@ -137,13 +135,13 @@
 					<div class="form-group">
 						<div class="col-sm-offset-3 col-sm-4">
 							{#--Handles Instagram link/unlink --#}
-							{#@if(in_array("instagram", $linkedAccount))
-							<p><a href="{{ url('account/unlink/instagram') }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')">Unlink your Instagram account</a></p>
-							@else
-							<p><a href="{{ url('/auth/instagram') }}">Link your Instagram account</a></p>
-							@endif
+							{% if inArray(linkedAccount, 'instagram') %}
+								<p><a href="{{ url('account/unlink/instagram') }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')">Unlink your Instagram account</a></p>
+							{% else %}
+								<p><a href="{{ url('/auth/instagram') }}">Link your Instagram account</a></p>
+							{% endif %}
 						</div>
-						<div class="col-sm-offset-3 col-sm-4">
+						{#<div class="col-sm-offset-3 col-sm-4">
 							{{--Handles Google link/unlink --}}
 							@if(in_array("google", $linkedAccount))
 							<p><a href="{{ url('/account/unlink/google') }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')">Unlink your Google account</a></p>
