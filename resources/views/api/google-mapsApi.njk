@@ -36,117 +36,116 @@
 		var map;
 		var superchargers = [
 			{
-				location: 'Fremont',
-				latitude: 37.49267,
-				longitude: -121.94409
+				location: 'Oshodi',
+				latitude: 6.5142,
+				longitude: 3.3087
+			},
+		  	{
+				location: 'Ikeja',
+				latitude: 6.598030,
+				longitude: 3.340808
+		  	},
+			{
+				location: 'Isolo',
+				latitude: 6.514193,
+				longitude: 3.308678
 			},
 			{
-				location: 'Folsom',
-				latitude: 38.64392,
-				longitude: -121.18621
+				location: 'Ibadan, Oyo',
+				latitude: 7.401962,
+				longitude: 3.917313
 			},
 			{
-				location: 'Gilroy',
-				latitude: 37.02615,
-				longitude: -121.56487
+				location: 'Surulere',
+				latitude: 6.500000,
+				longitude: 3.350000
 			},
 			{
-				location: 'Harris Ranch',
-				latitude: 36.25316,
-				longitude: -120.23853
+				location: 'Yaba',
+				latitude: 6.51784,
+				longitude: 3.3827
 			},
 			{
-				location: 'Mt. Shasta',
-				latitude: 41.30981,
-				longitude: -122.31766
+				location: 'Ikoyi',
+				latitude: 6.4548,
+				longitude: 3.4347
 			},
 			{
-				location: 'Roseville',
-				latitude: 38.77344,
-				longitude: -121.26928
+				location: 'Ajah',
+				latitude: 6.4725,
+				longitude: 3.5686
 			},
 			{
-				location: 'Truckee',
-				latitude: 39.32720,
-				longitude: -120.20643
+				location: 'Apapa',
+				latitude: 6.4553,
+				longitude: 3.3641
 			},
 			{
-				location: 'Vacaville',
-				latitude: 38.36720,
-				longitude: -121.95601
+				location: 'Igando',
+				latitude: 6.5359,
+				longitude: 3.2483
 			},
 			{
-				location: 'Atascadero',
-				latitude: 35.48640,
-				longitude: -120.66558
+				location: 'Ikorodu',
+				latitude: 6.6194,
+				longitude: 3.5105
 			},
 			{
-				location: 'Barstow',
-				latitude: 34.89120,
-				longitude: -116.99910
+				location: 'Ile Ife, Osun',
+				latitude: 7.4905,
+				longitude: 4.5521
 			},
 			{
-				location: 'Buellton',
-				latitude: 34.61545,
-				longitude: -120.18856
+				location: 'Owo, Ondo',
+				latitude: 7.1989,
+				longitude:  5.5932
 			},
 			{
-				location: 'Cabazon',
-				latitude: 33.92967,
-				longitude: -116.81649
+				location: 'Port Harcourt',
+				latitude: 4.8156,
+				longitude: 7.0498
 			},
 			{
-				location: 'Culver City',
-				latitude: 33.98465,
-				longitude: -118.39505
+				location: 'Sokoto',
+				latitude: 13.0059,
+				longitude: 5.2476
 			},
 			{
-				location: 'El Centro',
-				latitude: 32.76200,
-				longitude: -115.53197
+				location: 'Calabar',
+				latitude: 4.9757,
+				longitude: 8.3417
 			},
 			{
-				location: 'Indio',
-				latitude: 33.74272,
-				longitude: -116.21316
+				location: 'Kano',
+				latitude: 12.0022,
+				longitude: 8.5920
 			},
 			{
-				location: 'Los Angeles',
-				latitude: 33.92142,
-				longitude: -118.32982
+				location: 'Abuja',
+				latitude: 9.0765,
+				longitude: 7.3986
 			},
 			{
-				location: 'Needles',
-				latitude: 34.85083,
-				longitude: -114.62414
-			},
-
-			{
-				location: 'Oxnard',
-				latitude: 34.24075,
-				longitude: -119.17699
+				location: 'Ilorin, Kwara',
+				latitude: 8.9848,
+				longitude: 4.5624
 			},
 			{
-				location: 'Rancho Cucamonga',
-				latitude: 34.11348,
-				longitude: -117.53257
+				location: 'Oye, Ekiti',
+				latitude: 7.7979,
+				longitude: 5.3286
 			},
 			{
-				location: 'San Juan Capistrano',
-				latitude: 33.49835,
-				longitude: -117.66287
-			},
-			{
-				location: 'Tejon Ranch',
-				latitude: 34.98661,
-				longitude: -118.94630
+				location: 'Benin, Edo',
+				latitude: 6.5438,
+				longitude: 5.8987
 			}
 		];
 
 			function initMap() {
 				map = new google.maps.Map(document.getElementById('map'), {
-					center: { lat: 36.0907578, lng: -119.5948303 },
-					zoom: 7
+					center: { lat: 9.0765, lng: 7.3986 },
+					zoom: 6
 				});
 
 				superchargers.forEach(function(sc) {
