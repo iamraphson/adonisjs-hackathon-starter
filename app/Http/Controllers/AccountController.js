@@ -22,9 +22,8 @@ class AccountController {
     this.loginID = yield request.auth.getUser()
     const loggedinUser = yield UserRepository.findUserById(this.loginID.id)
 	  const userProfile = yield loggedinUser.profile().fetch()
-	  let linkedAccount = []
-	  userProfile.toJSON().map(function (profile) {
-		  linkedAccount.push(profile.provider)
+	  let linkedAccount = userProfile.toJSON().map(function (profile) {
+		  return profile.provider
 	  })
     yield response.sendView('account.profile', {account: loggedinUser, linkedAccount: linkedAccount})
   }
