@@ -1,0 +1,37 @@
+{% extends 'layout.master' %}
+
+{% block content %}
+	<div class="container">
+		<h2>Contact Form</h2>
+		<hr/>
+		<div class="row">
+			{% include 'layout.alerts' %}
+			<form role="form" method="POST" action="{{ url('contact') }}" class="form-horizontal">
+				{{ csrfField }}
+				<div class="form-group {{ ' has-error' if (old('errors') and findBy(old('errors'), 'name')) }}">
+					<label for="name" class="col-sm-2 control-label">Name</label>
+					<div class="col-sm-8">
+						<input type="text" name="name" id="name" value="{{ old('name') }}" autofocus="" class="form-control">
+					</div>
+				</div>
+				<div class="form-group {{ ' has-error' if (old('errors') and findBy(old('errors'), 'email')) }}">
+					<label for="email" class="col-sm-2 control-label">Email</label>
+					<div class="col-sm-8">
+						<input type="text" name="email" value="{{ old('email') }}" id="email" class="form-control">
+					</div>
+				</div>
+				<div class="form-group {{ ' has-error' if (old('errors') and findBy(old('errors'), 'message')) }}">
+					<label for="message" class="col-sm-2 control-label">Body</label>
+					<div class="col-sm-8">
+						<textarea name="message" id="message" value="{{ old('message') }}" rows="7" class="form-control"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-8">
+						<button type="submit" class="btn btn-primary"><i class="fa fa-envelope"></i> Send</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}
