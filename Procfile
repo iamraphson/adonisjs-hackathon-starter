@@ -1,1 +1,1 @@
-web: ENV_SILENT=true node server.js
+web:  npm start
