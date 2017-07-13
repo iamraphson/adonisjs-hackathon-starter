@@ -1,7 +1,7 @@
 'use strict'
 
 const Env = use('Env')
-const Ouch = use('youch')
+const Youch = use('youch')
 const moment = require('moment');
 const Http = exports = module.exports = {}
 
@@ -13,25 +13,25 @@ const Http = exports = module.exports = {}
  * @param  {Object} response
  */
 Http.handleError = function * (error, request, response) {
-  /**
-   * DEVELOPMENT REPORTER
-   */
-  if (Env.get('NODE_ENV') === 'development') {
-    const ouch = new Ouch().pushHandler(
-      new Ouch.handlers.PrettyPageHandler('blue', null, 'sublime')
-    )
-    ouch.handleException(error, request.request, response.response, (output) => {
-      console.error(error.stack)
-    })
-    return
-  }
+	const status = error.status || 500
 
-  /**
-   * PRODUCTION REPORTER
-   */
-  const status = error.status || 500
-  console.error(error.stack)
-  yield response.status(status).sendView('errors/index', {error})
+	/**
+	 * DEVELOPMENT REPORTER
+	 */
+	if (Env.get('NODE_ENV') === 'development') {
+		const youch = new Youch(error, request.request)
+		const type = request.accepts('json', 'html')
+		const formatMethod = type === 'json' ? 'toJSON' : 'toHTML'
+		const formattedErrors = yield youch[formatMethod]()
+		response.status(status).send(formattedErrors)
+		return
+	}
+
+	/**
+	 * PRODUCTION REPORTER
+	 */
+	console.error(error.stack)
+	yield response.status(status).sendView('errors/index', {error})
 }
 
 /**

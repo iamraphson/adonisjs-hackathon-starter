@@ -6,8 +6,8 @@ class PasswordResetsTableSchema extends Schema {
 
   up () {
     this.create('password_resets', (table) => {
-      table.string('email').Nullable()
-      table.string('token').Nullable()
+      table.string('email').nullable()
+      table.string('token').nullable()
       table.index('email')
       table.index('token')
       table.timestamp('created_at')
