@@ -6,8 +6,6 @@ class ViewAssets {
     let baseUrl = request.secure() ? 'https://' : 'http://'
     baseUrl += request.headers().host + '/'
 
-	  response.viewInstance = use('View')
-
 	  response.viewInstance.global('assets', (assetPath) => {
       assetPath = (assetPath.substring(0, 1) == '/') ? assetPath.substring(1) : assetPath
       return baseUrl + assetPath
