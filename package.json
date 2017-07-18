@@ -14,7 +14,7 @@
   "dependencies": {
     "@slack/client": "^3.10.0",
     "adonis-ace": "^3.0.8",
-    "adonis-ally": "https://github.com/iamraphson/adonis-ally/tarball/develop",
+    "adonis-ally": "https://github.com/iamraphson/adonis-ally/tarball/bitbucket-develop",
     "adonis-auth": "^1.0.7",
     "adonis-commands": "^2.1.5",
     "adonis-fold": "^3.0.3",
