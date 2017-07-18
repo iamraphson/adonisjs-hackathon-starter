@@ -15,10 +15,10 @@ class GithubController {
         }
         try {
             const profileResponse = yield this.getGithubProfile()
-            yield response.sendView('api.githubApi', { repo: profileResponse.repo.data})
+            yield response.sendView('api.githubAPI', { repo: profileResponse.repo.data})
         } catch(e){
             console.log(e.message);
-            yield response.sendView('api.githubApi', { repo: {}})
+            yield response.sendView('api.githubAPI', { repo: {}})
         }
     }
 
