@@ -54,7 +54,6 @@ class PasswordController {
   }
 
   * sendResetMail (user, token) {
-
     return yield Mail.send('auth.email.password', {
     	email: user.email,
 	    token: token,
@@ -96,7 +95,7 @@ class PasswordController {
         response.redirect('back')
       } else {
         yield request.with({ status: 'Your password has been reset!' }).flash()
-        response.redirect('back')
+        response.redirect('/login')
       }
     } else {
       yield request.withOnly('email')
