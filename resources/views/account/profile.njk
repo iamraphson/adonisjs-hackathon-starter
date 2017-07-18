@@ -185,9 +185,9 @@
 						<div class="col-sm-offset-3 col-sm-4">
 							{# Handles Foursquare link/unlink #}
 							{% if inArray(linkedAccount, 'foursquare') %}
-								<p><a href="{{ url('/account/unlink/Foursquare') }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')"> Unlink your Foursquare account </a></p>
+								<p><a href="{{ url('/account/unlink/foursquare') }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')"> Unlink your Foursquare account </a></p>
 							{% else %}
-							<p><a href="{{ url('/auth/Foursquare') }}">Link your Foursquare account</a></p>
+							<p><a href="{{ url('/auth/foursquare') }}">Link your Foursquare account</a></p>
 							{% endif %}
 						</div>
 					</div>

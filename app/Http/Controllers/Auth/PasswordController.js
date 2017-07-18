@@ -81,7 +81,7 @@ class PasswordController {
     const validation = yield Validator.validate(postData, rules, this.messages)
 
     if (validation.fails()) {
-      yield request.withOnly('email').andWith({ errors: validation.messages() }).flash()
+      yield request.withOnly('email', 'token').andWith({ errors: validation.messages() }).flash()
       response.redirect('back')
       return
     }
@@ -90,15 +90,15 @@ class PasswordController {
     if (isResetOkay) {
       const user = yield UserRepository.resetPassword(postData)
       if (user === null) {
-        yield request.withOnly('email')
+        yield request.withOnly('email', 'token')
                     .andWith({ error: 'We can\'t find a user with that e-mail address' }).flash()
         response.redirect('back')
       } else {
         yield request.with({ status: 'Your password has been reset!' }).flash()
-        response.redirect('/login')
+        response.redirect('back')
       }
     } else {
-      yield request.withOnly('email')
+      yield request.withOnly('email', 'token')
                 .andWith({ error: 'This password reset token is invalid' }).flash()
       response.redirect('back')
     }
