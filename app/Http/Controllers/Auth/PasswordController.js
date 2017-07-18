@@ -54,7 +54,12 @@ class PasswordController {
   }
 
   * sendResetMail (user, token) {
-    return yield Mail.send('auth.email.password', {email: user.email, token: token}, (message) => {
+
+    return yield Mail.send('auth.email.password', {
+    	email: user.email,
+	    token: token,
+	    host: Env.get('APP_URL')
+    }, (message) => {
       message.to(user.email, user.name)
       message.from(Env.get('MAIL_FROM_EMAIL'), Env.get('MAIL_FROM_NAME'))
       message.subject('Your Password Reset Link')
