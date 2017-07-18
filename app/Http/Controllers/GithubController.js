@@ -25,7 +25,7 @@ class GithubController {
     getGithubProfile() {
         return new Promise((resolve, reject) => {
             const github = new GitHub();
-            github.repos.get({ owner: 'sahat', repo: 'hackathon-starter' }, (err, repo) => {
+            github.repos.get({ owner: 'iamraphson', repo: 'adonisjs-hackathon-starter' }, (err, repo) => {
                 if (err) { return  reject(err); }
                 return  resolve({repo})
             });
