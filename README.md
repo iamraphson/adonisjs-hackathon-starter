@@ -383,6 +383,276 @@ List of Packages
 | lodash                          | Handy JavaScript utlities library.                                    |
 | adonis-validation-provider       | Validate form in adonisJS |
 | mocha                           | Test framework.                                                       |
-| chai                            | BDD/TDD assertion library.                                            |
 |thunkify                       | Turn a regular node function into one which returns a thunk            |
 |standard                       | JavaScript Standard Style            |
+
+Useful Tools and Resources
+--------------------------
+- [JavaScripting](http://www.javascripting.com/) - The Database of JavaScript Libraries
+- [JS Recipes](http://sahatyalkabov.com/jsrecipes/) - JavaScript tutorials for backend and frontend development.
+- [Jade Syntax Documentation by Example](http://naltatis.github.io/jade-syntax-docs/#attributes) - Even better than official Jade docs.
+- [HTML to Jade converter](http://html2jade.aaron-powell.com) - Extremely valuable when you need to quickly copy and paste HTML snippets from the web.
+- [JavascriptOO](http://www.javascriptoo.com/) - A directory of JavaScript libraries with examples, CDN links, statistics, and videos.
+- [Favicon Generator](http://realfavicongenerator.net/) - Generate favicons for PC, Android, iOS, Windows 8.
+- [Goodheads](http://goodheads.io) - Laravel, PHP, Node.js and JS tutorials
+- [Favicon Generator](http://realfavicongenerator.net/) - Generate favicons for PC, Android, iOS, Windows 8.
+-
+
+Recommended Design Resources
+----------------------------
+- [Code Guide](http://codeguide.co/) - Standards for developing flexible, durable, and sustainable HTML and CSS.
+- [Bootsnipp](http://bootsnipp.com/) - Code snippets for Bootstrap.
+- [UIBox](http://www.uibox.in) - Curated HTML, CSS, JS, UI components.
+- [Bootstrap Zero](https://www.bootstrapzero.com) - Free Bootstrap templates themes.
+- [Google Bootstrap](http://todc.github.io/todc-bootstrap/) - Google-styled theme for Bootstrap.
+- [Font Awesome Icons](http://fortawesome.github.io/Font-Awesome/icons/) - It's already part of the Hackathon Starter, so use this page as a reference.
+- [Colors](http://clrs.cc) - A nicer color palette for the web.
+- [Creative Button Styles](http://tympanus.net/Development/CreativeButtons/) - awesome button styles.
+- [Creative Link Effects](http://tympanus.net/Development/CreativeLinkEffects/) - Beautiful link effects in CSS.
+- [Medium Scroll Effect](http://codepen.io/andreasstorm/pen/pyjEh) - Fade in/out header background image as you scroll.
+- [GeoPattern](https://github.com/btmills/geopattern) - SVG background pattern generator.
+- [Trianglify](https://github.com/qrohlf/trianglify) - SVG low-poly background pattern generator.
+
+
+Recommended Node.js Libraries
+-----------------------------
+
+- [Nodemon](https://github.com/remy/nodemon) - Automatically restart Node.js server on code changes.
+- [geoip-lite](https://github.com/bluesmoon/node-geoip) - Geolocation coordinates from IP address.
+- [Filesize.js](http://filesizejs.com/) - Pretty file sizes, e.g. `filesize(265318); // "265.32 kB"`.
+- [Numeral.js](http://numeraljs.com) - Library for formatting and manipulating numbers.
+- [Node Inspector](https://github.com/node-inspector/node-inspector) - Node.js debugger based on Chrome Developer Tools.
+- [node-taglib](https://github.com/nikhilm/node-taglib) - Library for reading the meta-data of several popular audio formats.
+- [sharp](https://github.com/lovell/sharp) - Node.js module for resizing JPEG, PNG, WebP and TIFF images.
+
+FAQ
+---
+
+### Why do I get `csrf token mismatch` when submitting a form?
+You need to add the following code to your form. This has been
+added in the existing codebase as part of the CSRF protection.
+
+```
+{{ csrfField }}
+```
+### I get a whoops error when I deploy my app, why?
+Chances are you haven't generated the app key, so run `node ace key:generate`.
+Chances are you haven't put your credentials in your .env file.
+
+How It Works (mini guides)
+--------------------------
+
+This section is intended for giving you a detailed explanation about
+how a particular functionality works. Maybe you are just curious about
+how it works, or maybe you are lost and confused while reading the code,
+I hope it provides some guidance to you.
+
+<hr>
+
+### How do flash messages work in this project?
+Flash messages allow you to display a message at the end of the request and access
+it on next request and only next request. For instance, on a failed login attempt, you would
+display an alert with some error message, but as soon as you refresh that page or visit a different
+page and come back to the login page, that error message will be gone. It is only displayed once. All flash messages are available in your views via adonisJS sessions.
+To send a flash message to the view, you need to add the following code 
+```js
+yield request.with({error: "Eroor due to 1.2.3 .."}).flash()
+```
+To display the flash message,you need to add the following code.
+```twig
+{% if old('error') %}
+    <div class="alert alert-danger">
+        {{ old('error') }}
+    </div>
+{% endif %}
+```
+
+<hr>
+
+### How do I create a new page?
+A more correct way to be to say "How do I create a new route". The main file `routes.js` contains all the routes. It's located in the **app/Http** directory
+Each route has a callback function associated with it. You will see 2 arguments
+to routes. In cases like that, the first argument is still a URL string, while the second argument is a callback function.  Example is a route that requires authentication.
+
+```js
+const Route = use('Route')
+Route::get('/account', 'AccountController.getAccount').middleware('auth')
+```
+It always goes from left to right. A user visits `/account` page. Then `auth` middleware checks if you are authenticated:
+
+Here is a typical workflow for adding new routes to your application. Let's say we are building a page that lists all books from database.
+
+**Step 1.** Start by defining a route.
+
+```js
+const Route = use('Route')
+Route::get('/books', 'BookController.getBooks');
+```
+---
+
+**Step 2.** Create a new model `Book.js` inside the *app/Model* directory. You can simply run `node ace make:model Book`
+
+```js
+
+'use strict'
+
+const Lucid = use('Lucid')
+
+class Book extends Lucid {
+
+}
+
+module.exports = Book
+
+```
+
+**Step 3.** Create a migration file like so: `node ace make:migration create_books_table`
+
+```js
+'use strict'
+
+const Schema = use('Schema')
+
+class CreateBooksTableTableSchema extends Schema {
+
+  up () {
+    this.table('books', (table) => {
+    	table.increments()
+        table.string('name').nullable()
+        table.string('isbn').nullable()
+        table.timestamps()
+    });
+  }
+
+  down () {
+    this.drop('books');
+  }
+}
+
+module.exports = CreateBooksTableTableSchema
+```
+
+**Step 4.** Create a new controller file called `BookController.js` inside the *app/Http/Controllers* directory. You can simply run `node ace make:controller BookController` and it ask you `Generating a controller for ?` select `Http Request`
+
+```js
+'use strict'
+
+const Contact = use('App/Model/Contact')
+
+class BookController {
+
+    /**
+     * Return all books
+     * @return Response
+     */
+  * index(request, response) {
+    let contacts = yield Contact.all();
+
+    yield response.sendView('contacts', { contacts: contacts.toJSON() })
+  }
+  
+}
+
+module.exports = BookController
+```
+
+**Step 5.** Create `books.njk` template in *resources/views* directory
+
+```js
+{% extends 'master' %}
+
+{% block content %}
+    {% include 'layout.nav' %}
+    <div class="main-container">
+        {% include 'layout.alerts' %}
+
+        <div class="page-header">
+            <h2><i style="color: #f00" class="fa fa-book"></i>All Books</h2>
+        </div>
+
+        <ul>
+        {% for book in books %}
+            <li> {{ book.name }} </li>
+        {%  endfor %}
+        </div>
+    </div>
+{% endblock %}
+```
+
+That's it!
+<hr>
+
+Deployment
+----------
+
+Once you are ready to deploy your app, you will need to create an account with a cloud platform to host it. These are not the only choices, but they are my top
+picks. From my experience, **Heroku** is the easiest to get started with,  deployments and custom domain support on free accounts.
+
+### 1-Step Deployment with Heroku
+
+<img src="http://blog.exadel.com/wp-content/uploads/2013/10/heroku-Logo-1.jpg" width="200">
+
+- Download and install [Heroku Toolbelt](https://toolbelt.heroku.com/)
+- In terminal, run `heroku login` and enter your Heroku credentials
+- From *your app* directory run `heroku create`
+- Create a Procfile in your app root. All this file needs to contain is `web: ENV_SILENT=true node --harmony_proxies server.js` 
+- Run `heroku addons:add heroku-postgresql:dev  ` to add a Postgres database to your heroku app from your terminal
+- Lastly, do `git push heroku master`.  Done!
+- Run artisan commands on heroku like so `heroku run node ace migration:run`
+
+**Note:** To install Heroku add-ons your account must be verified.
+
+---
+<img src="http://www.opencloudconf.com/images/openshift_logo.png" width="200">
+
+- First, install this Ruby gem: `sudo gem install rhc` :gem:
+- Run `rhc login` and enter your OpenShift credentials
+- From your app directory run `rhc app create MyApp nodejs-0.10`
+ - **Note:** *MyApp* is the name of your app (no spaces)
+- Once that is done, you will be provided with **URL**, **SSH** and **Git Remote** links
+- Visit provided **URL** and you should see the *Welcome to your Node.js application on OpenShift* page
+- Copy and and paste **Git Remote** into `git remote add openshift YOUR_GIT_REMOTE`
+- Before you push your app, you need to do a few modifications to your code
+
+go to `htpp.js` in *bootstrap* directory, 
+
+Then change `Server.listen(Env.get('HOST'), Env.get('PORT'))` to:
+```js
+Server.listen(Env.get('OPENSHIFT_NODEJS_IP') || '127.0.0.1', Env.get('OPENSHIFT_NODEJS_PORT') || 3333)
+```
+Add this to `package.json`, after *name* and *version*. This is necessary because, by default, OpenShift looks for `server.js` file. And by specifying `ENV_SILENT=true supervisor server.js` it will automatically restart the server when node.js process crashes.
+
+```js
+"main": "server.js",
+"scripts": {
+  "start": "ENV_SILENT=true supervisor server.js"
+},
+```
+
+- Finally, you can now push your code to OpenShift by running `git push -f openshift master`
+ - **Note:** The first time you run this command, you have to pass `-f` (force) flag because OpenShift creates a dummy server with the welcome page when you create a new Node.js app. Passing `-f` flag will override everything with your *Hackathon Starter* project repository. **Do not** run `git pull` as it will create unnecessary merge conflicts.
+- And you are done!
+
+## Contributing
+
+Thank you for considering contributing to AdonisJS Hackathon Starter.
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Hackathon Starter, please send an e-mail to Ayeni Olusegun at nsegun5@gmail.com. All security vulnerabilities will be promptly addressed.
+
+## Credits
+* [Sahat Yalkabov](https://github.com/sahat/hackathon-starter)
+
+## How can I thank you?
+
+Why not star the github repo? I'd love the attention! Why not share the link for this repository on Twitter or HackerNews? Spread the word!
+
+Don't forget to [follow me on twitter](https://twitter.com/iamraphson)!
+
+Thanks!
+Ayeni Olusegun.
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
