@@ -15,4 +15,31 @@
 
 const Route = use('Route')
 
-Route.on('/').render('welcome')
+Route.get('/', 'HomeController.index').as('welcomePage')
+
+Route.get('/login', 'Auth/AuthController.showLogin').as('loginPage')
+Route.post('/login', 'Auth/AuthController.postLogin').as('login.store')
+Route.get('/logout', 'Auth/AuthController.logout').as('logout')
+
+Route.get('/register', 'Auth/AuthController.showRegister').as('registerPage')
+Route.post('/register', 'Auth/AuthController.postRegister').as('register.store')
+
+Route.get('/password/reset', 'Auth/PasswordController.showResetForm').as('reset.form')
+Route.post('/password/email', 'Auth/PasswordController.sendResetLinkEmail').as('send.reset.email')
+Route.get('/password/token/reset/:token', 'Auth/PasswordController.showResetView')
+Route.post('/password/reset', 'Auth/PasswordController.reset').as('reset.password')
+
+/**
+ * Social Login Route
+ */
+Route.get('/auth/:provider', 'Auth/AuthController.redirectToProvider').as('social.login')
+Route.get('/auth/:provider/callback', 'Auth/AuthController.handleProviderCallback').as('social.login.callback')
+
+Route.group(() => {
+  Route.get('/account', 'AccountController.edit').as('user.account')
+  Route.post('/account/profile', 'AccountController.update').as('account.update')
+  Route.post('/account/photo', 'AccountController.uploadAvatar').as('account.updateAvatar')
+  Route.post('/account/password', 'AccountController.changePassword').as('account.updatePwd')
+  Route.get('/account/unlink/:provider', 'AccountController.unlinkSocialMediaAccount').as('unlink.sm')
+  Route.get('/account/delete', 'AccountController.destroy').as('account.delete')
+})

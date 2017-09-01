@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>AdonisJs</title>
+
+	<!-- Fonts -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
+
+	<!-- Styles -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.12.0/bootstrap-social.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<link href="{{ assetsUrl('style.css') }}" rel="stylesheet" type="text/css" />
+</head>
+<body id="app-layout">
+<nav class="navbar navbar-default navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<!-- Collapsed Hamburger -->
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+				<span class="sr-only">Toggle Navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+
+			<!-- Branding Image -->
+			<a href="{{ route('welcomePage') }}" class="navbar-brand">
+				<i class="fa fa-cube"></i> Project name
+			</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="app-navbar-collapse">
+			<!-- Left Side Of Navbar -->
+			<ul class="nav navbar-nav">
+				<li><a href="{{ route('welcomePage') }}">HOME</a></li>
+				<li><a href="{{ '/api' }}">API EXAMPLES</a></li>
+				<li><a href="{{ '/contact' }}">CONTACT</a></li>
+			</ul>
+
+			<!-- Right Side Of Navbar -->
+			<ul class="nav navbar-nav navbar-right">
+				<!-- Authentication Links -->
+				@loggedIn
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+						   aria-expanded="false" style="padding: 10px;">
+							<img src="{{ auth.user.toJSON().avatarpath }}" style="width: 30px;height: 30px;">
+							{{ auth.user.name }} <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<a href="{{ route('user.account') }}">
+									<i class="fa fa-btn fa-user"></i> My Account
+								</a>
+							</li>
+							<li>
+								<a href="{{ route('logout') }}">
+									<i class="fa fa-btn fa-sign-out"></i> Logout
+								</a>
+							</li>
+						</ul>
+					</li>
+				@else
+					<li><a href="{{ route('loginPage') }}">Login</a></li>
+					<li><a href="{{ route('registerPage') }}">Register</a></li>
+				@endloggedIn
+			</ul>
+		</div>
+	</div>
+</nav>
+
+@!section('content')
+
+<footer class="footer">
+	<div class="container text-center">
+		<p class="pull-left">&copy; {{ currentYear() }} Company, Inc. All Rights Reserved</p>
+		<ul class="pull-right list-inline">
+			<li>
+				<a href="https://github.com/iamraphson/adonisjs-hackathon-starter">GitHub Project</a>
+			</li>
+			<li>
+				<a href="https://github.com/iamraphson/adonisjs-hackathon-starter/issues">Issues</a>
+			</li>
+		</ul>
+	</div>
+</footer>
+<!-- JavaScripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>

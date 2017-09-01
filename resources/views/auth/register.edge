@@ -1,0 +1,69 @@
+@layout('layout.master')
+
+@section('content')
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-heading">Register</div>
+					<div class="panel-body">
+						@include('layout.alerts')
+						<form class="form-horizontal" role="form" method="POST" action="{{ route('register.store') }}">
+							{{ csrfField() }}
+							<div class="form-group {{ elIf(' has-error', getErrorFor('name'), hasErrorFor('name')) }}">
+								<label class="col-md-4 control-label" for="name">Name</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="name" id="name"
+										   value="{{ old('name', '') }}">
+									@if(hasErrorFor('name'))
+										<p class="help-block">{{ getErrorFor('name') }}</p>
+									@endif
+								</div>
+							</div>
+							<div class="form-group {{ elIf(' has-error', getErrorFor('email'), hasErrorFor('email')) }}">
+								<label class="col-md-4 control-label"
+									   for="email">E-Mail Address</label>
+								<div class="col-md-6">
+									<input type="email" class="form-control" name="email"
+										   value="{{ old('email', '') }}" id="email">
+									@if(hasErrorFor('email'))
+										<p class="help-block">{{ getErrorFor('email') }}</p>
+									@endif
+								</div>
+							</div>
+							<div class="form-group {{ elIf(' has-error', getErrorFor('password'), hasErrorFor('password')) }}">
+								<label class="col-md-4 control-label"
+									   for="password">Password</label>
+								<div class="col-md-6">
+									<input type="password" class="form-control" name="password"
+										   id="password">
+									@if(hasErrorFor('password'))
+										<p class="help-block">{{ getErrorFor('password') }}</p>
+									@endif
+								</div>
+							</div>
+							<div class="form-group  {{ elIf(' has-error', getErrorFor('password_confirmation'), hasErrorFor('password_confirmation')) }}">
+								<label class="col-md-4 control-label"
+									   id="password_confirmation">Confirm Password</label>
+								<div class="col-md-6">
+									<input type="password" class="form-control"
+										   name="password_confirmation" id="password_confirmation">
+									@if(hasErrorFor('password_confirmation'))
+										<p class="help-block">{{ getErrorFor('password_confirmation') }}</p>
+									@endif
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-6 col-md-offset-4">
+									<button type="submit" class="btn btn-primary">
+										<i class="fa fa-btn fa-user"></i> Register
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+@endsection

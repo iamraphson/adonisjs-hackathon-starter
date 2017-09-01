@@ -1,33 +1,39 @@
 'use strict'
 
 const Model = use('Model')
+const md5 = require('blueimp-md5')
 
 class User extends Model {
-  static boot () {
-    super.boot()
+  static get table () {
+    return 'users'
+  }
 
-    /**
-     * A hook to bash the user password before saving
-     * it to the database.
-     *
-     * Look at `app/Models/Hooks/User.js` file to
-     * check the hashPassword method
-     */
-    this.addHook('beforeCreate', 'User.hashPassword')
+  static get primaryKey () {
+    return 'id'
   }
 
   /**
-   * A relationship on tokens is required for auth to
-   * work. Since features like `refreshTokens` or
-   * `rememberToken` will be saved inside the
-   * tokens table.
+   * The attributes that should be hidden for arrays.
    *
-   * @method tokens
-   *
-   * @return {Object}
+   * @var array
    */
-  tokens () {
-    return this.hasMany('App/Models/Token')
+  static get hidden () {
+    return ['password']
+  }
+
+  static get computed () {
+    return ['avatarpath']
+  }
+
+  getAvatarpath ({ avatar, email }) {
+    if (!avatar) {
+      return `http://www.gravatar.com/avatar/${md5(email)}?d=mm&s=60`
+    }
+    return avatar
+  }
+
+  profile () {
+    return this.hasMany('App/Models/UsersProfile', 'id', 'user_id')
   }
 }
 

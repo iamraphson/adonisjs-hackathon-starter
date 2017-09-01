@@ -78,7 +78,7 @@ module.exports = {
     | production to optimize view loading time.
     |
     */
-    cache: Env.get('CACHE_VIEWS', true)
+    cache: Env.get('CACHE_VIEWS', false)
   },
 
   static: {
