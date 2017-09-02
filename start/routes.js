@@ -29,6 +29,9 @@ Route.post('/password/email', 'Auth/PasswordController.sendResetLinkEmail').as('
 Route.get('/password/token/reset/:token', 'Auth/PasswordController.showResetView')
 Route.post('/password/reset', 'Auth/PasswordController.reset').as('reset.password')
 
+Route.get('/contact', 'ContactController.index').as('contact.show')
+Route.post('/contact', 'ContactController.sendMessage').as('contact.send')
+
 /**
  * Social Login Route
  */
@@ -43,3 +46,5 @@ Route.group(() => {
   Route.get('/account/unlink/:provider', 'AccountController.unlinkSocialMediaAccount').as('unlink.sm')
   Route.get('/account/delete', 'AccountController.destroy').as('account.delete')
 })
+
+Route.get('/api', async ({ view }) => view.render('api'))

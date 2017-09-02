@@ -1,0 +1,48 @@
+@layout('layout.master')
+
+@section('content')
+	<div class="container">
+		<h2>Contact Form</h2>
+		<hr/>
+		<div class="row">
+			@include('layout.alerts')
+			<form role="form" method="POST" action="{{ route('contact.send') }}" class="form-horizontal">
+				{{ csrfField() }}
+				<div class="form-group {{ elIf(' has-error', getErrorFor('name'), hasErrorFor('name')) }}">
+					<label for="name" class="col-sm-2 control-label">Name</label>
+					<div class="col-sm-8">
+						<input type="text" name="name" id="name" value="{{ old('name', '') }}"
+							   autofocus="" class="form-control">
+						@if(hasErrorFor('name'))
+							<p class="help-block">{{ getErrorFor('name') }}</p>
+						@endif
+					</div>
+				</div>
+				<div class="form-group {{ elIf(' has-error', getErrorFor('email'), hasErrorFor('email')) }}">
+					<label for="email" class="col-sm-2 control-label">Email</label>
+					<div class="col-sm-8">
+						<input type="text" name="email" value="{{ old('email', '') }}" id="email" class="form-control">
+						@if(hasErrorFor('email'))
+							<p class="help-block">{{ getErrorFor('email') }}</p>
+						@endif
+					</div>
+				</div>
+				<div class="form-group {{ elIf(' has-error', getErrorFor('message'), hasErrorFor('message')) }}">
+					<label for="message" class="col-sm-2 control-label">Body</label>
+					<div class="col-sm-8">
+						<textarea name="message" id="message" value="{{ old('message', '') }}" rows="7"
+								  class="form-control"></textarea>
+						@if(hasErrorFor('message'))
+						<p class="help-block">{{ getErrorFor('message') }}</p>
+						@endif
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-8">
+						<button type="submit" class="btn btn-primary"><i class="fa fa-envelope"></i> Send</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+@endsection

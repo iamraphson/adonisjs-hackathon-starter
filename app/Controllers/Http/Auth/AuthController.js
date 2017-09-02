@@ -2,6 +2,7 @@
 
 const { validateAll } = use('Validator')
 const users = make('App/Services/UserService')
+const User = use('App/Models/User')
 
 class AuthController {
   async showLogin ({ view }) {
@@ -79,7 +80,7 @@ class AuthController {
   async handleProviderCallback ({params, ally, auth, session, response }) {
     const provider = params.provider
     try {
-      const providerUser = await ally.driver(provider).getUser()
+      const providerUser = await ally.driver(params.provider).getUser()
       try {
         await auth.check()
         const isLoggedIn = await auth.getUser()
