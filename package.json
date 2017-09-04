@@ -18,7 +18,7 @@
   "private": true,
   "dependencies": {
     "@adonisjs/ace": "^4.0.5",
-    "@adonisjs/ally": "^2.0.1",
+    "@adonisjs/ally": "git+https://github.com/iamraphson/adonis-ally.git#bitbucket-develop",
     "@adonisjs/auth": "^2.0.5",
     "@adonisjs/bodyparser": "^1.0.5",
     "@adonisjs/cors": "^1.0.1",
