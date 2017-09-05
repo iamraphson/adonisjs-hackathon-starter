@@ -84,15 +84,13 @@ class AuthController {
       try {
         await auth.check()
         const isLoggedIn = await auth.getUser()
-        console.log(providerUser, provider, isLoggedIn.id)
         await users.updateUserProvider(providerUser, provider, isLoggedIn.id)
-        const redirectPath = await session.get('username', '/account')
+        const redirectPath = await session.get('oldPath', '/account')
         return response.redirect(redirectPath)
       } catch (error) {
         console.log('1st error ', error)
         const authUser = await users.findOrCreateUser(providerUser, provider)
         await auth.loginViaId(authUser.id)
-        console.log(await auth.getUser())
         // return view.render('welcome')
         return response.redirect('/')
       }

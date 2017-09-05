@@ -2,7 +2,6 @@
 
 const { validateAll } = use('Validator')
 const users = make('App/Services/UserService')
-const cloudinary = require('cloudinary').v2
 
 class AccountController {
   async edit ({ auth, view, response }) {

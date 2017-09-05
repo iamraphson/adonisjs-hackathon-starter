@@ -1,6 +1,6 @@
 'use strict'
 const edge = require('edge.js')
-const moment = require('moment');
+const moment = require('moment')
 
 class ViewGlodalMiddleware {
   async handle ({ request }, next) {
@@ -8,7 +8,7 @@ class ViewGlodalMiddleware {
       return moment().format('YYYY')
     })
 
-    edge.global('inArray', (arr, needle) =>  {
+    edge.global('inArray', (arr, needle) => {
       let i = arr.length
       while (i--) {
         if (arr[i] === needle) {
