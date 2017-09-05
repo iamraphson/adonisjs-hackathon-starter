@@ -3,7 +3,7 @@
 const User = use('App/Models/User')
 const UsersProfile = use('App/Models/UsersProfile')
 const Hash = use('Hash')
-const uuid = use('node-uuid')
+const randtoken = require('rand-token')
 const Database = use('Database')
 const Env = use('Env')
 const moment = require('moment')
@@ -45,7 +45,7 @@ class UserService {
   }
 
   async getToken () {
-    return uuid.v1()
+    return randtoken.generate(24)
   }
 
   async userResetPasswordExists (postData) {
