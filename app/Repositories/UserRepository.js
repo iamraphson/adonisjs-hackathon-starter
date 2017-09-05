@@ -4,7 +4,7 @@
 const Hash = use('Hash')
 const Exceptions = use('App/Exceptions')
 const moment = require('moment')
-const uuid = use('node-uuid')
+const randtoken = require('rand-token')
 const Database = use('Database')
 const Env = use('Env')
 
@@ -66,7 +66,7 @@ class UserRepository {
   }
 
   * getToken () {
-    return uuid.v1()
+    return randtoken.generate(24)
   }
 
   * userResetPasswordExists (postData) {
