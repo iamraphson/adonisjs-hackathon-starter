@@ -13,7 +13,7 @@ I also tried to make it as **generic** and **reusable** as possible to cover mos
 without being too specific. In the worst case you can use this as a learning guide for your projects,
 if for example you are only interested in **Sign in with Google** authentication and nothing else.
 
-AdonisJS Hackathon Starter is a boilerplate application developed with AdonisJS 3.2 to keep you ahead in hackathons.
+AdonisJS Hackathon Starter is a boilerplate application developed with AdonisJS 3.2(This Branch) to keep you ahead in hackathons.
 
 AdonisJS is a free, open-source Node.js web framework, created by Aman Virk and intended for the development of web applications following the model–view–controller (MVC) architectural pattern
 
@@ -537,7 +537,7 @@ module.exports = CreateBooksTableTableSchema
 ```js
 'use strict'
 
-const Contact = use('App/Model/Contact')
+const Book = use('App/Model/Book')
 
 class BookController {
 
@@ -546,9 +546,9 @@ class BookController {
      * @return Response
      */
   * index(request, response) {
-    let contacts = yield Contact.all();
+    let books = yield Book.all();
 
-    yield response.sendView('contacts', { contacts: contacts.toJSON() })
+    yield response.sendView('books', { books: books.toJSON() })
   }
   
 }
