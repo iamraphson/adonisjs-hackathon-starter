@@ -60,5 +60,9 @@
       "use",
       "make"
     ]
+  },
+  "engines": {
+    "node": "8.1.x",
+    "npm": "5.4.X"
   }
 }
