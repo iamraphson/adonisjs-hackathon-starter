@@ -13,7 +13,7 @@ I also tried to make it as **generic** and **reusable** as possible to cover mos
 without being too specific. In the worst case you can use this as a learning guide for your projects,
 if for example you are only interested in **Sign in with Google** authentication and nothing else.
 
-AdonisJS Hackathon Starter is a boilerplate application developed with AdonisJS 4.0 to keep you ahead in hackathons.
+AdonisJS Hackathon Starter is a boilerplate application developed with AdonisJS 4.0 (This Branch) to keep you ahead in hackathons.
 
 AdonisJS is a free, open-source Node.js web framework, created by Aman Virk and intended for the development of web applications following the model–view–controller (MVC) architectural pattern
 
@@ -74,9 +74,9 @@ Features
 Prerequisites
 -------------
 - [Mysql](http://www.mysql.com) or [Postgresql](http://www.postgresql.org/)
-- [NodeJS 4.0.0+](https://nodejs.org/en/)
-- [NPM 3.0.0+](https://www.npmjs.com/)
-- [AdonisJS 3.2](http://adonisjs.com/)
+- [NodeJS 8.0.0+](https://nodejs.org/en/)
+- [NPM 4.0.0+](https://www.npmjs.com/)
+- [AdonisJS 4.0](http://adonisjs.com/)
 - Command Line Tools
     - <img src="http://deluge-torrent.org/images/apple-logo.gif" height="17">&nbsp;**Mac OS X:** [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) (or **OS X 10.9+**: `xcode-select --install`)
     - <img src="http://dc942d419843af05523b-ff74ae13537a01be6cfec5927837dcfe.r14.cf1.rackcdn.com/wp-content/uploads/windows-8-50x50.jpg" height="17">&nbsp;**Windows:** [Visual Studio](https://www.visualstudio.com/products/visual-studio-community-vs)
@@ -86,7 +86,7 @@ Prerequisites
    
 **Note:** If you are new to AdonisJS, I recommend to watch
 [Getting Started With AdonisJs](https://www.youtube.com/playlist?list=PLWmIA5YpCsizOMoM3tH5NSp1sHmdzVLvW) screencast by tutlage that teaches AdonisJS 3.2 from scratch. Alternatively,
-here is another great tutorial for building a project management app for beginners/intermediate developers by Ayeni Olusegun - [Build A Contact Management web Application with AdonisJS Framework](http://goodheads.io/2017/08/04/build-contact-management-web-application-adonisjs-framework-part-1/)
+here is another great tutorial for building a project management app for beginners/intermediate developers by Ayeni Olusegun - [Build A Contact Management web Application with AdonisJS Framework](http://goodheads.io/2017/08/04/build-contact-management-web-application-adonisjs-framework-part-1/) . Since this branch is written with AdonisJS v4.0, Please follow [Upgrade Note](http://dev.adonisjs.com/docs/4.0/upgrade-guide)
 
 Getting Started
 ---------------
@@ -98,21 +98,24 @@ Getting Started
 # if you don't have nodemon
 npm install -g nodemon
 
+# if you don't have AdonisJS CLI
+npm i -g @adonisjs/cli
+
 # Get the project
-git clone https://github.com/iamraphson/adonisjs-hackathon-starter.git adonisjs-hackathon-starter
+git clone -b AdonisJS-4.0 https://github.com/iamraphson/adonisjs-hackathon-starter.git adonisjs-hackathon-starter
 
 # Change directory
 cd adonisjs-hackathon-starter
 
-# Rename env.example to .env and fill in all the keys and secrets and also generate a secure key for the app using `php artisan key:generate`
+# Rename env.example to .env and fill in all the keys and secrets and also generate a secure key for the app using `adonis key:generate`
 
 # Install Composer dependencies
 npm install
 
 # Run your migrations
-node ace migration:run
+adonis migration:run
 
-npm run serve:dev
+adonis serve --dev
 ```
 
 Obtaining API Keys
@@ -304,44 +307,44 @@ Project Structure
 
 | Name                               | Description                                                  |
 | ---------------------------------- | ------------------------------------------------------------ |
-| **app/Model**/User.js                 | Mysql/Postgresql schema and model for User.                          |
-| **app/Model**/UserProfile.js                 | Mysql/Postgresql schema and model for User Profile.                          |
-| **app/Http/Controllers**/AccountController.js                 | Controller for Account management                          |
-| **app/Http/Controllers**/ClockworkController.js                 | Controller for Clockwork API functionality                           |
-| **app/Http/Controllers**/FacebookController.js                 | Controller for Facebook API functionality                            |
-| **app/Http/Controllers**/ContactController.js                 | Controller for Contact page                            |
-| **app/Http/Controllers**/FoursquareController.js                 | Controller for Foursquare API functionality                           |
-| **app/Http/Controllers**/GithubController.js                 | Controller for Github API functionality                           |
-| **app/Http/Controllers**/GoogleMapsController.js                 | Controller for Google Maps API functionality                           |
-| **app/Http/Controllers**/HomeController.js                 | Controller for Home Page                           |
-| **app/Http/Controllers**/InstagramController.js                 | Controller for Instagram API functionality                           |
-| **app/Http/Controllers**/LastFmController.js                 | Controller for LastFM API functionality                           |
-| **app/Http/Controllers**/LinkedinController.js                 | Controller for Linkedin API functionality                           |
-| **app/Http/Controllers**/LobController.js                 | Controller for Lob API functionality                           |
-| **app/Http/Controllers**/NewYorkTimesController.js                 | Controller for New York Times API functionality                  |
-| **app/Http/Controllers**/PayPal.js                 | Controller for Paypal API functionality               |
-| **app/Http/Controllers**/ScarpingController.js                 | Controller for Web Scraping API functionality              |
-| **app/Http/Controllers**/SlackController.js                 | Controller for Slack API functionality              |
-| **app/Http/Controllers**/StripeController.js                 | Controller for Stripe API functionality                |
-| **app/Http/Controllers**/TumbirController.js                 | Controller for Tumblr API functionality                |
-| **app/Http/Controllers**/TwitterController.js                 | Controller for Twitter API functionality                |
-| **app/Http/Controllers**/UploadController.js                 | Controller for Upload functionality               |
-| **app/Http/Controllers**/YahooController.js                 | Controller for Yahoo functionality               |
-| **app/Http/Controllers/Auth**/AuthController.js                 | Controller for login and signup functionality               |
-| **app/Http/Controllers/Auth**/PasswordController.js                 | Controller for password reset functionality               |
+| **app/Models**/User.js                 | Mysql/Postgresql schema and model for User.                          |
+| **app/Models**/UserProfile.js                 | Mysql/Postgresql schema and model for User Profile.                          |
+| **app/Controllers/Http**/AccountController.js                 | Controller for Account management                          |
+| **app/Controllers/Http**/ClockworkController.js                 | Controller for Clockwork API functionality                           |
+| **app/Controllers/Http**/FacebookController.js                 | Controller for Facebook API functionality                            |
+| **app/Controllers/Http**/ContactController.js                 | Controller for Contact page                            |
+| **app/Controllers/Http**/FoursquareController.js                 | Controller for Foursquare API functionality                           |
+| **app/Controllers/Https**/GithubController.js                 | Controller for Github API functionality                           |
+| **app/Controllers/Http**/GoogleMapsController.js                 | Controller for Google Maps API functionality                           |
+| **app/Controllers/Http**/HomeController.js                 | Controller for Home Page                           |
+| **app/Controllers/Http**/InstagramController.js                 | Controller for Instagram API functionality                           |
+| **app/Controllers/Http**/LastFmController.js                 | Controller for LastFM API functionality                           |
+| **app/Controllers/Http**/LinkedinController.js                 | Controller for Linkedin API functionality                           |
+| **app/Controllers/Http**/LobController.js                 | Controller for Lob API functionality                           |
+| **app/Controllers/Http**/NewYorkTimesController.js                 | Controller for New York Times API functionality                  |
+| **app/Controllers/Http**/PayPal.js                 | Controller for Paypal API functionality               |
+| **app/Controllers/Http**/ScarpingController.js                 | Controller for Web Scraping API functionality              |
+| **app/Controllers/Http**/SlackController.js                 | Controller for Slack API functionality              |
+| **app/Controllers/Http**/StripeController.js                 | Controller for Stripe API functionality                |
+| **app/Controllers/Http**/TumbirController.js                 | Controller for Tumblr API functionality                |
+| **app/Controllers/Http**/TwitterController.js                 | Controller for Twitter API functionality                |
+| **app/Controllers/Http**/UploadController.js                 | Controller for Upload functionality               |
+| **app/Controllers/Http**/YahooController.js                 | Controller for Yahoo functionality               |
+| **app/Controllers/Http/Auth**/AuthController.js                 | Controller for login and signup functionality               |
+| **app/Controllers/Http/Auth**/PasswordController.js                 | Controller for password reset functionality               |
 | **public**/                        | Static assets (fonts, css, js, img).                         |
 | **Config**/                        | configurations for your application.                         |
 | **database**/                        | All database related files like migration and seed files.                          |
-| **public/css**/style.css       | Main stylesheet for your app.                                |
+| **public**/style.css       | Main stylesheet for your app.                                |
 | **resources/views/account**/                 | Template for *account*.      |
 | **resources/views/auth**/                 | Templates for *login, password reset, signup, profile*.      |
 | **resources/views/api**/                     | Templates for API Examples.                                  |
 | **resources/views/contact**/                     | Template for *Contact*                                 |
 | **resources/views/mail**/                     | Templates for *Mail*                                 |
-| **resources/views/layout**/alerts.njk                    | Template for error, info and success flash notifications.                               |
-| **resources/views/layout**/master.njk                    | Base template.                               |
-| **resources/views**/welcome.njk                    | Home page template.                                |
-| **resources/views**/apiPage.njk                    | API dashboard template.                               |
+| **resources/views/layout**/alerts.edge                    | Template for error, info and success flash notifications.                               |
+| **resources/views/layout**/master.edge                    | Base template.                               |
+| **resources/views**/welcome.edge                    | Home page template.                                |
+| **resources/views**/api.edge                    | API dashboard template.                               |
 | .env.example                       | Your API keys, tokens, passwords and database URI.           |
 | server.js                             | The main application file.                                   |
 | package.json                       | NPM dependencies.                                            |
@@ -360,8 +363,9 @@ List of Packages
 | cheerio                         | Scrape web pages using jQuery-style syntax.                           |
 | clockwork                       | Clockwork SMS API library.                                            |
 | mysql                            | MySql ODM                                  |
+| pg                            | Postgresql ODM                                  |
 | dotenv                          | Loads environment variables from .env file.                           |
-| adonis-framework                 | Node.js web framework.                                                |
+| @adonisjs/framework                | Node.js web framework.                                                |
 | cloudinary                        | Upload images/videos to Cloudinary                                             |
 | serve-favicon                   | Express 4 middleware offering favicon serving and caching.            |
 | fbgraph                         | Facebook Graph API library.                                           |
@@ -381,9 +385,12 @@ List of Packages
 | twilio                          | Twilio API library.                                                   |
 | twit                            | Twitter API library.                                                  |
 | lodash                          | Handy JavaScript utlities library.                                    |
-| adonis-validation-provider       | Validate form in adonisJS |
+| @adonisjs/validator       | Validate form in adonisJS |
+| @adonisjs/auth            | Authentication provider in AdonisJS  |
+| @adonisjs/lucid            | ORM provider in AdonisJS  |
+| @adonisjs/mail            | Mail provider in AdonisJS  |
+| @adonisjs/session            | Session provider in AdonisJS  |
 | mocha                           | Test framework.                                                       |
-|thunkify                       | Turn a regular node function into one which returns a thunk            |
 |standard                       | JavaScript Standard Style            |
 
 Useful Tools and Resources
@@ -433,10 +440,10 @@ You need to add the following code to your form. This has been
 added in the existing codebase as part of the CSRF protection.
 
 ```
-{{ csrfField }}
+{{ csrfField() }}
 ```
 ### I get a whoops error when I deploy my app, why?
-Chances are you haven't generated the app key, so run `node ace key:generate`.
+Chances are you haven't generated the app key, so run `adonis key:generate`.
 Chances are you haven't put your credentials in your .env file.
 
 How It Works (mini guides)
@@ -456,21 +463,21 @@ display an alert with some error message, but as soon as you refresh that page o
 page and come back to the login page, that error message will be gone. It is only displayed once. All flash messages are available in your views via adonisJS sessions.
 To send a flash message to the view, you need to add the following code 
 ```js
-yield request.with({error: "Eroor due to 1.2.3 .."}).flash()
+session.flash{error: "Eroor due to 1.2.3 .."})
 ```
 To display the flash message,you need to add the following code.
 ```twig
-{% if old('error') %}
+@if(old('error'))
     <div class="alert alert-danger">
         {{ old('error') }}
     </div>
-{% endif %}
+@endif
 ```
 
 <hr>
 
 ### How do I create a new page?
-A more correct way to be to say "How do I create a new route". The main file `routes.js` contains all the routes. It's located in the **app/Http** directory
+A more correct way to be to say "How do I create a new route". The main file `routes.js` contains all the routes. It's located in the **start** directory
 Each route has a callback function associated with it. You will see 2 arguments
 to routes. In cases like that, the first argument is still a URL string, while the second argument is a callback function.  Example is a route that requires authentication.
 
@@ -490,23 +497,21 @@ Route::get('/books', 'BookController.getBooks');
 ```
 ---
 
-**Step 2.** Create a new model `Book.js` inside the *app/Model* directory. You can simply run `node ace make:model Book`
+**Step 2.** Create a new model `Book.js` inside the *app/Models* directory. You can simply run `adonis make:model Book`
 
 ```js
-
 'use strict'
 
-const Lucid = use('Lucid')
+const Model = use('Model')
 
-class Book extends Lucid {
-
+class Book extends Model {
+  
 }
 
 module.exports = Book
-
 ```
 
-**Step 3.** Create a migration file like so: `node ace make:migration create_books_table`
+**Step 3.** Create a migration file like so: `adonis make:migration create_books_table` and it will ask you `choose an action ` select `Create table`
 
 ```js
 'use strict'
@@ -532,23 +537,23 @@ class CreateBooksTableTableSchema extends Schema {
 module.exports = CreateBooksTableTableSchema
 ```
 
-**Step 4.** Create a new controller file called `BookController.js` inside the *app/Http/Controllers* directory. You can simply run `node ace make:controller BookController` and it ask you `Generating a controller for ?` select `Http Request`
+**Step 4.** Create a new controller file called `BookController.js` inside the *app/Controllers/Http* directory. You can simply run `adonis make:controller BookController` and it will ask you `Generating a controller for ?` select `Http Request`
 
 ```js
 'use strict'
 
-const Contact = use('App/Model/Contact')
+const Book = use('App/Models/Book')
 
 class BookController {
 
     /**
      * Return all books
-     * @return Response
+     * @return View
      */
-  * index(request, response) {
-    let contacts = yield Contact.all();
+  async getBooks({view}) {
+    let books = await Book.all();
 
-    yield response.sendView('contacts', { contacts: contacts.toJSON() })
+    return view.render('books', { books: books.toJSON() })
   }
   
 }
@@ -556,27 +561,27 @@ class BookController {
 module.exports = BookController
 ```
 
-**Step 5.** Create `books.njk` template in *resources/views* directory
+**Step 5.** Create `books.edge` template in *resources/views* directory
 
 ```js
-{% extends 'master' %}
+@layout('layout.master')
 
-{% block content %}
-    {% include 'layout.nav' %}
+@section('content')
+    @include('layout.nav')
     <div class="main-container">
-        {% include 'layout.alerts' %}
+        @include('layout.alerts')
 
         <div class="page-header">
             <h2><i style="color: #f00" class="fa fa-book"></i>All Books</h2>
         </div>
 
         <ul>
-        {% for book in books %}
+        @each(book in books)
             <li> {{ book.name }} </li>
-        {%  endfor %}
+        @endeach
         </div>
     </div>
-{% endblock %}
+@endsection
 ```
 
 That's it!
@@ -595,8 +600,15 @@ picks. From my experience, **Heroku** is the easiest to get started with,  deplo
 - Download and install [Heroku Toolbelt](https://toolbelt.heroku.com/)
 - In terminal, run `heroku login` and enter your Heroku credentials
 - From *your app* directory run `heroku create`
-- Create a Procfile in your app root. All this file needs to contain is `web: ENV_SILENT=true node --harmony_proxies server.js` 
+- Create a Procfile in your app root. All this file needs to contain is `web: ENV_SILENT=true node server.js` 
 - Run `heroku addons:add heroku-postgresql:dev  ` to add a Postgres database to your heroku app from your terminal
+- Since AdonisJS v4 uses Node version 8 or greater and NPM version 3 or greater, we need to state which Node and NPM engine in package.JSON by adding this to the JSON
+```JSON
+ "engines": {
+    "node": "8.1.x",
+    "npm": "5.4.X"
+  }
+```
 - Lastly, do `git push heroku master`.  Done!
 - Run artisan commands on heroku like so `heroku run node ace migration:run`
 
