@@ -1,1 +1,1 @@
-web: ENV_SILENT=true node --harmony_proxies server.js
+web: ENV_SILENT=true node server.js
