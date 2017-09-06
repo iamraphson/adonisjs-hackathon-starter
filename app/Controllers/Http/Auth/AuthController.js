@@ -88,10 +88,8 @@ class AuthController {
         const redirectPath = await session.get('oldPath', '/account')
         return response.redirect(redirectPath)
       } catch (error) {
-        console.log('1st error ', error)
         const authUser = await users.findOrCreateUser(providerUser, provider)
         await auth.loginViaId(authUser.id)
-        // return view.render('welcome')
         return response.redirect('/')
       }
     } catch (e) {
