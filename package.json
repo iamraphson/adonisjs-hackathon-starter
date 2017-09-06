@@ -50,7 +50,8 @@
     "trim": "0.0.1",
     "tumblr.js": "^1.1.1",
     "twit": "^2.2.9",
-    "youch": "^2.0.5"
+    "youch": "^2.0.5",
+    "sqlite3": "^3.1.9"
   },
   "standard": {
     "global": [
