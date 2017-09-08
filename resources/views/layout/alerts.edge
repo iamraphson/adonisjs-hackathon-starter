@@ -1,5 +1,5 @@
 @if(old('errors'))
-	<div class="alert alert-danger">
+	<div class="alert alert-danger" role="alert">
 		<ul class="list-unstyled">
 			@each(error in old('errors'))
 				<li>{{ error.message }}</li>
@@ -9,19 +9,22 @@
 @endif
 
 @if(old('error'))
-	<div class="alert alert-danger">
+	<div class="alert alert-danger" role="alert">
 		{{ old('error') }}
 	</div>
 @endif
 
 @if(old('status'))
-	<div class="alert alert-success">
+	<div class="alert alert-success" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
 		{{ old('status') }}
 	</div>
 @endif
 
 @if(old('warning'))
-	<div class="alert alert-warning">
+	<div class="alert alert-warning" role="alert">
 		{{ old('warning') }}
 	</div>
 @endif

@@ -3,9 +3,8 @@
 @section('content')
 <div class="container">
 	<div class="main-container">
-		<div class="page-header">
-			<h3><i style="color: #335397" class="fa fa-facebook-square"></i>  Facebook API</h3>
-		</div>
+		<h2 class="my-4"><i style="color: #335397" class="fa fa-facebook-square"></i> Facebook API</h2>
+		<hr>
 		<div class="btn-group btn-group-justified">
 			<a href="https://developers.facebook.com/docs/graph-api/quickstart/" target="_blank"
 			   class="btn btn-primary">
@@ -20,7 +19,7 @@
 			</a>
 		</div>
 		<h3><i class="fa fa-user"></i> My Profile</h3>
-		
+
 		<img src="https://graph.facebook.com/{{ details.id }}/picture?type=large" width="90" height="90" class="thumbnail">
 		<h4>{{ details.name }} </h4>
 		<h6>First Name: {{ details.first_name }}</h6>
@@ -28,7 +27,7 @@
 		<h6>Gender: {{ details.gender }}</h6>
 		<h6>Link: {{ details.link }}</h6>
 		<h6>Email: {{ details.email }} </h6>
-		
+
 		<br>
 	</div>
 </div>

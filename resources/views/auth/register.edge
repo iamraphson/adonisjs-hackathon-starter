@@ -3,59 +3,59 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
-				<div class="panel panel-default">
-					<div class="panel-heading">Register</div>
-					<div class="panel-body">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-header">Register</div>
+					<div class="card-body">
 						@include('layout.alerts')
-						<form class="form-horizontal" role="form" method="POST" action="{{ route('register.store') }}">
+						<form method="POST" action="{{ route('register.store') }}">
 							{{ csrfField() }}
-							<div class="form-group {{ elIf(' has-error', getErrorFor('name'), hasErrorFor('name')) }}">
-								<label class="col-md-4 control-label" for="name">Name</label>
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label" for="name">
+									Name
+								</label>
 								<div class="col-md-6">
-									<input type="text" class="form-control" name="name" id="name"
-										   value="{{ old('name', '') }}">
-									@if(hasErrorFor('name'))
-										<p class="help-block">{{ getErrorFor('name') }}</p>
-									@endif
+									<input type="text" name="name" placeholder="name" id="name"
+										class="form-control {{ elIf('is-invalid', getErrorFor('name'), hasErrorFor('name')) }}"
+										value="{{ old('name', '') }}">
+									<div class="invalid-feedback">{{ getErrorFor('name') }}</div>
 								</div>
 							</div>
-							<div class="form-group {{ elIf(' has-error', getErrorFor('email'), hasErrorFor('email')) }}">
-								<label class="col-md-4 control-label"
-									   for="email">E-Mail Address</label>
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label" for="email">
+									E-Mail Address
+								</label>
 								<div class="col-md-6">
-									<input type="email" class="form-control" name="email"
-										   value="{{ old('email', '') }}" id="email">
-									@if(hasErrorFor('email'))
-										<p class="help-block">{{ getErrorFor('email') }}</p>
-									@endif
+									<input type="email" name="email" placeholder="email" id="email"
+										class="form-control {{ elIf('is-invalid', getErrorFor('email'), hasErrorFor('email')) }}"
+										value="{{ old('email', '') }}">
+									<div class="invalid-feedback">{{ getErrorFor('email') }}</div>
 								</div>
 							</div>
-							<div class="form-group {{ elIf(' has-error', getErrorFor('password'), hasErrorFor('password')) }}">
-								<label class="col-md-4 control-label"
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label"
 									   for="password">Password</label>
 								<div class="col-md-6">
-									<input type="password" class="form-control" name="password"
-										   id="password">
-									@if(hasErrorFor('password'))
-										<p class="help-block">{{ getErrorFor('password') }}</p>
-									@endif
+									<input type="password" name="password" placeholder="password" id="password"
+										class="form-control {{ elIf('is-invalid', getErrorFor('password'), hasErrorFor('password')) }}">
+									<div class="invalid-feedback">{{ getErrorFor('password') }}</div>
 								</div>
 							</div>
-							<div class="form-group  {{ elIf(' has-error', getErrorFor('password_confirmation'), hasErrorFor('password_confirmation')) }}">
-								<label class="col-md-4 control-label"
-									   id="password_confirmation">Confirm Password</label>
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label" id="password_confirmation">
+									Confirm Password
+								</label>
 								<div class="col-md-6">
-									<input type="password" class="form-control"
-										   name="password_confirmation" id="password_confirmation">
-									@if(hasErrorFor('password_confirmation'))
-										<p class="help-block">{{ getErrorFor('password_confirmation') }}</p>
-									@endif
+									<input type="password" placeholder="password_confirmation" name="password_confirmation" id="password_confirmation"
+										class="form-control {{ elIf('is-invalid', getErrorFor('password_confirmation'), hasErrorFor('password_confirmation')) }}">
+									<div class="invalid-feedback">{{ getErrorFor('password_confirmation') }}</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<div class="col-md-6 col-md-offset-4">
-									<button type="submit" class="btn btn-primary">
+							<div class="form-group row">
+								<div class="col-md-3"></div>
+								<div class="col-md-6">
+									<button type="submit" class="btn btn-primary btn-block">
 										<i class="fa fa-btn fa-user"></i> Register
 									</button>
 								</div>

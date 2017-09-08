@@ -3,10 +3,9 @@
 @section('content')
 <div class="container">
 	<div class="main-container">
-		<div class="page-header">
-			<h3><i style="color: #335397" class="fa fa-linkedin-square"></i> LinkedIn API</h3>
-		</div>
-		
+		<h2 class="my-4"><i style="color: #335397" class="fa fa-linkedin-square"></i> LinkedIn API</h2>
+		<hr>
+
 		<div class="btn-group btn-group-justified">
 			<a href="https://github.com/ArkeologeN/node-linkedin" target="_blank"
 			   class="btn btn-primary">
@@ -20,9 +19,9 @@
 				<i class="fa fa-code-fork"></i> API Endpoints
 			</a>
 		</div>
-		
+
 		<h3> My LinkedIn Profile</h3>
-		
+
 		<div class="well well-sm">
 			<div class="row">
 				<div class="col-sm-12">
@@ -49,7 +48,7 @@
 								</dd>
 							@endif
 						@endeach
-						
+
 						<dt class="text-muted">Email</dt>
 						<dd><strong>{{ profile.emailAddress }}</strong></dd>
 						<dt class="text-muted">Connections</dt>

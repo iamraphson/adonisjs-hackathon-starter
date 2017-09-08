@@ -1,39 +1,40 @@
 @layout('layout.master')
 
 @section('content')
-	<div class="container">
-		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
-				<div class="panel panel-default">
-					<div class="panel-heading">Reset Password</div>
-					<div class="panel-body">
+<div class="container">
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<div class="card">
+				<div class="card-header">Reset Password</div>
+				<div class="card-body">
 						@include('layout.alerts')
-						<form class="form-horizontal" role="form" method="POST"
-							  action="{{ route('reset.password') }}">
+						<form method="POST" action="{{ route('reset.password') }}">
 							{{ csrfField() }}
 							<input type="hidden" name="token" value="{{ token }}">
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="email">E-Mail Address</label>
+								<label class="col-md-3 col-form-label" for="email">E-Mail Address</label>
 								<div class="col-md-6">
 									<input type="email" class="form-control" name="email"  id="email"
 										   value="{{ old('email', email) }}">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="password">Password</label>
+								<label class="col-md-3 col-form-label" for="password">Password</label>
 								<div class="col-md-6">
 									<input type="password" class="form-control" name="password" id="password">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-4 control-label">Confirm Password</label>
+								<label class="col-md-3 col-form-label">Confirm Password</label>
 								<div class="col-md-6">
 									<input type="password" class="form-control" name="password_confirmation"
 										   id="password_confirmation">
 								</div>
 							</div>
 							<div class="form-group">
-								<div class="col-md-6 col-md-offset-4">
+								<div class="col-md-3"></div>
+								<div class="col-md-6">
 									<button type="submit" class="btn btn-primary">
 										<i class="fa fa-btn fa-refresh"></i> Reset Password
 									</button>
@@ -46,7 +47,3 @@
 		</div>
 	</div>
 @endsection
-
-
-
-
