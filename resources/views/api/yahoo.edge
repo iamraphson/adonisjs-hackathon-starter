@@ -4,10 +4,9 @@
 <div class="container">
 	<div class="main-container">
 		@include('layout.alerts')
-		<div class="page-header">
-			<h2><i style="color: #7b0099" class="fa fa-yahoo"></i> Yahoo API</h2>
-		</div>
-		
+		<h2 class="my-4"><i style="color: #7b0099" class="fa fa-yahoo"></i> Yahoo API</h2>
+		<hr>
+
 		<div class="btn-group btn-group-justified">
 			<a href="https://developer.yahoo.com/yql/" target="_blank" class="btn btn-primary">
 				<i class="fa fa-check-square-o"></i> YQL Getting Started
@@ -16,11 +15,11 @@
 				<i class="fa fa-code"></i> Yahoo APIs
 			</a>
 		</div>
-		
+
 		<br>
-		
+
 		<p class="lead">Weather for City:<strong> New York,NY</strong></p>
-		
+
 		<div class="alert alert-info">
 			<p>It is currently<strong> {{ data.item.condition.temp }}</strong> degrees in<strong> New York, NY</strong>.</p>
 		</div>

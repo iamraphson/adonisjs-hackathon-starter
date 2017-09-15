@@ -1,241 +1,267 @@
 @layout('layout.master')
 
 @section('content')
-	<div class="container">
+	<div class="container mb-4">
 		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
+			<div class="col-md-12">
 				@include('layout.alerts')
-				<div class="page-header"><h3>Profile Information</h3></div>
-				<form action="{{ route('account.update') }}" method="POST" class="form-horizontal">
+				<h3 class="my-4">Profile Information</h3>
+				<form action="{{ route('account.update') }}" method="post">
 					{{ csrfField() }}
-					<div class="form-group {{ elIf(' has-error', getErrorFor('email'), hasErrorFor('email')) }}">
-						<label for="email" class="col-sm-3 control-label">Email</label>
-						<div class="col-sm-7">
-							<input type="email" name="email" id="email" class="form-control"
-							   value="{{ old('email', account.email || '') }}">
-							@if(hasErrorFor('email'))
-								<p class="help-block">{{ getErrorFor('email') }}</p>
-							@endif
+					<div class="form-group row">
+						<label for="email" class="col-md-3 col-form-label">Email</label>
+						<div class="col-md-7">
+							<input type="email" placeholder="email" name="email" id="email"
+								class="form-control {{ elIf('is-invalid', getErrorFor('email'), hasErrorFor('email')) }}"
+							  value="{{ old('email', account.email || '') }}" required>
+							<div class="invalid-feedback">{{ getErrorFor('email') }}</div>
 						</div>
 					</div>
-					<div class="form-group {{ elIf(' has-error', getErrorFor('name'), hasErrorFor('name')) }}">
-						<label for="name" class="col-sm-3 control-label">Name</label>
-						<div class="col-sm-7">
-							<input type="text" name="name" id="name" value="{{ old('name', account.name || '') }}"
-							   class="form-control">
-							@if(hasErrorFor('name'))
-								<p class="help-block">{{ getErrorFor('name') }}</p>
-							@endif
+					<div class="form-group row">
+						<label for="name" class="col-md-3 col-form-label">Name</label>
+						<div class="col-md-7">
+							<input type="text" placeholder="name" name="name" id="name"
+								class="form-control {{ elIf('is-invalid', getErrorFor('name'), hasErrorFor('name')) }}"
+								value="{{ old('name', account.name || '') }}" required>
+							<div class="invalid-feedback">{{ getErrorFor('name') }}</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="username" class="col-sm-3 control-label">Username</label>
-						<div class="col-sm-7">
-							<input type="text" name="username" id="username" class="form-control"
-							   value="{{ old('username', account.username || '') }}"/>
+					<div class="form-group row">
+						<label for="username" class="col-md-3 col-form-label">Username</label>
+						<div class="col-md-7">
+							<input type="text" placeholder="username" name="username" id="username" class="form-control"
+							 value="{{ old('username', account.username || '') }}"/>
+						 </div>
+					 </div>
+					<fieldset class="form-group">
+						<div class="row">
+							<legend class="col-form-legend col-md-3">Gender</legend>
+							<div class="col-md-7">
+								<div class="form-check">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" name="gender" id="gender1" value="M"
+											{{ account.gender == "M" ? 'checked' : '' }}>
+										Male
+									</label>
+								</div>
+								<div class="form-check">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" name="gender" id="gender2" value="F"
+											{{ account.gender == "F" ? 'checked' : '' }}>
+										Female
+									</label>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label for="gender" class="col-sm-3 control-label">Gender</label>
-						<div class="col-sm-4">
-							<label class="radio col-sm-4">
-								<input type="radio" name="gender" value="M" data-toggle="radio"
-									@if(account.gender == "M")
-										{{ 'checked="checked"' }}
-									@endif
-								>
-								<span>Male</span>
-							</label>
-							<label class="radio col-sm-4">
-								<input type="radio" name="gender" value="F" data-toggle="radio"
-								   @if(account.gender == "F")
-										{{ 'checked="checked"' }}
-									@endif
-								>
-								<span>Female</span>
-							</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="location" class="col-sm-3 control-label">Location</label>
-						<div class="col-sm-7">
+					</fieldset>
+					<div class="form-group row">
+						<label for="location" class="col-md-3 col-form-label">Location</label>
+						<div class="col-md-7">
 							<input type="text" name="location" id="location" class="form-control"
 							   value="{{ old('location', account.location || '') }}">
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="website" class="col-sm-3 control-label">Website</label>
-						<div class="col-sm-7">
+					<div class="form-group row">
+						<label for="website" class="col-md-3 col-form-label">Website</label>
+						<div class="col-md-7">
 							<input type="text" name="website" id="website" class="form-control"
 							   value="{{ old('website', account.website || '') }}">
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-3 col-sm-4">
-							<button type="submit" class="btn btn btn-primary">
+					<div class="form-group row">
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<button type="submit" class="btn btn btn-primary btn-block">
 								<i class="fa fa-pencil"></i> Update Profile
 							</button>
 						</div>
 					</div>
 				</form>
-				<div class="page-header">
-					<h3>Manage Your Avatar Here</h3>
-				</div>
-				<form role="form" method="post" action="{{ route('account.updateAvatar') }}"
-					  enctype="multipart/form-data"  class="form-horizontal">
-					<div class="form-group">
-						<label for="gravatar" class="col-sm-2 control-label">Gravatar</label>
-						<div class="col-sm-4">
+				<hr>
+
+				<h3>Manage Your Avatar Here</h3>
+				<form action="{{ route('account.updateAvatar') }}" method="post" enctype="multipart/form-data">
+					{{ csrfField() }}
+					<div class="form-group row">
+						<div class="col-md-3 col-form-label">
 							<img src="{{ account.toJSON().avatarpath }}" width="100" height="100"
-								 class="profile">
+								 class="rounded-circle">
+						</div>
+						<div class="col-md-7">
+							<br>
+							<label for="avatar" class="custom-file col-sm-4">
+					    	<input type="file" id="avatar" name="avatar" class="custom-file-input">
+					    	<span class="custom-file-control"></span>
+					  	</label>
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="avatar" class="col-sm-2 control-label"></label>
-						<div class="col-sm-4">
-							<input type="file" name="avatar" id="avatar" />
+					<div class="form-group row">
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<button type="submit" class="btn btn btn-primary btn-block">
+								<i class="fa fa-user-circle"></i> Change Avatar</button>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-8">
-							<button type="submit" class="btn btn-primary">
-								<i class="fa fa-pencil"></i> Change Avatar</button>
-						</div>
-					</div>
-					{{ csrfField() }}
 				</form>
-				<div class="page-header">
-					<h3>Change Password</h3>
-				</div>
-				<form action="{{ route('account.updatePwd') }}" method="POST" class="form-horizontal">
+				<hr>
+
+				<h3 class="my-4">Change Password</h3>
+				<form action="{{ route('account.updatePwd') }}" method="POST">
 					{{ csrfField() }}
-					<div class="form-group">
-						<label for="password" class="col-sm-3 control-label">New Password</label>
-						<div class="col-sm-7">
-							<input type="password" name="password" id="password" class="form-control">
+					<div class="form-group row">
+						<label for="password" class="col-md-3 control-label">New Password</label>
+						<div class="col-md-7">
+							<input type="password" placeholder="password" name="password" id="password" class="form-control">
 						</div>
-					
 					</div>
-					<div class="form-group">
-						<label for="password_confirmation"
-							   class="col-sm-3 control-label">Confirm Password</label>
-						<div class="col-sm-7">
-							<input type="password" name="password_confirmation"
-								   id="password_confirmation" class="form-control" />
+					<div class="form-group row">
+						<label for="password_confirmation" class="col-md-3 col-form-label">Confirm Password</label>
+						<div class="col-md-7">
+							<input type="password" placeholder="password_confirmation" name="password_confirmation" id="password_confirmation" class="form-control">
 						</div>
-					
 					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-3 col-sm-4">
-							<button type="submit" class="btn btn-primary">
+					<div class="form-group row">
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<button type="submit" class="btn btn-primary btn-block">
 								<i class="fa fa-lock"></i> Change Password
 							</button>
 						</div>
 					</div>
 				</form>
-				<div class="page-header">
-					<h3>Linked Accounts</h3>
-				</div>
-				<div class="form-horizontal">
-					<div class="form-group">
-						<div class="col-sm-offset-3 col-sm-4">
+				<hr>
+				<h3 class="my-4">Linked Accounts</h3>
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-4">
 							{{-- Handles Instagram link/unlink --}}
 							@if(inArray(linkedAccount, 'instagram'))
-							<p><a href="{{ route('unlink.sm', {provider: 'instagram'}) }}" class="text-danger" onclick="return confirm('Are you sure,you want to unlink your Account')">Unlink your Instagram account</a></p>
+								<p><a role="button" class="btn btn-outline-danger btn-block"
+											href="{{ route('unlink.sm', {provider: 'instagram'}) }}"
+											onclick="return confirm('Are you sure, you want to unlink your Account')">
+											<i class="fa fa-unlink"></i> Unlink your Instagram account</a></p>
 							@else
-							<p><a href="{{ route('social.login', {provider: 'instagram'}) }}">Link
-									your Instagram account</a></p>
+								<p><a role="button" class="btn btn-outline-info btn-block"
+											href="{{ route('social.login', {provider: 'instagram'}) }}">
+											<i class="fa fa-link"></i> Link your Instagram account</a></p>
 							@endif
 						</div>
-						<div class="col-sm-offset-3 col-sm-4">
-							
+
+						<div class="col-lg-4">
 							@if(inArray(linkedAccount, 'google'))
-							<p><a href="{{ route('unlink.sm', {provider: 'google'}) }}"
-								  class="text-danger"
-									   onclick="return confirm('Are you sure,you want to unlink your Account')">Unlink your Google account</a></p>
+								<p><a href="{{ route('unlink.sm', {provider: 'google'}) }}"
+									  	role="button" class="btn btn-outline-danger btn-block"
+										  onclick="return confirm('Are you sure, you want to unlink your Account')">
+											<i class="fa fa-unlink"></i> Unlink your Google account</a></p>
 							@else
-							<p><a href="{{ route('social.login', {provider: 'google'}) }}">Link
-									your Google account</a></p>
+								<p><a role="button" class="btn btn-outline-info btn-block"
+											href="{{ route('social.login', {provider: 'google'}) }}">
+											<i class="fa fa-link"></i> Link your Google account</a></p>
 							@endif
 						</div>
-						<div class="col-sm-offset-3 col-sm-4">
+
+						<div class="col-lg-4">
 							@if(inArray(linkedAccount, 'twitter'))
-							<p><a href="{{ route('unlink.sm', {provider: 'twitter'}) }}"
-								  class="text-danger"
-									   onclick="return confirm('Are you sure,you want to unlink your Account')">Unlink your Twitter account</a></p>
+								<p><a href="{{ route('unlink.sm', {provider: 'twitter'}) }}"
+								  		role="button" class="btn btn-outline-danger btn-block"
+									  	onclick="return confirm('Are you sure, you want to unlink your Account')">
+											<i class="fa fa-unlink"></i> Unlink your Twitter account</a></p>
 							@else
-							<p><a href="{{ route('social.login', {provider: 'twitter'}) }}">Link your
-									Twitter account</a></p>
-							@endif
-						</div>
-						
-						<div class="col-sm-offset-3 col-sm-4">
-							{{-- Handles Facebook link/unlink --}}
-							@if(inArray(linkedAccount, 'facebook'))
-							<p><a href="{{ route('unlink.sm', {provider: 'facebook'}) }}" class="text-danger"
-								  onclick="return confirm('Are you sure,you want to unlink your Account')">Unlink your Facebook account</a></p>
-							@else
-							<p><a href="{{  route('social.login', {provider: 'facebook'}) }}">Link
-									your Facebook account</a></p>
-							@endif
-						</div>
-						
-						<div class="col-sm-offset-3 col-sm-4">
-							{{-- Handles Github link/unlink --}}
-							@if(inArray(linkedAccount, 'github'))
-							<p><a href="{{ route('unlink.sm', {provider: 'github'}) }}"
-								  class="text-danger"
-							  onclick="return confirm('Are you sure,you want to unlink your Account')"> Unlink
-									your GitHub account</a></p>
-							@else
-							<p><a href="{{ route('social.login', {provider: 'github'}) }}">Link your
-									GitHub account</a></p>
-							@endif
-						</div>
-						<div class="col-sm-offset-3 col-sm-4">
-							{{-- Handles LinkedIn link/unlink --}}
-							@if(inArray(linkedAccount, 'linkedin'))
-							<p><a href="{{ route('unlink.sm', {provider: 'linkedin'}) }}"
-								  class="text-danger"
-									   onclick="return confirm('Are you sure,you want to unlink your Account')">Unlink your LinkedIn account</a></p>
-							@else
-							<p><a href="{{ route('social.login', {provider: 'linkedin'}) }}">Link
-									your LinkedIn account</a></p>
-							@endif
-						</div>
-						<div class="col-sm-offset-3 col-sm-4">
-							{{-- Handles Foursquare link/unlink --}}
-							@if(inArray(linkedAccount, 'foursquare'))
-							<p><a href="{{ route('unlink.sm', {provider: 'foursquare'}) }}" class="text-danger"
-									   onclick="return confirm('Are you sure,you want to unlink your Account')"> Unlink your Foursquare account </a></p>
-							@else
-							<p><a href="{{ route('social.login', {provider: 'foursquare'}) }}">Link
-									your Foursquare account</a></p>
-							@endif
-						</div>
-						<div class="col-sm-offset-3 col-sm-4">
-							{{-- Handles Bitbucket link/unlink --}}
-							@if(inArray(linkedAccount, 'bitbucket'))
-							<p><a href="{{ route('unlink.sm', {provider: 'bitbucket'}) }}" class="text-danger"
-								  onclick="return confirm('Are you sure,you want to unlink your Account')"> Unlink
-									your Bit-Bucket account </a></p>
-							@else
-							<p><a href="{{ route('social.login', {provider: 'bitbucket'}) }}">Link
-									your Bit-Bucket account</a></p>
+								<p><a role="button" class="btn btn-outline-info btn-block"
+											href="{{ route('social.login', {provider: 'twitter'}) }}">
+											<i class="fa fa-link"></i> Link your Twitter account</a></p>
 							@endif
 						</div>
 					</div>
+
+					<div class="row">
+						<div class="col-lg-4">
+							{{-- Handles Facebook link/unlink --}}
+							@if(inArray(linkedAccount, 'facebook'))
+							<p><a href="{{ route('unlink.sm', {provider: 'facebook'}) }}"
+										role="button" class="btn btn-outline-danger btn-block"
+								  	onclick="return confirm('Are you sure, you want to unlink your Account')">
+										<i class="fa fa-unlink"></i> Unlink your Facebook account</a></p>
+							@else
+							<p><a role="button" class="btn btn-outline-info btn-block"
+										href="{{ route('social.login', {provider: 'facebook'}) }}">
+										<i class="fa fa-link"></i> Link your Facebook account</a></p>
+							@endif
+						</div>
+
+						<div class="col-lg-4">
+							{{-- Handles Github link/unlink --}}
+							@if(inArray(linkedAccount, 'github'))
+							<p><a href="{{ route('unlink.sm', {provider: 'github'}) }}"
+										role="button" class="btn btn-outline-danger btn-block"
+							  		onclick="return confirm('Are you sure, you want to unlink your Account')">
+										<i class="fa fa-unlink"></i> Unlink your GitHub account</a></p>
+							@else
+							<p><a role="button" class="btn btn-outline-info btn-block"
+								 		href="{{ route('social.login', {provider: 'github'}) }}">
+										<i class="fa fa-link"></i> Link your GitHub account</a></p>
+							@endif
+						</div>
+						<div class="col-lg-4">
+							{{-- Handles LinkedIn link/unlink --}}
+							@if(inArray(linkedAccount, 'linkedin'))
+							<p><a href="{{ route('unlink.sm', {provider: 'linkedin'}) }}"
+								  	role="button" class="btn btn-outline-danger btn-block"
+									  onclick="return confirm('Are you sure, you want to unlink your Account')">
+										<i class="fa fa-unlink"></i> Unlink your LinkedIn account</a></p>
+							@else
+							<p><a role="button" class="btn btn-outline-info btn-block"
+								 		href="{{ route('social.login', {provider: 'linkedin'}) }}">
+										<i class="fa fa-link"></i> Link your LinkedIn account</a></p>
+							@endif
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-4">
+							{{-- Handles Foursquare link/unlink --}}
+							@if(inArray(linkedAccount, 'foursquare'))
+							<p><a href="{{ route('unlink.sm', {provider: 'foursquare'}) }}"
+										role="button" class="btn btn-outline-danger btn-block"
+									  onclick="return confirm('Are you sure, you want to unlink your Account')">
+										<i class="fa fa-unlink"></i> Unlink your Foursquare account </a></p>
+							@else
+								<p><a role="button" class="btn btn-outline-info btn-block"
+										href="{{ route('social.login', {provider: 'foursquare'}) }}">
+										<i class="fa fa-link"></i> Link your Foursquare account</a></p>
+							@endif
+						</div>
+						<div class="col-lg-4">
+							{{-- Handles Bitbucket link/unlink --}}
+							@if(inArray(linkedAccount, 'bitbucket'))
+								<p><a href="{{ route('unlink.sm', {provider: 'bitbucket'}) }}"
+										role="button" class="btn btn-outline-danger btn-block"
+								  	onclick="return confirm('Are you sure, you want to unlink your Account')">
+										<i class="fa fa-unlink"></i> Unlink your Bit-Bucket account</a></p>
+							@else
+								<p><a role="button" class="btn btn-outline-info btn-block"
+										href="{{ route('social.login', {provider: 'bitbucket'}) }}">
+										<i class="fa fa-link"></i> Link your Bit-Bucket account</a></p>
+							@endif
+						</div>
+						<div class="col-lg-4"></div>
+					</div>
 				</div>
-				<div class="page-header">
-					<h3>Delete Account</h3>
+				<hr>
+
+				<h3 class="my-4">Delete Account</h3>
+				<div class="row">
+					<div class="col">
+						You can delete your account, but keep in mind this action is irreversible.
+					</div>
+					<div class="col">
+						<a href="{{ route('account.delete') }}" class="btn btn-danger btn-block"
+						   onclick="return confirm('Are you sure? Do you really want to delete your Account?')">
+							<i class="fa fa-trash"></i> Delete my account
+						</a>
+					</div>
 				</div>
-				<p class="col-sm-offset-3 col-sm-6">You can delete your account, but keep in mind this action is irreversible.</p>
-				<div class="col-sm-offset-3 col-sm-6">
-					<a href="{{ route('account.delete') }}" class="btn btn-danger"
-					   onclick="return confirm('Are you sure,you want to delete your Account')">
-						<i class="fa fa-trash"></i> Delete my account
-					</a>
-				</div>
+				<br>
 			</div>
 		</div>
 	</div>

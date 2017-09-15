@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="{{ route('welcomePage') }}"><i class="fa fa-cube"></i> Project name</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link {{ url == route('welcomePage') ? 'active' : '' }}" href="{{ route('welcomePage') }}">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ url == '/api' ? 'active' : '' }}" href="{{ '/api' }}">API EXAMPLES</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ url == route('contact.show') ? 'active' : '' }}" href="{{ route('contact.show') }}">CONTACT</a>
+      </li>
+    </ul>
+    <!-- Right Side Of Navbar -->
+    <ul class="navbar-nav navbar-right">
+      <!-- Authentication Links -->
+      @loggedIn
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="{{ auth.user.toJSON().avatarpath }}" style="width: 1.9rem; height: 1.9rem; margin-right: 0.5rem" class="rounded-circle">
+            {{ auth.user.name }} <span class="caret"></span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="{{ route('user.account') }}"><i class="fa fa-btn fa-user"></i> My Account</a>
+            <a class="dropdown-item" href="{{ route('logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a>
+          </div>
+        </li>
+      @else
+        <li class="nav-item">
+          <a class="btn btn-outline-warning my-2 my-sm-0 mr-sm-2" href="{{ route('loginPage') }}" role="button">
+            Login
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-light my-2 my-sm-0 mr-sm-2" href="{{ route('registerPage') }}" role="button">
+            Sign Up
+          </a>
+        </li>
+      @endloggedIn
+    </ul>
+  </div>
+</nav>

@@ -1,80 +1,96 @@
 @layout('layout.master')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Login</div>
-                    <div class="panel-body">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-header">Login</div>
+					<div class="card-body">
 						@include('layout.alerts')
-                        <form class="form-horizontal" role="form" method="POST"
-                              action="{{ route('login.store') }}">
-                            {{ csrfField() }}
-                            <div class="form-group {{ '' }}">
-                                <label class="col-md-4 control-label" for="email">E-Mail Address</label>
-                                <div class="col-md-6">
-                                    <input type="email" class="form-control" name="email" id="email"
-                                           value="{{ old('email', '') }}">
-                                </div>
-                            </div>
-                            <div class="form-group {{ '' }}">
-                                <label class="col-md-4 control-label" for="password">Password</label>
-                                <div class="col-md-6">
-                                    <input type="password" class="form-control" id="password"
-                                           name="password">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fa fa-btn fa-sign-in"></i> Login
-                                    </button>
-
-                                    <a class="btn btn-link"
-                                       href="{{ route('reset.form') }}">Forgot Your Password?</a>
-                                </div>
-                            </div>
-                        </form>
-                        <a href="{{ route('social.login', {provider: 'facebook'}) }}"
-                           class="btn btn-block btn-facebook btn-social" role="button">
-                            <i class="fa fa-facebook"></i>
-                            Login With Facebook
-                        </a>
-						
-                        <a href="{{ route('social.login', {provider: 'twitter'}) }}"
-						   class="btn btn-block btn-twitter btn-social">
-                            <i class="fa fa-twitter"></i>
-                            Sign in with Twitter
-                        </a>
-                        <a href="{{ route('social.login', {provider: 'google'}) }}"
-						   class="btn btn-block btn-google btn-social">
-                            <i class="fa fa-google-plus"></i>Sign in with Google
-                        </a>
-                        <a href="{{ route('social.login', { provider: 'github' }) }}"
-						   class="btn btn-block btn-github btn-social">
-                            <i class="fa fa-github"></i>Sign in with GitHub
-                        </a>
-                        <a href="{{ route('social.login', { provider: 'linkedin' }) }}"
-						   class="btn btn-block btn-linkedin btn-social">
-                            <i class="fa fa-linkedin"></i>Sign in with LinkedIn
-                        </a>
-                        <a href="{{ route('social.login', {provider: 'instagram'}) }}"
-						   class="btn btn-block btn-instagram btn-social">
-                            <i class="fa fa-instagram"></i>Sign in with Instagram
-                        </a>
-                        <a href="{{ route('social.login', {provider: 'foursquare'}) }}"
-						   class="btn btn-block btn-foursquare btn-social">
-                            <i class="fa fa-foursquare"></i>Sign in with Foursquare
-                        </a>
-						<a href="{{ route('social.login', {provider: 'bitbucket'}) }}"
-						   class="btn btn-block btn-bitbucket btn-social">
-							<i class="fa fa-bitbucket"></i>Sign in with Bitbucket
-						</a>
-                    </div>
+            <form method="POST" action="{{ route('login.store') }}">
+              {{ csrfField() }}
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="email">
+                  E-Mail Address
+                </label>
+                <div class="col-md-6">
+                  <input type="email" name="email" placeholder="email" id="email"
+										class="form-control {{ elIf('is-invalid', getErrorFor('email'), hasErrorFor('email')) }}"
+										value="{{ old('email', '') }}" required>
+									<div class="invalid-feedback">{{ getErrorFor('email') }}</div>
                 </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="password">
+                  Password
+                </label>
+                <div class="col-md-6">
+                  <input type="password" name="password" placeholder="password" id="password"
+                    class="form-control {{ elIf('is-invalid', getErrorFor('password'), hasErrorFor('password')) }}">
+                  <div class="invalid-feedback">{{ getErrorFor('password') }}</div>
+                </div>
+              </div>
+              <div class="form-group row">
+								<div class="col-md-3"></div>
+								<div class="col-md-6">
+									<button type="submit" class="btn btn-primary btn-block">
+										<i class="fa fa-btn fa-sign-in"></i> Login
+									</button>
+                  <div class="row justify-content-md-center">
+                    <a class="btn btn-link" href="{{ route('reset.form') }}">
+                      Forgot Your Password?
+                    </a>
+                  </div>
+								</div>
+              </div>
             </div>
-        </div>
-    </div>
-@endsection
+          </form>
 
+          <div class="container">
+            <div class="row justify-content-md-center">
+              <div class="col col-md-6">
+                <a href="{{ route('social.login', {provider: 'facebook'}) }}"
+                   class="btn btn-block btn-facebook btn-social" role="button">
+                  <i class="fa fa-facebook"></i>
+                  Login With Facebook
+                </a>
+                <a href="{{ route('social.login', {provider: 'twitter'}) }}"
+    						   class="btn btn-block btn-twitter btn-social">
+                  <i class="fa fa-twitter"></i>
+                  Sign in with Twitter
+                </a>
+                <a href="{{ route('social.login', {provider: 'google'}) }}"
+    						   class="btn btn-block btn-google btn-social">
+                  <i class="fa fa-google-plus"></i>Sign in with Google
+                </a>
+                <a href="{{ route('social.login', { provider: 'github' }) }}"
+    						   class="btn btn-block btn-github btn-social">
+                  <i class="fa fa-github"></i>Sign in with GitHub
+                </a>
+                <a href="{{ route('social.login', { provider: 'linkedin' }) }}"
+    						   class="btn btn-block btn-linkedin btn-social">
+                  <i class="fa fa-linkedin"></i>Sign in with LinkedIn
+                </a>
+                <a href="{{ route('social.login', {provider: 'instagram'}) }}"
+    						   class="btn btn-block btn-instagram btn-social">
+                  <i class="fa fa-instagram"></i>Sign in with Instagram
+                </a>
+                <a href="{{ route('social.login', {provider: 'foursquare'}) }}"
+    						   class="btn btn-block btn-foursquare btn-social">
+                  <i class="fa fa-foursquare"></i>Sign in with Foursquare
+                </a>
+    						<a href="{{ route('social.login', {provider: 'bitbucket'}) }}"
+    						   class="btn btn-block btn-bitbucket btn-social">
+    							<i class="fa fa-bitbucket"></i>Sign in with Bitbucket
+    						</a>
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection

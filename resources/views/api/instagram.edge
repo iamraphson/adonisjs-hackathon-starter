@@ -3,9 +3,8 @@
 @section('content')
 <div class="container">
 	<div class="main-container">
-		<div class="page-header">
-			<h2><i class="fa fa-instagram" style='color: #517fa4'></i> Instagram API</h2>
-		</div>
+		<h2 class="my-4"><i class="fa fa-instagram" style='color: #517fa4'></i> Instagram API</h2>
+		<hr>
 		<div class="btn-group btn-group-justified">
 			<a href="http://instagram.com/developer/" target="_blank" class="btn btn-primary">
 				<i class="fa fa-check-square-o"></i> Overview
@@ -39,7 +38,7 @@
 			@endeach
 			</tbody>
 		</table>
-		<hr/>
+		<hr>
 		<p class="lead">User Search for ID<strong> 224366365</strong></p>
 		<div class="media">
 			<a href="http://instagram.com/{{ userById.username }}" class="pull-left">
@@ -50,7 +49,7 @@
 				<p> {{ userById.bio }} </p>
 			</div>
 		</div>
-		<hr/>
+		<hr>
 		<p class="lead">My Recent<strong> Media</strong></p>
 		<div class="row">
 			@each(image in myRecentMedia)
