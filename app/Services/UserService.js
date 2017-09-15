@@ -154,7 +154,6 @@ class UserService {
   }
 
   async unlinkAccount (provider, loginID) {
-    console.log(provider, loginID.id)
     const userProfile = await UsersProfile.query().where({provider: provider, user_id: loginID.id}).first()
     await userProfile.delete()
   }
@@ -162,7 +161,6 @@ class UserService {
   async deleteUser (loginID) {
     const userProfile = await UsersProfile.query().where({user_id: loginID.id}).first()
     const user = await User.find(loginID.id)
-    console.log(userProfile, user)
     if (userProfile) {
       await userProfile.delete()
       await user.delete()

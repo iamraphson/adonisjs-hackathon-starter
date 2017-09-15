@@ -19,15 +19,15 @@ AdonisJS is a free, open-source Node.js web framework, created by Aman Virk and 
 
 <h4 align="center">Home Example</h4>
 
-![](https://user-images.githubusercontent.com/3502724/29689780-5a64de42-891c-11e7-8650-4c0e6e926189.png)
+![](https://user-images.githubusercontent.com/3502724/30498074-43154190-9a4d-11e7-9c66-00d58f29f682.png)
 
 <h4 align="center">Login Example</h4>
 
-![](https://user-images.githubusercontent.com/3502724/29689778-59d036de-891c-11e7-835a-de7a25ff958c.png)
+![](https://user-images.githubusercontent.com/3502724/30498075-432c77f2-9a4d-11e7-9731-78af5f9d7875.png)
 
 <h4 align="center">API Examples</h4>
 
-![](https://user-images.githubusercontent.com/3502724/29689777-59c5a6ce-891c-11e7-90b9-6bfa3a672d43.png)
+![](https://user-images.githubusercontent.com/3502724/30498072-42f190f6-9a4d-11e7-8e0a-25086d75c0b2.png)
 
 Table of Contents
 -----------------
