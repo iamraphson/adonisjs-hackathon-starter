@@ -100,16 +100,11 @@ npm install -g nodemon
 # if you don't have AdonisJS CLI
 npm i -g @adonisjs/cli
 
-# Get the project
-git clone -b AdonisJS-4.0 https://github.com/iamraphson/adonisjs-hackathon-starter.git adonisjs-hackathon-starter
+# To make use of this blueprint
+adonis new starter --blueprint=iamraphson/adonisjs-hackathon-starter
 
 # Change directory
-cd adonisjs-hackathon-starter
-
-# Rename env.example to .env and fill in all the keys and secrets and also generate a secure key for the app using `adonis key:generate`
-
-# Install Composer dependencies
-npm install
+cd starter
 
 # Run your migrations
 adonis migration:run
