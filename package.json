@@ -29,6 +29,7 @@
     "@adonisjs/session": "^1.0.21",
     "@adonisjs/shield": "^1.0.6",
     "@adonisjs/validator": "^5.0.3",
+    "@octokit/rest": "^15.2.4",
     "@slack/client": "^4.0.1",
     "async": "^2.6.0",
     "blueimp-md5": "^2.10.0",

@@ -2,7 +2,7 @@
 const api = make('App/Services/ApiService')
 const Env = use('Env')
 const ig = require('instagram-node').instagram()
-const async = require('async');
+const async = require('async')
 
 class InstagramController {
   constructor () {

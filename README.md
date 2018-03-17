@@ -308,7 +308,7 @@ Project Structure
 | **app/Controllers/Http**/FacebookController.js                 | Controller for Facebook API functionality                            |
 | **app/Controllers/Http**/ContactController.js                 | Controller for Contact page                            |
 | **app/Controllers/Http**/FoursquareController.js                 | Controller for Foursquare API functionality                           |
-| **app/Controllers/Https**/GithubController.js                 | Controller for Github API functionality                           |
+| **app/Controllers/Https**/GithubController1.js                 | Controller for Github API functionality                           |
 | **app/Controllers/Http**/GoogleMapsController.js                 | Controller for Google Maps API functionality                           |
 | **app/Controllers/Http**/HomeController.js                 | Controller for Home Page                           |
 | **app/Controllers/Http**/InstagramController.js                 | Controller for Instagram API functionality                           |
