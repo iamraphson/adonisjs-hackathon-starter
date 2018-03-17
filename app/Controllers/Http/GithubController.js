@@ -5,6 +5,7 @@ const api = make('App/Services/ApiService')
 
 class GithubController {
   async index ({request, response, auth, view}) {
+    console.log('cool')
     try {
       let user = await auth.getUser()
       const token = await api.getToken('github', user.id)

@@ -1,9 +1,9 @@
-class ExceptionHandler {
+const BaseExceptionHandler = use('BaseExceptionHandler')
 
-  async handle (error, { response, session }) {
-    if (error.code === 'EBADCSRFTOKEN') {
+class ExceptionHandler extends BaseExceptionHandler {
+  async handle (error, { response }) {
+    if (error.name === 'EBADCSRFTOKEN') {
       response.forbidden('Cannot process your request.')
-      return
     }
   }
 }

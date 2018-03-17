@@ -25,3 +25,22 @@ footer {
 .navbar-brand {
   padding-top: 0rem !important;
 }
+
+.btn-group-justified {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+}
+.btn-group-justified .btn, .btn-group-justified .btn-group {
+    float: none;
+    display: table-cell;
+    width: 1%;
+}
+.btn-group-justified .btn .btn, .btn-group-justified .btn-group .btn {
+    width: 100%;
+}
+.btn-group-justified .btn .dropdown-menu,
+.btn-group-justified .btn-group .dropdown-menu {
+    left: auto;
+}
