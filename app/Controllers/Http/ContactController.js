@@ -4,11 +4,6 @@ const Mail = use('Mail')
 
 class ContactController {
   async index ({ view, auth }) {
-    try {
-      console.log(await auth.getUser())
-    } catch (error) {
-      console.log('You are not logged in')
-    }
     return view.render('contact.index')
   }
 
