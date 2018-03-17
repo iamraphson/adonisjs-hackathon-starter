@@ -363,7 +363,7 @@ List of Packages
 | cloudinary                        | Upload images/videos to Cloudinary                                             |
 | serve-favicon                   | Express 4 middleware offering favicon serving and caching.            |
 | fbgraph                         | Facebook Graph API library.                                           |
-| github                          | GitHub API library.                                                   |
+| @octokit/rest                   | GitHub API library.                                                   |
 | lastfm                          | Last.fm API library.                                                  |
 | instagram-node                  | Instagram API library.                                                |
 | lob                             | Lob API library                                                       |
