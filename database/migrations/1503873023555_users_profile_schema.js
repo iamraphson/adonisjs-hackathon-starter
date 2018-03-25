@@ -4,7 +4,7 @@ const Schema = use('Schema')
 
 class UsersProfileSchema extends Schema {
   up () {
-    this.createTableIfNotExists('users_profile', table => {
+    this.createIfNotExists('users_profile', table => {
       table.increments('profile_id')
       table.integer('user_id').unsigned()
       table.string('provider_id').nullable()

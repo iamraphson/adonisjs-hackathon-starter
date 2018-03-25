@@ -4,7 +4,7 @@ const Schema = use('Schema')
 
 class PasswordResetsSchema extends Schema {
   up () {
-    this.createTableIfNotExists('password_resets', table => {
+    this.createIfNotExists('password_resets', table => {
       table.string('email').nullable()
       table.string('token').nullable()
       table.index('email')
