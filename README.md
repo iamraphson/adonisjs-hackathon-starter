@@ -1,6 +1,6 @@
 **Live Demo**: http://adonisjs-hackathonstarter.herokuapp.com/
 
-A boilerplate for **AdonisJS 4.0** web applications.
+A boilerplate for **AdonisJS 4.1** web applications.
 
 If you have attended any hackathons in the past, then you know how much time it takes to
 get a project started: decide on what to build, pick a programming language, pick a web framework,
@@ -57,7 +57,7 @@ Features
 - **OAuth 2.0 Authentication** via Facebook, Google, GitHub, LinkedIn, Instagram, Foursquare, Bitbucket
 - Flash notifications
 - MVC Project Structure
-- Bootstrap 3
+- Bootstrap 4
 - Contact Form (powered by Mailgun or Mandrill or Sendgrid)
 - **Account Management**
 	- Gravatar
@@ -75,7 +75,7 @@ Prerequisites
 - [Mysql](http://www.mysql.com) or [Postgresql](http://www.postgresql.org/)
 - [NodeJS 8.0.0+](https://nodejs.org/en/)
 - [NPM 4.0.0+](https://www.npmjs.com/)
-- [AdonisJS 4.0](http://adonisjs.com/)
+- [AdonisJS 4.1](http://adonisjs.com/)
 - Command Line Tools
     - <img src="http://deluge-torrent.org/images/apple-logo.gif" height="17">&nbsp;**Mac OS X:** [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) (or **OS X 10.9+**: `xcode-select --install`)
     - <img src="http://dc942d419843af05523b-ff74ae13537a01be6cfec5927837dcfe.r14.cf1.rackcdn.com/wp-content/uploads/windows-8-50x50.jpg" height="17">&nbsp;**Windows:** [Visual Studio](https://www.visualstudio.com/products/visual-studio-community-vs)
@@ -85,7 +85,7 @@ Prerequisites
    
 **Note:** If you are new to AdonisJS, I recommend to watch
 [Getting Started With AdonisJs](https://www.youtube.com/playlist?list=PLWmIA5YpCsizOMoM3tH5NSp1sHmdzVLvW) screencast by tutlage that teaches AdonisJS 3.2 from scratch. Alternatively,
-here is another great tutorial for building a project management app for beginners/intermediate developers by Ayeni Olusegun - [Build A Contact Management web Application with AdonisJS Framework](http://goodheads.io/2017/08/04/build-contact-management-web-application-adonisjs-framework-part-1/) . Since this branch is written with AdonisJS v4.0, Please follow [Upgrade Note](http://dev.adonisjs.com/docs/4.0/upgrade-guide)
+here is another great tutorial for building a project management app for beginners/intermediate developers by Ayeni Olusegun - [Build A Contact Management web Application with AdonisJS Framework](http://goodheads.io/2017/08/04/build-contact-management-web-application-adonisjs-framework-part-1/) . Since this branch is written with AdonisJS v4.1, Please follow [Upgrade Note](http://adonisjs.com/docs/4.1/upgrade-guide) and follow [Upgrade Note](http://adonisjs.com/docs/4.0/upgrade-guide) for v4.0
 
 Getting Started
 ---------------
