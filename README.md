@@ -68,7 +68,7 @@ Features
  	- Delete Account
  	- CSRF protection
  	- Link to Social Accounts
- 	- **API Examples**: Facebook, Foursquare, Last.fm, Instagram, Tumblr, Twitter, Stripe, LinkedIn, Google Map e.t.c.
+ 	- **API Examples**: Facebook, Foursquare, Last.fm, Instagram, Tumblr, Twitter, Stripe, LinkedIn, Google Map, Github e.t.c.
 
 Prerequisites
 -------------
