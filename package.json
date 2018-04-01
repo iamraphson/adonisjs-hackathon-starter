@@ -1,6 +1,6 @@
 {
   "name": "adonisjs-hackathon-starter",
-  "version": "4.1",
+  "version": "4.1.5",
   "adonis-version": "4.1.5",
   "description": "A boilerplate for AdonisJS 4.1 web applications.",
   "main": "index.js",
