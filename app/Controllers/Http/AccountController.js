@@ -59,7 +59,7 @@ class AccountController {
     }
 
     try {
-      const cloudinaryResponse = await users.uploadToCloudinary(profilePic._tmpPath)
+      const cloudinaryResponse = await users.uploadToCloudinary(profilePic.tmpPath)
       const loginID = await auth.getUser()
       await users.saveAvatar(loginID, cloudinaryResponse.url)
       session.flash({status: 'Avatar has been updated successfully'})
