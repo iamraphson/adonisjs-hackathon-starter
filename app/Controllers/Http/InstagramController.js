@@ -1,17 +1,10 @@
 'use strict'
 const api = make('App/Services/ApiService')
 const Env = use('Env')
-const ig = require('instagram-node').instagram()
+const Instagram = require('node-instagram').default
 const async = require('async')
 
 class InstagramController {
-  constructor () {
-    ig.use({
-      client_id: Env.get('INSTAGRAM_CLIENT_ID'),
-      client_secret: Env.get('INSTAGRAM_CLIENT_SECRET')
-    })
-  }
-
   async index ({request, response, auth, view}) {
     try {
       let user = await auth.getUser()
@@ -22,11 +15,13 @@ class InstagramController {
 
       try {
         const igResponse = await this.getData(token)
-        return view.render('api.instagram', { usernames: igResponse.usernames,
-          userById: igResponse.userById, myRecentMedia: igResponse.myRecentMedia })
+        return view.render('api.instagram', {
+          username: igResponse.username,
+          myRecentMedia: igResponse.myRecentMedia
+        })
       } catch (e) {
         console.log('error', e.message)
-        return view.render('api.instagram', { usernames: [], userById: {}, myRecentMedia: {} })
+        return view.render('api.instagram', { usernames: {}, myRecentMedia: []})
       }
     } catch (e) {
       console.log(e)
@@ -34,30 +29,31 @@ class InstagramController {
     }
   }
 
-  getData (token){
-    ig.use({ access_token: token.oauth_token })
+  getData (token) {
+    const instagram = new Instagram({
+      clientId: Env.get('INSTAGRAM_CLIENT_ID'),
+      clientSecret: Env.get('INSTAGRAM_CLIENT_SECRET'),
+      accessToken: token.oauth_token
+    })
     return new Promise((resolve, reject) => {
       async.parallel({
-        searchByUsername: (done) => {
-          ig.user_search('iamraphson', (err, users) => {
-            done(err, users)
-          })
-        },
-        searchByUserId: (done) => {
-          ig.user('224366365', (err, user) => {
-            done(err, user)
+        getUsername: (done) => {
+          instagram.get(`users/self`, (err, { data}) => {
+            console.log(data)
+            done(err, data)
           })
         },
         myRecentMedia: (done) => {
-          ig.user_self_media_recent((err, medias) => {
-            done(err, medias)
+          instagram.get('users/self/media/recent').then(({ data }) => {
+            done(null , data)
+          }).catch(err => {
+            done(err)
           })
         }
       }, (err, results) => {
         if (err) { return reject(err) }
         return resolve({
-          usernames: results.searchByUsername,
-          userById: results.searchByUserId,
+          username: results.getUsername,
           myRecentMedia: results.myRecentMedia
         })
       })
