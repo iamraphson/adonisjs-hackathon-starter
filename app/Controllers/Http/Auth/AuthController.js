@@ -73,7 +73,7 @@ class AuthController {
     if (redirect) {
       session.put('oldPath', redirect)
     }
-
+    console.log(params.provider)
     await ally.driver(params.provider).redirect()
   }
 
