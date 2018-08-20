@@ -17,36 +17,14 @@
 			</a>
 		</div>
 		<br />
-		<p class="lead">Username Search for<strong> iamraphson</strong></p>
-		<table class="table table-hover table-bordered">
-			<thead>
-			<tr>
-				<th>Picture</th>
-				<th>Username</th>
-				<th>Full Name</th>
-				<th>Bio</th>
-			</tr>
-			</thead>
-			<tbody>
-			@each(username in usernames)
-				<tr>
-					<td><img src="{{ username.profile_picture }}" width="75" height="75"/></td>
-					<td>{{ username.username }}</td>
-					<td>{{ username.full_name  }}</td>
-					<td>{{ username.bio }}</td>
-				</tr>
-			@endeach
-			</tbody>
-		</table>
-		<hr>
-		<p class="lead">User Search for ID<strong> 224366365</strong></p>
+		<p class="lead">Username: <strong> iamraphson</strong></p>
 		<div class="media">
-			<a href="http://instagram.com/{{ userById.username }}" class="pull-left">
-				<img src="{{ userById.profile_picture }}" width="110" height="110" class="thumbnail"/>
+			<a href="http://instagram.com/{{ username.username }}" class="pull-left">
+				<img src="{{ username.profile_picture }}" width="110" height="110" class="thumbnail"/>
 			</a>
-			<div class="media-body">
-				<h4> {{ userById.full_name }} </h4>
-				<p> {{ userById.bio }} </p>
+			<div class="media-body ml-3">
+				<h4> {{ username.full_name }} </h4>
+				<p> {{ username.bio }} </p>
 			</div>
 		</div>
 		<hr>
