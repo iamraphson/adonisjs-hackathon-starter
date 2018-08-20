@@ -98,8 +98,8 @@ class UserService {
     }
 
     const user_ = new User()
-    user_.name = userData.getName()
-    user_.username = userData.getNickname()
+    user_.name = userData.getName().replace(/([\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF])/g, '')
+    user_.username = userData.getNickname().replace(/([\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF])/g, '')
     user_.avatar = userData.getAvatar()
     user_.email = userData.getEmail()
     await user_.save()
