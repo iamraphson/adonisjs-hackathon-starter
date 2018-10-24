@@ -31,11 +31,11 @@ class FoursquareController {
     }
   }
 
-  getData (token, endpoint) {
+  getData (token, query) {
     return new Promise((resolve, reject) => {
       foursquare.Venues.searchLocation(
         { lat: '6.453396605899419', long: '3.395676612854003' },
-        { radius: 50000, query: 'Lagos, Nigeria' },
+        { radius: 50000, query },
         token.accessToken,
         (err, results) => {
           if (err) { return reject(err) }
