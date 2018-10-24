@@ -31,16 +31,18 @@ class FoursquareController {
     }
   }
 
-  getData (token, endpoint){
+  getData (token, endpoint) {
     return new Promise((resolve, reject) => {
-      foursquare.Venues.search('6.453396605899419', '3.395676612854003', endpoint, {},
-        token.accessToken, (err, results) => {
+      foursquare.Venues.searchLocation(
+        { lat: '6.453396605899419', long: '3.395676612854003' },
+        { radius: 50000, query: 'Lagos, Nigeria' },
+        token.accessToken,
+        (err, results) => {
           if (err) { return reject(err) }
-          return resolve({results})
-        });
+          return resolve({ results })
+        })
     })
   }
-
 }
 
 module.exports = FoursquareController
