@@ -22,17 +22,17 @@
 			<table class="table table-striped table-bordered">
 				<thead>
 				<tr>
-					<th>Route</th>
-					<th># of Residential Addresses</th>
-					<th># of Business Addresses</th>
+					<th>City</th>
+					<th>State</th>
+					<th>Country</th>
 				</tr>
 				</thead>
 				<tbody>
-				@each(route in routes)
+				@each(city in cities)
 					<tr>
-						<td>{{ route.route }}</td>
-						<td>{{ route.residential }}</td>
-						<td>{{ route.business }}</td>
+						<td>{{ city.city }}</td>
+						<td>{{ city.state }}</td>
+						<td>{{ city.county }}</td>
 					</tr>
 				@endeach
 				</tbody>
