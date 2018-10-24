@@ -27,6 +27,9 @@ class GithubController {
 
   async getGithubProfile () {
     const result = await octokit.repos.get({ owner: 'iamraphson', repo: 'adonisjs-hackathon-starter' })
+    const result2 = await octokit.repos.getForUser({username: 'iamraphson', type: 'type'})
+
+    console.log(result2.length)
     return result
   }
 }
