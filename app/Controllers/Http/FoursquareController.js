@@ -1,4 +1,3 @@
-'use strict'
 
 const api = make('App/Services/ApiService')
 const Env = use('Env')
@@ -9,13 +8,16 @@ const foursquare = require('node-foursquare')({
     redirectUrl: `${Env.get('APP_URL')}/auth/foursquare/callback`
   }
 })
+
 class FoursquareController {
-  async index ({ request, response, auth, view }) {
+  async index ({
+    request, response, auth, view
+  }) {
     try {
-      let user = await auth.getUser()
+      const user = await auth.getUser()
       const token = await api.getToken('foursquare', user.id)
       if (token === null) {
-        response.redirect('/auth/foursquare?redirect=' + request.originalUrl())
+        response.redirect(`/auth/foursquare?redirect=${request.originalUrl()}`)
       }
 
       try {
@@ -33,8 +35,7 @@ class FoursquareController {
 
   getData (token, query) {
     return new Promise((resolve, reject) => {
-      foursquare.Venues.searchLocation(
-        { lat: '6.453396605899419', long: '3.395676612854003' },
+      foursquare.Venues.searchLocation({ lat: '6.453396605899419', long: '3.395676612854003' },
         { radius: 50000, query },
         token.accessToken,
         (err, results) => {

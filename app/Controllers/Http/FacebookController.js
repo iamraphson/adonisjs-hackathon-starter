@@ -1,15 +1,17 @@
-'use strict'
-const Env = use('Env')
+
 const graph = require('fbgraph')
+
 const api = make('App/Services/ApiService')
 
 class FacebookController {
-  async index ({request, response, auth, view}) {
+  async index ({
+    request, response, auth, view
+  }) {
     try {
-      let user = await auth.getUser()
+      const user = await auth.getUser()
       const token = await api.getToken('facebook', user.id)
       if (token === null) {
-        response.redirect('/auth/facebook?redirect=' + request.originalUrl())
+        response.redirect(`/auth/facebook?redirect=${request.originalUrl()}`)
       }
 
       try {
@@ -18,7 +20,7 @@ class FacebookController {
       } catch (e) {
         console.log(e.message)
         await api.deleteToken('facebook', user.id)
-        response.redirect('/auth/facebook?redirect=' + request.originalUrl())
+        response.redirect(`/auth/facebook?redirect=${request.originalUrl()}`)
       }
     } catch (e) {
       console.log(e)
@@ -26,13 +28,13 @@ class FacebookController {
     }
   }
 
-  getFacebookProfile(token) {
+  getFacebookProfile (token) {
     return new Promise((resolve, reject) => {
       graph.setAccessToken(token.oauth_token)
-      graph.get(`/me?fields=id,name,email,first_name,last_name,gender,link,locale,timezone`, (err, results) => {
+      graph.get('/me?fields=id,name,email,first_name,last_name,gender,link,locale,timezone', (err, results) => {
         if (err) { return reject(err) }
-        return resolve({results})
-      });
+        return resolve({ results })
+      })
     })
   }
 }

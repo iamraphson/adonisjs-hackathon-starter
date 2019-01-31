@@ -1,4 +1,3 @@
-'use strict'
 
 const Env = use('Env')
 
@@ -90,5 +89,5 @@ module.exports = {
   | the redis file. But you are free to define an object here too.
   |
   */
-  redis: 'self::redis.default',
+  redis: 'self::redis.default'
 }

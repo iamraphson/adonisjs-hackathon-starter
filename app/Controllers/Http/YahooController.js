@@ -1,4 +1,3 @@
-'use strict'
 
 const request = require('request')
 
@@ -16,9 +15,9 @@ class YahooController {
     }
   }
 
-  getDatas(){
+  getDatas () {
     return new Promise((resolve, reject) => {
-      request.get('https://query.yahooapis.com/v1/public/yql?q=' + this.query + '&format=json',
+      request.get(`https://query.yahooapis.com/v1/public/yql?q=${this.query}&format=json`,
         (err, request, body) => {
           if (err) { return reject(err) }
           return resolve(JSON.parse(body))

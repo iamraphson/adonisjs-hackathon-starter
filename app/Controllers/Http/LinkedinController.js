@@ -1,21 +1,22 @@
-'use strict'
 
 const api = make('App/Services/ApiService')
 const Env = use('Env')
 const Linkedin = require('node-linkedin')(Env.get('LINKEDIN_ID'), Env.get('LINKEDIN_SECRET'))
 
 class LinkedinController {
-  async index ({request, response, auth, view}) {
+  async index ({
+    request, response, auth, view
+  }) {
     try {
-      let user = await auth.getUser()
+      const user = await auth.getUser()
       const token = await api.getToken('linkedin', user.id)
       if (token === null) {
-        response.redirect('/auth/linkedin?redirect=' + request.originalUrl())
+        response.redirect(`/auth/linkedin?redirect=${request.originalUrl()}`)
       }
 
       try {
         const $inResponse = await this.getData(token)
-        return view.render('api.linkedin', {profile: $inResponse.profile})
+        return view.render('api.linkedin', { profile: $inResponse.profile })
       } catch (e) {
         console.log('error', e.message)
         return view.render('api.linkedin', { profile: {} })

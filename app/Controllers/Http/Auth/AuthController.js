@@ -1,15 +1,15 @@
-'use strict'
 
 const { validateAll } = use('Validator')
 const users = make('App/Services/UserService')
-const User = use('App/Models/User')
 
 class AuthController {
   async showLogin ({ view }) {
     return view.render('auth.login')
   }
 
-  async postLogin ({request, session, auth, response}) {
+  async postLogin ({
+    request, session, auth, response
+  }) {
     const userInfo = request.all()
     const rules = {
       email: 'required',
@@ -39,7 +39,7 @@ class AuthController {
     return view.render('auth.register')
   }
 
-  async postRegister ({request, session, response}) {
+  async postRegister ({ request, session, response }) {
     const userInfo = request.only(['name', 'email', 'password', 'password_confirmation'])
     const rules = {
       name: 'required|max:255',
@@ -68,7 +68,9 @@ class AuthController {
     response.redirect('/login')
   }
 
-  async redirectToProvider ({ request, session, ally, params }) {
+  async redirectToProvider ({
+    request, session, ally, params
+  }) {
     const { redirect } = request.only(['redirect'])
     if (redirect) {
       session.put('oldPath', redirect)
@@ -77,7 +79,9 @@ class AuthController {
     await ally.driver(params.provider).redirect()
   }
 
-  async handleProviderCallback ({params, ally, auth, session, response }) {
+  async handleProviderCallback ({
+    params, ally, auth, session, response
+  }) {
     const provider = params.provider
     try {
       const providerUser = await ally.driver(params.provider).getUser()
@@ -94,7 +98,7 @@ class AuthController {
       }
     } catch (e) {
       console.log(e)
-      response.redirect('/auth/' + provider)
+      response.redirect(`/auth/${provider}`)
     }
   }
 }

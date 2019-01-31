@@ -1,8 +1,7 @@
-'use strict'
-
 
 const Env = use('Env')
 const WebClient = require('@slack/client').WebClient
+
 const { validateAll } = use('Validator')
 
 class SlackController {
@@ -14,14 +13,14 @@ class SlackController {
   async index ({ view }) {
     try {
       const slackResponse = await this.getAllUsersInATeam()
-      return view.render('api.slack', {members: slackResponse.members})
+      return view.render('api.slack', { members: slackResponse.members })
     } catch (e) {
       console.log(e)
-      return view.render('api.slack', {members: []})
+      return view.render('api.slack', { members: [] })
     }
   }
 
-  async sendMessage({request, response, session}){
+  async sendMessage ({ request, response, session }) {
     const userData = request.only(['message'])
     const rules = {
       message: 'required'
@@ -48,26 +47,25 @@ class SlackController {
     }
   }
 
-  postMessage(message){
+  postMessage (message) {
     return new Promise((resolve, reject) => {
       this.web.chat.postMessage('#general',
-        message + ' #AdonisJSHackathonStarter :wink: ',
+        `${message} #AdonisJSHackathonStarter :wink: `,
         (err, res) => {
           if (err) {
-            return  reject(err);
-          } else {
-            console.log('Message sent: ', res)
-            return resolve({status: 'Message sent: ' + res});
+            return reject(err)
           }
-        });
+          console.log('Message sent: ', res)
+          return resolve({ status: `Message sent: ${res}` })
+        })
     })
   }
 
-  getAllUsersInATeam(){
+  getAllUsersInATeam () {
     return new Promise((resolve, reject) => {
       this.web.users.list({}, (err, users) => {
-        if (err) { return  reject(err); }
-        return resolve({members: users.members})
+        if (err) { return reject(err) }
+        return resolve({ members: users.members })
       })
     })
   }

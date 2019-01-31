@@ -1,16 +1,18 @@
-'use strict'
+
 const api = make('App/Services/ApiService')
 const Env = use('Env')
 const Instagram = require('node-instagram').default
 const async = require('async')
 
 class InstagramController {
-  async index ({request, response, auth, view}) {
+  async index ({
+    request, response, auth, view
+  }) {
     try {
-      let user = await auth.getUser()
+      const user = await auth.getUser()
       const token = await api.getToken('instagram', user.id)
       if (token === null) {
-        response.redirect('/auth/instagram?redirect=' + request.originalUrl())
+        response.redirect(`/auth/instagram?redirect=${request.originalUrl()}`)
       }
 
       try {
@@ -21,7 +23,7 @@ class InstagramController {
         })
       } catch (e) {
         console.log('error', e.message)
-        return view.render('api.instagram', { usernames: {}, myRecentMedia: []})
+        return view.render('api.instagram', { usernames: {}, myRecentMedia: [] })
       }
     } catch (e) {
       console.log(e)
@@ -38,15 +40,15 @@ class InstagramController {
     return new Promise((resolve, reject) => {
       async.parallel({
         getUsername: (done) => {
-          instagram.get(`users/self`, (err, { data}) => {
+          instagram.get('users/self', (err, { data }) => {
             console.log(data)
             done(err, data)
           })
         },
         myRecentMedia: (done) => {
           instagram.get('users/self/media/recent').then(({ data }) => {
-            done(null , data)
-          }).catch(err => {
+            done(null, data)
+          }).catch((err) => {
             done(err)
           })
         }

@@ -1,4 +1,4 @@
-'use strict'
+
 const Env = use('Env')
 const paypal = require('paypal-rest-sdk')
 
@@ -14,7 +14,7 @@ class PayPalController {
     })
   }
 
-  async index ({request, session, view}) {
+  async index ({ request, session, view }) {
     try {
       const paypalResponse = await this.createPaypalPayment('AdonisJS Hackathon Starter', 2, 'USD')
       session.put('paymentId', paypalResponse.paymentId)
@@ -25,7 +25,7 @@ class PayPalController {
     }
   }
 
-  async getPayPalSuccess ({request, session, view}) {
+  async getPayPalSuccess ({ request, session, view }) {
     const paymentId = session.get('paymentId')
     const paymentDetails = { payer_id: request.input('PayerID') }
     try {
@@ -37,23 +37,23 @@ class PayPalController {
     }
   }
 
-  async getPayPalCancel ({view, session}) {
+  async getPayPalCancel ({ view, session }) {
     session.forget('paymentId')
     return view.render('api.paypal', { result: true, canceled: true })
   }
 
-  getPayPalSuccessDetails(paymentId, paymentDetails){
+  getPayPalSuccessDetails (paymentId, paymentDetails) {
     return new Promise((resolve, reject) => {
       paypal.payment.execute(paymentId, paymentDetails, (err) => {
         if (err) {
           return reject(err)
         }
-        return resolve({success: true})
+        return resolve({ success: true })
       })
     })
   }
 
-  getPaymentDetails(description, amount, currency) {
+  getPaymentDetails (description, amount, currency) {
     return {
       intent: 'sale',
       payer: {
@@ -64,9 +64,9 @@ class PayPalController {
         cancel_url: this.PAYPAL_CANCEL_URL
       },
       transactions: [{
-        description: description,
+        description,
         amount: {
-          currency: currency,
+          currency,
           total: amount
         }
       }]

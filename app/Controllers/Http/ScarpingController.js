@@ -1,4 +1,3 @@
-'use strict'
 
 const request = require('request')
 const cheerio = require('cheerio')
@@ -18,7 +17,7 @@ class ScarpingController {
     }
   }
 
-  getLinks() {
+  getLinks () {
     return new Promise((resolve, reject) => {
       request.get('https://news.ycombinator.com/', (err, request, body) => {
         if (err) { return reject(err) }
@@ -27,7 +26,7 @@ class ScarpingController {
         $('.title a[href^="http"], a[href^="https"]').each((index, element) => {
           links.push($(element))
         })
-        return resolve({links})
+        return resolve({ links })
       })
     })
   }

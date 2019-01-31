@@ -1,4 +1,3 @@
-'use strict'
 
 const { validateAll } = use('Validator')
 const users = make('App/Services/UserService')
@@ -6,17 +5,19 @@ const users = make('App/Services/UserService')
 class AccountController {
   async edit ({ auth, view, response }) {
     try {
-      let loginID = await auth.getUser()
-      let loggedinUser = await users.findUserById(loginID.id)
-      let linkedAccount = await users.getAllLinkedAccount(loginID)
-      return view.render('account.profile', {account: loggedinUser, linkedAccount: linkedAccount})
+      const loginID = await auth.getUser()
+      const loggedinUser = await users.findUserById(loginID.id)
+      const linkedAccount = await users.getAllLinkedAccount(loginID)
+      return view.render('account.profile', { account: loggedinUser, linkedAccount })
     } catch (e) {
       console.log(e)
       response.redirect('/login')
     }
   }
 
-  async update ({ request, session, response, auth }) {
+  async update ({
+    request, session, response, auth
+  }) {
     const userInfo = request.only(['email', 'name', 'username', 'gender', 'location', 'website'])
     const rules = {
       name: 'required|max:255',
@@ -47,7 +48,9 @@ class AccountController {
   /**
    * Avatar upload using cloudinary(https://www.cloudinary.com)
    */
-  async uploadAvatar ({ request, session, response, auth }) {
+  async uploadAvatar ({
+    request, session, response, auth
+  }) {
     const profilePic = request.file('avatar', {
       types: ['image'],
       size: '2mb'
@@ -62,7 +65,7 @@ class AccountController {
       const cloudinaryResponse = await users.uploadToCloudinary(profilePic.tmpPath)
       const loginID = await auth.getUser()
       await users.saveAvatar(loginID, cloudinaryResponse.url)
-      session.flash({status: 'Avatar has been updated successfully'})
+      session.flash({ status: 'Avatar has been updated successfully' })
       return response.redirect('back')
     } catch (e) {
       console.log(e)
@@ -71,7 +74,9 @@ class AccountController {
     }
   }
 
-  async changePassword ({request, session, response, auth }) {
+  async changePassword ({
+    request, session, response, auth
+  }) {
     const userInfo = request.only(['password', 'password_confirmation'])
     const rules = {
       password: 'required|min:6|max:30',

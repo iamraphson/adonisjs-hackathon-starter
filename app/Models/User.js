@@ -1,4 +1,3 @@
-'use strict'
 
 const Model = use('Model')
 const md5 = require('blueimp-md5')

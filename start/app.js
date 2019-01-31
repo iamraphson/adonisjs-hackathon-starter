@@ -1,4 +1,3 @@
-'use strict'
 
 /*
 |--------------------------------------------------------------------------
@@ -61,4 +60,6 @@ const aliases = {}
 */
 const commands = []
 
-module.exports = { providers, aceProviders, aliases, commands }
+module.exports = {
+  providers, aceProviders, aliases, commands
+}

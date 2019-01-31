@@ -1,4 +1,3 @@
-'use strict'
 
 const Server = use('Server')
 
@@ -39,7 +38,7 @@ const globalMiddleware = [
 |
 */
 const namedMiddleware = {
-  auth: 'Adonis/Middleware/Auth',
+  auth: 'Adonis/Middleware/Auth'
 
 }
 

@@ -1,22 +1,24 @@
-'use strict'
 
 const api = make('App/Services/ApiService')
 const Twit = require('twit')
+
 const Env = use('Env')
 const { validateAll } = use('Validator')
 
 class TwitterController {
-  async index ({ request, response, view, auth }) {
+  async index ({
+    request, response, view, auth
+  }) {
     try {
-      let user = await auth.getUser()
+      const user = await auth.getUser()
       const token = await api.getToken('twitter', user.id)
       if (token === null) {
-        response.redirect('/auth/twitter?redirect=' + request.originalUrl())
+        response.redirect(`/auth/twitter?redirect=${request.originalUrl()}`)
       }
 
       try {
         const profileResponse = await this.getTwitterProfile(token)
-        let tweets = profileResponse.reply.statuses
+        const tweets = profileResponse.reply.statuses
         return view.render('api.twitter', { tweets })
       } catch (e) {
         console.log(e.message)
@@ -28,7 +30,9 @@ class TwitterController {
     }
   }
 
-  async sendTweet ({ request, response, session, auth }) {
+  async sendTweet ({
+    request, response, session, auth
+  }) {
     const tweetData = request.only(['tweet'])
     const rules = {
       tweet: 'required'
@@ -45,7 +49,7 @@ class TwitterController {
     }
 
     try {
-      let user = await auth.getUser()
+      const user = await auth.getUser()
       const token = await api.getToken('twitter', user.id)
 
       try {
@@ -80,7 +84,7 @@ class TwitterController {
 
       T.get('search/tweets', { q: 'Adonisframework since:2011-07-11', count: 15 }, (err, reply) => {
         if (err) { return reject(err) }
-        return resolve({reply})
+        return resolve({ reply })
       })
     })
   }

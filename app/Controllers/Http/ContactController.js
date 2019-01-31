@@ -1,4 +1,4 @@
-'use strict'
+
 const { validateAll } = use('Validator')
 const Mail = use('Mail')
 
@@ -7,7 +7,7 @@ class ContactController {
     return view.render('contact.index')
   }
 
-  async sendMessage ({ request, session, response}) {
+  async sendMessage ({ request, session, response }) {
     const mesgInfo = request.only(['name', 'email', 'message'])
     const rules = {
       name: 'required|min:3',
@@ -30,7 +30,7 @@ class ContactController {
     }, (message) => {
       message.to('nsegun5@gmail.com')
       message.from('noreply@hackathonstarter.com', mesgInfo.name)
-      message.subject('Message From AdonisJS Hackathon Starter Contact Form - ' + mesgInfo.email)
+      message.subject(`Message From AdonisJS Hackathon Starter Contact Form - ${mesgInfo.email}`)
     })
 
     session.flash({ status: 'Your Message has been sent successfully' })

@@ -1,4 +1,3 @@
-'use strict'
 
 const Env = use('Env')
 const request = require('request')
@@ -34,7 +33,7 @@ class NewYorkTimeController {
           return resolve({
             books: JSON.parse(body).results
           })
-        });
+        })
     })
   }
 }

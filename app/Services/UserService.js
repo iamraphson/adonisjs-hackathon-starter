@@ -1,9 +1,9 @@
-'use strict'
 
 const User = use('App/Models/User')
 const UsersProfile = use('App/Models/UsersProfile')
 const Hash = use('Hash')
 const randtoken = require('rand-token')
+
 const Database = use('Database')
 const Env = use('Env')
 const moment = require('moment')
@@ -37,7 +37,7 @@ class UserService {
     const token = await this.getToken()
     await Database.table('password_resets').insert({
       email: user.email,
-      token: token,
+      token,
       created_at: moment().format('YYYY-MM-DD HH:mm:ss')
     })
 
@@ -49,7 +49,7 @@ class UserService {
   }
 
   async userResetPasswordExists (postData) {
-    const token = await Database.table('password_resets').where({'email': postData.email, 'token': postData.token}).first()
+    const token = await Database.table('password_resets').where({ email: postData.email, token: postData.token }).first()
     if (token != null) {
       const isPast = await this.tokenExpired(token)
       return token && !isPast
@@ -58,12 +58,12 @@ class UserService {
   }
 
   async tokenExpired (token) {
-    let expires = Env.get('TOKEN_EXPIRES', 60) // in mins
+    const expires = Env.get('TOKEN_EXPIRES', 60) // in mins
     return moment().isAfter(moment(token.created_at).add(expires, 'minutes'))
   }
 
   async deleteResetToken (postData) {
-    await Database.table('password_resets').where({'email': postData.email, 'token': postData.token}).delete()
+    await Database.table('password_resets').where({ email: postData.email, token: postData.token }).delete()
   }
 
   async resetPassword (postData) {
@@ -91,7 +91,7 @@ class UserService {
 
   async findOrCreateUser (userData, provider) {
     const profile_ = await UsersProfile.query()
-      .where({'provider': provider, 'provider_id': userData.getId()}).first()
+      .where({ provider, provider_id: userData.getId() }).first()
     if (!(profile_ === null)) {
       const realUser = await profile_.user().fetch()
       return realUser
@@ -148,18 +148,16 @@ class UserService {
   async getAllLinkedAccount (loginID) {
     const loggedinUser = await this.findUserById(loginID.id)
     const userProfile = await loggedinUser.profile().fetch()
-    return userProfile.toJSON().map(function (profile) {
-      return profile.provider
-    })
+    return userProfile.toJSON().map(profile => profile.provider)
   }
 
   async unlinkAccount (provider, loginID) {
-    const userProfile = await UsersProfile.query().where({provider: provider, user_id: loginID.id}).first()
+    const userProfile = await UsersProfile.query().where({ provider, user_id: loginID.id }).first()
     await userProfile.delete()
   }
 
   async deleteUser (loginID) {
-    const userProfile = await UsersProfile.query().where({user_id: loginID.id}).first()
+    const userProfile = await UsersProfile.query().where({ user_id: loginID.id }).first()
     const user = await User.find(loginID.id)
     if (userProfile) {
       await userProfile.delete()

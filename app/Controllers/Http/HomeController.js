@@ -1,4 +1,3 @@
-'use strict'
 
 class HomeController {
   async index ({ view }) {

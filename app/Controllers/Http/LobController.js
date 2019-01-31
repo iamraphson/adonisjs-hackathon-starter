@@ -1,4 +1,3 @@
-'use strict'
 
 const Env = use('Env')
 const lob = require('lob')(Env.get('LOB_ID'))

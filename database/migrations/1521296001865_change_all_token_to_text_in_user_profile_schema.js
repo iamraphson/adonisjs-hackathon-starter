@@ -1,4 +1,3 @@
-'use strict'
 
 const Schema = use('Schema')
 

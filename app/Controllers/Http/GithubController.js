@@ -1,14 +1,16 @@
-'use strict'
 
 const octokit = require('@octokit/rest')()
+
 const api = make('App/Services/ApiService')
 class GithubController {
-  async index ({ request, response, auth, view }) {
+  async index ({
+    request, response, auth, view
+  }) {
     try {
-      let user = await auth.getUser()
+      const user = await auth.getUser()
       const token = await api.getToken('github', user.id)
       if (token === null) {
-        response.redirect('/auth/github?redirect=' + request.originalUrl())
+        response.redirect(`/auth/github?redirect=${request.originalUrl()}`)
       }
 
       try {
@@ -25,7 +27,8 @@ class GithubController {
   }
 
   async getGithubProfile () {
-    return await octokit.repos.get({ owner: 'iamraphson', repo: 'adonisjs-hackathon-starter' })
+    const repo = await octokit.repos.get({ owner: 'iamraphson', repo: 'adonisjs-hackathon-starter' })
+    return repo
   }
 }
 

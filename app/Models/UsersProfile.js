@@ -1,4 +1,3 @@
-'use strict'
 
 const Model = use('Model')
 

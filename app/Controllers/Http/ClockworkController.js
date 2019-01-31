@@ -1,14 +1,15 @@
-'use strict'
+
 const Env = use('Env')
 const clockwork = require('clockwork')({ key: Env.get('CLOCKWORK_ID') })
+
 const { validateAll } = use('Validator')
 
 class ClockworkController {
-  async index({ view }){
+  async index ({ view }) {
     return view.render('api.clockwork')
   }
 
-  async postClockwork({request, response, session}) {
+  async postClockwork ({ request, response, session }) {
     const userData = request.only(['telephone'])
     const rules = {
       telephone: 'required'
@@ -27,17 +28,16 @@ class ClockworkController {
     try {
       await this.sendMessage(userData.telephone)
       console.log('sent')
-      session.flash({ status: 'Text sent to ' + userData.telephone })
+      session.flash({ status: `Text sent to ${userData.telephone}` })
       return response.redirect('back')
     } catch (e) {
       console.log(e)
       session.flash({ error: 'Error in sending Text' })
       return response.redirect('back')
     }
-
   }
 
-  sendMessage(phoneNumber){
+  sendMessage (phoneNumber) {
     const message = {
       To: phoneNumber,
       From: 'AdonisJS',
@@ -46,7 +46,7 @@ class ClockworkController {
     return new Promise((resolve, reject) => {
       clockwork.sendSms(message, (error, resp) => {
         if (error) { return reject(error.errDesc) }
-        return resolve({msg: resp.responses[0].to})
+        return resolve({ msg: resp.responses[0].to })
       })
     })
   }

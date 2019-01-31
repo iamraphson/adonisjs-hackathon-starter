@@ -1,10 +1,9 @@
-'use strict'
 
 const Schema = use('Schema')
 
 class UserSchema extends Schema {
   up () {
-    this.createIfNotExists('users', table => {
+    this.createIfNotExists('users', (table) => {
       table.increments()
       table.string('email').nullable()
       table.string('password', 72).nullable()

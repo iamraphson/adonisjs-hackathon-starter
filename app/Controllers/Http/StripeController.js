@@ -1,4 +1,3 @@
-'use strict'
 
 const Env = use('Env')
 const stripe = require('stripe')(Env.get('STRIPE_ID'))
@@ -16,7 +15,7 @@ class StripeController {
       return response.redirect('back')
     } catch (e) {
       console.log(e.message)
-      session.flash({error: 'Your card has been declined.'}).flash()
+      session.flash({ error: 'Your card has been declined.' }).flash()
       return response.redirect('back')
     }
   }
@@ -30,8 +29,8 @@ class StripeController {
         description: stripeData.stripeEmail
       }, (err) => {
         if (err && err.type === 'StripeCardError') { return reject(err) }
-        return resolve({status: 'Payment confirmed'})
-      });
+        return resolve({ status: 'Payment confirmed' })
+      })
     })
   }
 }

@@ -1,4 +1,3 @@
-'use strict'
 
 class GoogleMapController {
   async index ({ view }) {

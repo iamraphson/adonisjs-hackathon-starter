@@ -143,6 +143,56 @@
           center: { lat: 9.0765, lng: 7.3986 },
           zoom: 6
         });
+
+        const fiveSpotToRustikTavern= [
+          { lng: -73.96427, lat: 40.69365},
+          { lng: -73.96408, lat: 40.69367},
+          { lng: -73.96314, lat: 40.69377},
+          { lng: -73.96222, lat: 40.69388},
+          { lng: -73.96222, lat: 40.69376},
+          { lng: -73.9619, lat: 40.69232},
+          { lng: -73.96074, lat: 40.69242},
+          { lng: -73.96003, lat: 40.69251},
+          { lng: -73.95995, lat: 40.69252},
+          { lng: -73.95984, lat: 40.69253},
+          { lng: -73.95901, lat: 40.69263},
+          { lng: -73.95767, lat: 40.69277},
+          { lng: -73.95752, lat: 40.69279}
+        ]
+
+        const LafayettetoFiveSpot = [
+          { lng: -73.97565, lat: 40.68748 },
+          { lng: -73.97557, lat: 40.68712 },
+          { lng: -73.97463, lat: 40.6872 },
+          { lng: -73.97366, lat: 40.68732 },
+          { lng: -73.97269, lat: 40.68743 },
+          { lng: -73.9717, lat: 40.68754 },
+          { lng: -73.97078, lat: 40.68765 },
+          { lng: -73.96981, lat: 40.68779 },
+          { lng: -73.96877, lat: 40.6879 },
+          { lng: -73.96779, lat: 40.68798 },
+          { lng: -73.96727, lat: 40.68805 },
+          { lng: -73.96685, lat: 40.6881 },
+          { lng: -73.96642, lat: 40.68815 },
+          { lng: -73.96583, lat: 40.68821 },
+          { lng: -73.96594, lat: 40.68875 },
+          { lng: -73.96614, lat: 40.68967 },
+          { lng: -73.96633, lat: 40.68965 }
+        ]
+
+        const arrayOfRoutes = [fiveSpotToRustikTavern, LafayettetoFiveSpot]
+        arrayOfRoutes.forEach((route) => {
+          console.log("foog")
+          const routePath = new google.maps.Polyline({
+            path: route,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 4,
+          });
+          routePath.setMap(map);
+        })
+
         superchargers.forEach(function(sc) {
           var marker = new google.maps.Marker({
             position: new google.maps.LatLng(sc.latitude, sc.longitude),

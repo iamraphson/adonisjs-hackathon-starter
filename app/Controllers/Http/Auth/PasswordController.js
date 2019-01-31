@@ -1,4 +1,3 @@
-'use strict'
 
 const { validateAll } = use('Validator')
 const users = make('App/Services/UserService')
@@ -30,23 +29,22 @@ class PasswordController {
     if (user === null) {
       session.flash({ warning: `${userInfo.email} Not Found` })
       return response.redirect('back')
-    } else {
-      const token = await users.findOrCreateToken(user)
-      try {
-        await this.sendResetMail(user, token)
-        session.flash({status: 'We have e-mailed your password reset link!'})
-        return response.redirect('back')
-      } catch (error) {
-        session.flash({ error: 'Unable to deliver email to given email address' })
-        return response.redirect('back')
-      }
+    }
+    const token = await users.findOrCreateToken(user)
+    try {
+      await this.sendResetMail(user, token)
+      session.flash({ status: 'We have e-mailed your password reset link!' })
+      return response.redirect('back')
+    } catch (error) {
+      session.flash({ error: 'Unable to deliver email to given email address' })
+      return response.redirect('back')
     }
   }
 
   async sendResetMail (user, token) {
-    let link = `${Env.get('APP_URL')}/password/token/reset/${token}?email=${user.email}`
+    const link = `${Env.get('APP_URL')}/password/token/reset/${token}?email=${user.email}`
     await Mail.send('auth.email.password', {
-      link: link
+      link
     }, (message) => {
       message.to(user.email, user.name)
       message.from(Env.get('MAIL_FROM_EMAIL'), Env.get('MAIL_FROM_NAME'))
@@ -58,7 +56,7 @@ class PasswordController {
     const { email } = request.all()
     return view.render('auth.passwords.reset', {
       token: params.token,
-      email: email
+      email
     })
   }
 

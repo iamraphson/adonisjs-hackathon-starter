@@ -1,6 +1,6 @@
-'use strict'
 
 const tumblr = require('tumblr.js')
+
 const Env = use('Env')
 
 class TumblrController {
@@ -14,7 +14,7 @@ class TumblrController {
     })
   }
 
-  async index ({view}) {
+  async index ({ view }) {
     try {
       const tumblrResponse = await this.getBlogPosts()
       return view.render('api.tumblr', { info: tumblrResponse.data })
@@ -30,7 +30,7 @@ class TumblrController {
         if (err) {
           return reject(err)
         }
-        return resolve({data: data})
+        return resolve({ data })
       })
     })
   }

@@ -1,9 +1,8 @@
-'use strict'
 
 const Helpers = use('Helpers')
 
 class UploadController {
-  async index({ view }) {
+  async index ({ view }) {
     return view.render('api.upload')
   }
 
@@ -12,7 +11,7 @@ class UploadController {
       size: '2mb'
     })
 
-    let name = `${new Date().getTime()}_${profilePic._clientName}`
+    const name = `${new Date().getTime()}_${profilePic._clientName}`
     await profilePic.move(Helpers.tmpPath('/uploads'), {
       name
     })
