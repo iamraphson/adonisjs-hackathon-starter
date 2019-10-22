@@ -60,7 +60,7 @@ Route.group(() => {
   Route.get('/api/paypal/success', 'PayPalController.getPayPalSuccess').as('api.paypal.success')
   Route.get('/api/paypal/cancel', 'PayPalController.getPayPalCancel').as('api.paypal.cancel')
   Route.get('/api/tumblr', 'TumblrController.index').as('api.tumblr')
-  Route.get('/api/scraping', 'ScarpingController.index').as('api.scraping')
+  Route.get('/api/scraping', 'ScrapingController.index').as('api.scraping')
   Route.get('/api/yahoo', 'YahooController.index').as('api.yahoo')
   Route.get('/api/clockwork', 'ClockworkController.index').as('api.clockwork')
   Route.post('/api/clockwork', 'ClockworkController.postClockwork').as('api.clockwork.post')

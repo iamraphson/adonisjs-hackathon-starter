@@ -2,7 +2,7 @@
 const request = require('request')
 const cheerio = require('cheerio')
 
-class ScarpingController {
+class ScrapingCOntroller {
   constructor () {
     this.url = 'https://news.ycombinator.com/'
   }
@@ -32,4 +32,4 @@ class ScarpingController {
   }
 }
 
-module.exports = ScarpingController
+module.exports = ScrapingCOntroller
