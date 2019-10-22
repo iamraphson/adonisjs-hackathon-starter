@@ -24,7 +24,7 @@ class ScrapingCOntroller {
         const $ = cheerio.load(body)
         const links = []
         $('.title a[href^="http"], a[href^="https"]').each((index, element) => {
-          links.push($(element))
+          if (element.attribs.class) links.push($(element))
         })
         return resolve({ links })
       })
