@@ -317,7 +317,7 @@ Project Structure
 | **app/Controllers/Http**/LobController.js                 | Controller for Lob API functionality                           |
 | **app/Controllers/Http**/NewYorkTimesController.js                 | Controller for New York Times API functionality                  |
 | **app/Controllers/Http**/PayPal.js                 | Controller for Paypal API functionality               |
-| **app/Controllers/Http**/ScarpingController.js                 | Controller for Web Scraping API functionality              |
+| **app/Controllers/Http**/ScrapingController.js                 | Controller for Web Scraping API functionality              |
 | **app/Controllers/Http**/SlackController.js                 | Controller for Slack API functionality              |
 | **app/Controllers/Http**/StripeController.js                 | Controller for Stripe API functionality                |
 | **app/Controllers/Http**/TumbirController.js                 | Controller for Tumblr API functionality                |
