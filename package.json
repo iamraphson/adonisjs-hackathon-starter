@@ -44,7 +44,7 @@
     "instagram-node": "^0.5.8",
     "lastfm": "^0.9.3",
     "lob": "^6.0.4",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "mysql": "^2.16.0",
     "node-foursquare": "^0.4.6",
