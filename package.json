@@ -40,7 +40,7 @@
     "cloudinary": "^1.13.2",
     "fbgraph": "^1.4.4",
     "github": "^14.0.0",
-    "got": "^9.6.0",
+    "got": "^11.8.5",
     "instagram-node": "^0.5.8",
     "lastfm": "^0.9.3",
     "lob": "^6.0.4",
